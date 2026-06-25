@@ -1,0 +1,974 @@
+<!-- KakaoCloud Certified Essentials (Practitioner) — Practice Exam -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>카카오클라우드 Certified Essentials 모의고사</title>
+<style>
+  :root{
+    --paper:#EEF1F4; --surface:#FFFFFF; --surface-2:#F7F8FA;
+    --ink:#16202C; --ink-soft:#52616F; --ink-faint:#8493A1;
+    --line:#E3E7EC; --line-strong:#D2D8DF;
+    --accent:#F4B400; --accent-deep:#B97F00; --accent-wash:#FDF3D4;
+    --correct:#13935F; --correct-wash:#E6F5EE; --correct-line:#9FD9BF;
+    --wrong:#D83A3F; --wrong-wash:#FBECEC; --wrong-line:#EBB4B5;
+    --radius:14px; --shadow:0 1px 2px rgba(20,32,44,.05), 0 8px 28px rgba(20,32,44,.07);
+    --maxw:1080px;
+    --sans:-apple-system,BlinkMacSystemFont,"Segoe UI","Apple SD Gothic Neo","Malgun Gothic","Noto Sans KR",Roboto,sans-serif;
+    --mono:"SFMono-Regular",Menlo,Consolas,monospace;
+  }
+  *{box-sizing:border-box} html,body{margin:0}
+  body{font-family:var(--sans);background:var(--paper);color:var(--ink);line-height:1.6;-webkit-font-smoothing:antialiased;padding:clamp(16px,4vw,40px)}
+  .wrap{max-width:var(--maxw);margin:0 auto}
+  button{font-family:inherit;cursor:pointer}
+  @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+
+  .masthead{display:flex;align-items:center;gap:14px;margin-bottom:22px}
+  .mono-tile{width:42px;height:42px;border-radius:11px;background:var(--ink);color:var(--accent);display:grid;place-items:center;font-weight:800;font-size:18px;letter-spacing:-.5px;flex:none}
+  .mh-eyebrow{font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--accent-deep)}
+  .mh-title{font-size:18px;font-weight:750;letter-spacing:-.01em;line-height:1.2}
+  .card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow)}
+
+  .hero{padding:clamp(24px,5vw,44px)}
+  .hero h1{font-size:clamp(25px,4.4vw,38px);line-height:1.1;letter-spacing:-.02em;margin:0 0 14px;font-weight:800}
+  .hero h1 .hl{color:var(--accent-deep)}
+  .hero p.lead{font-size:16px;color:var(--ink-soft);margin:0 0 24px;max-width:56ch}
+  .tabs{display:inline-flex;border:1px solid var(--line-strong);border-radius:12px;overflow:hidden;margin-bottom:26px}
+  .tabs button{border:0;background:var(--surface);padding:11px 20px;font-size:14px;font-weight:700;color:var(--ink-soft);border-right:1px solid var(--line-strong)}
+  .tabs button:last-child{border-right:0}
+  .tabs button[aria-pressed="true"]{background:var(--ink);color:#fff}
+
+  .field{margin-bottom:22px}
+  .field > label.lab{display:block;font-size:12.5px;font-weight:750;letter-spacing:.02em;color:var(--ink);margin-bottom:10px}
+  .field .hint{font-weight:500;color:var(--ink-faint);letter-spacing:0}
+  .chips{display:flex;flex-wrap:wrap;gap:8px}
+  .chip{border:1px solid var(--line-strong);background:var(--surface);color:var(--ink-soft);padding:7px 13px;border-radius:999px;font-size:13px;font-weight:600;transition:.15s}
+  .chip:hover{border-color:var(--ink-faint)}
+  .chip[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:#fff}
+  .chip .n{opacity:.6;font-weight:600;margin-left:5px;font-size:11.5px}
+  .seg{display:inline-flex;border:1px solid var(--line-strong);border-radius:10px;overflow:hidden;flex-wrap:wrap}
+  .seg button{border:0;background:var(--surface);padding:9px 16px;font-size:13.5px;font-weight:650;color:var(--ink-soft);border-right:1px solid var(--line-strong)}
+  .seg button:last-child{border-right:0}
+  .seg button[aria-pressed="true"]{background:var(--accent-wash);color:var(--accent-deep)}
+  .toggle{display:inline-flex;align-items:center;gap:10px;font-size:14px;font-weight:600;color:var(--ink);user-select:none}
+  .switch{width:42px;height:24px;border-radius:999px;background:var(--line-strong);position:relative;transition:.2s;flex:none}
+  .switch::after{content:"";position:absolute;top:3px;left:3px;width:18px;height:18px;border-radius:50%;background:#fff;transition:.2s;box-shadow:0 1px 2px rgba(0,0,0,.25)}
+  .toggle[aria-pressed="true"] .switch{background:var(--accent)}
+  .toggle[aria-pressed="true"] .switch::after{left:21px}
+
+  .blueprint{width:100%;border-collapse:collapse;font-size:13px;margin:4px 0 26px}
+  .blueprint th,.blueprint td{padding:8px 10px;border-bottom:1px solid var(--line);text-align:right}
+  .blueprint th:first-child,.blueprint td:first-child{text-align:left}
+  .blueprint thead th{font-size:11px;font-weight:700;letter-spacing:.04em;color:var(--ink-faint);text-transform:uppercase}
+  .blueprint tbody tr:last-child td{border-bottom:0}
+  .blueprint .hi td{background:var(--accent-wash);font-weight:700}
+  .blueprint tfoot td{border-top:2px solid var(--line-strong);font-weight:800}
+
+  .btn-primary{appearance:none;border:0;background:var(--accent);color:#1c1404;font-weight:800;font-size:15.5px;padding:15px 26px;border-radius:12px;letter-spacing:-.01em;transition:.15s;box-shadow:0 2px 0 var(--accent-deep)}
+  .btn-primary:hover{transform:translateY(-1px);box-shadow:0 4px 0 var(--accent-deep)}
+  .btn-primary:active{transform:translateY(1px);box-shadow:0 1px 0 var(--accent-deep)}
+  .btn-ghost{appearance:none;background:var(--surface);border:1px solid var(--line-strong);color:var(--ink);font-weight:650;font-size:14px;padding:12px 18px;border-radius:11px;transition:.15s}
+  .btn-ghost:hover{border-color:var(--ink-faint)}
+  .share-note{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-top:16px;font-size:13px;color:var(--ink-faint)}
+
+  .exam{display:grid;grid-template-columns:1fr 268px;gap:20px;align-items:start}
+  .topbar{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:16px}
+  .progress-meta{font-size:13px;color:var(--ink-soft);font-weight:600}
+  .progress-meta b{color:var(--ink)}
+  .pbar{height:7px;background:var(--line);border-radius:99px;overflow:hidden;flex:1;max-width:320px}
+  .pbar > i{display:block;height:100%;background:var(--accent);width:0;transition:width .3s}
+  .qcard{padding:clamp(22px,3.4vw,34px)}
+  .eyebrow{display:flex;align-items:center;gap:9px;flex-wrap:wrap;margin-bottom:14px}
+  .qnum{font-family:var(--mono);color:var(--ink-faint);font-size:12px;font-weight:700}
+  .cat{background:var(--surface-2);border:1px solid var(--line);color:var(--ink-soft);padding:3px 9px;border-radius:6px;font-size:11px;font-weight:700;letter-spacing:.03em}
+  .pt{padding:3px 9px;border-radius:6px;font-size:11px;font-weight:800;letter-spacing:.02em}
+  .pt1{background:var(--correct-wash);color:var(--correct);border:1px solid var(--correct-line)}
+  .pt2{background:var(--accent-wash);color:var(--accent-deep);border:1px solid #e7cf86}
+  .pt3{background:var(--ink);color:var(--accent)}
+  .qtext{font-size:18px;font-weight:650;line-height:1.5;letter-spacing:-.01em;margin:0}
+  .opts{list-style:none;padding:0;margin:22px 0 0;display:flex;flex-direction:column;gap:10px}
+  .opt{display:flex;gap:13px;align-items:flex-start;width:100%;text-align:left;border:1.5px solid var(--line);background:var(--surface);border-radius:12px;padding:14px 15px;transition:.13s;color:var(--ink);font-size:15px;line-height:1.5}
+  .opt:hover{border-color:var(--accent);background:#fffdf6}
+  .opt .key{flex:none;width:26px;height:26px;display:grid;place-items:center;font-weight:750;font-size:15px;color:var(--ink-faint);transition:.13s}
+  .opt[aria-pressed="true"]{border-color:var(--accent);background:var(--accent-wash)}
+  .opt[aria-pressed="true"] .key{color:var(--accent-deep)}
+  .navbtns{display:flex;justify-content:space-between;gap:12px;margin-top:26px}
+
+  .side{position:sticky;top:20px;padding:18px}
+  .side h3{font-size:12px;font-weight:750;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-soft);margin:0 0 4px}
+  .side .sub{font-size:12px;color:var(--ink-faint);margin:0 0 14px}
+  .omr{display:grid;grid-template-columns:repeat(6,1fr);gap:7px}
+  .cell{aspect-ratio:1;border:1.5px solid var(--line-strong);background:var(--surface);border-radius:8px;font-family:var(--mono);font-size:12px;font-weight:600;color:var(--ink-soft);display:grid;place-items:center;transition:.12s}
+  .cell:hover{border-color:var(--ink-faint)}
+  .cell.answered{background:var(--accent);border-color:var(--accent);color:#1c1404}
+  .cell.current{outline:2px solid var(--ink);outline-offset:1px}
+  .legend{display:flex;flex-wrap:wrap;gap:6px 14px;margin:16px 0 0;font-size:11.5px;color:var(--ink-soft)}
+  .legend span{display:inline-flex;align-items:center;gap:6px}
+  .dot{width:11px;height:11px;border-radius:4px;border:1.5px solid var(--line-strong);background:var(--surface)}
+  .dot.a{background:var(--accent);border-color:var(--accent)}
+  .side .submit{width:100%;margin-top:18px}
+  .answered-count{font-size:12.5px;color:var(--ink-soft);text-align:center;margin-top:10px}
+
+  .result-head{padding:clamp(26px,4vw,40px);display:flex;gap:30px;align-items:center;flex-wrap:wrap}
+  .ring{--p:0;flex:none;width:150px;height:150px;border-radius:50%;display:grid;place-items:center;background:conic-gradient(var(--ring-c,var(--accent)) calc(var(--p)*1%), var(--line) 0)}
+  .ring > div{width:118px;height:118px;border-radius:50%;background:var(--surface);display:grid;place-items:center}
+  .ring .pct{font-size:30px;font-weight:800;letter-spacing:-.02em;line-height:1}
+  .ring .pl{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-faint);margin-top:4px}
+  .verdict h2{font-size:23px;font-weight:800;letter-spacing:-.02em;margin:0 0 6px}
+  .verdict p{margin:0;color:var(--ink-soft);font-size:14.5px}
+  .badge-pass{display:inline-block;font-size:12px;font-weight:750;padding:4px 11px;border-radius:7px;margin-bottom:10px}
+  .badge-pass.high{background:var(--correct);color:#fff}
+  .badge-pass.pass{background:var(--correct-wash);color:var(--correct)}
+  .badge-pass.fail{background:var(--wrong-wash);color:var(--wrong)}
+  .breakdown{padding:0 clamp(26px,4vw,40px) clamp(18px,3vw,26px)}
+  .breakdown h3{font-size:12px;font-weight:750;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-soft);margin:18px 0 14px}
+  .br-row{display:grid;grid-template-columns:130px 1fr 70px;gap:12px;align-items:center;margin-bottom:9px;font-size:13px}
+  .br-row .nm{color:var(--ink);font-weight:600}
+  .br-bar{height:8px;background:var(--line);border-radius:99px;overflow:hidden}
+  .br-bar > i{display:block;height:100%;border-radius:99px}
+  .br-row .sc{text-align:right;font-family:var(--mono);font-size:12px;color:var(--ink-soft)}
+  .actions{display:flex;flex-wrap:wrap;gap:10px;padding:clamp(20px,3vw,28px);border-top:1px solid var(--line)}
+
+  .review-head{display:flex;align-items:center;justify-content:space-between;gap:14px;margin:26px 0 14px;flex-wrap:wrap}
+  .review-head h2{font-size:19px;font-weight:800;letter-spacing:-.01em;margin:0}
+  .filter-seg{display:inline-flex;border:1px solid var(--line-strong);border-radius:9px;overflow:hidden}
+  .filter-seg button{border:0;background:var(--surface);padding:8px 15px;font-size:13px;font-weight:650;color:var(--ink-soft);border-right:1px solid var(--line-strong)}
+  .filter-seg button:last-child{border-right:0}
+  .filter-seg button[aria-pressed="true"]{background:var(--ink);color:#fff}
+  .rev{padding:20px 22px;margin-bottom:12px}
+  .rev .rtop{display:flex;align-items:center;gap:8px;margin-bottom:12px;flex-wrap:wrap}
+  .rev .tag{font-size:11px;font-weight:750;letter-spacing:.03em;padding:3px 9px;border-radius:6px}
+  .rev .tag.ok{background:var(--correct-wash);color:var(--correct)}
+  .rev .tag.no{background:var(--wrong-wash);color:var(--wrong)}
+  .rev .tag.cat{background:var(--surface-2);color:var(--ink-soft);border:1px solid var(--line)}
+  .rev .rq{font-size:15.5px;font-weight:650;line-height:1.5;margin:0 0 14px}
+  .rev .rq .qnum{font-family:var(--mono);color:var(--ink-faint);margin-right:8px}
+  .rev .ro{display:flex;gap:11px;align-items:flex-start;padding:10px 13px;border-radius:9px;border:1.5px solid var(--line);font-size:14px;margin-bottom:7px;line-height:1.45}
+  .rev .ro .k{flex:none;font-weight:750;font-size:15px;color:var(--ink-soft)}
+  .rev .ro.correct{border-color:var(--correct-line);background:var(--correct-wash)}
+  .rev .ro.correct .k{color:var(--correct)}
+  .rev .ro.chosen-wrong{border-color:var(--wrong-line);background:var(--wrong-wash)}
+  .rev .ro.chosen-wrong .k{color:var(--wrong)}
+  .rev .ro .mark{margin-left:auto;font-size:11.5px;font-weight:700;align-self:center}
+  .rev .ro.correct .mark{color:var(--correct)}
+  .rev .ro.chosen-wrong .mark{color:var(--wrong)}
+  .rev .exp{margin-top:12px;padding:13px 15px;background:var(--surface-2);border:1px solid var(--line);border-left:3px solid var(--accent);border-radius:9px;font-size:13.5px;color:var(--ink-soft);line-height:1.55}
+  .rev .exp b{color:var(--ink);font-weight:700}
+
+  .toast{position:fixed;left:50%;bottom:28px;transform:translateX(-50%) translateY(20px);background:var(--ink);color:#fff;padding:12px 20px;border-radius:11px;font-size:14px;font-weight:600;box-shadow:0 10px 30px rgba(0,0,0,.28);opacity:0;pointer-events:none;transition:.25s;z-index:50}
+  .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+  footer{margin:34px 0 8px;text-align:center;font-size:12px;color:var(--ink-faint);line-height:1.7}
+
+  @media (max-width:820px){
+    .exam{grid-template-columns:1fr}
+    .side{position:static;order:-1}
+    .omr{grid-template-columns:repeat(10,1fr)}
+    .ring{width:120px;height:120px}.ring>div{width:94px;height:94px}.ring .pct{font-size:26px}
+    .br-row{grid-template-columns:96px 1fr 64px}
+  }
+</style>
+
+<div class="wrap">
+  <div class="masthead">
+    <div class="mono-tile">kc</div>
+    <div>
+      <div class="mh-eyebrow">KakaoCloud Certified Essentials · Practitioner</div>
+      <div class="mh-title">실전 모의고사</div>
+    </div>
+  </div>
+  <div id="app"></div>
+  <footer>
+    KakaoCloud 공식 문서 및 학습 가이드의 출제 구조(60문항·100점, 합격 70점)를 바탕으로 구성한 학습용 자료입니다.<br>실제 시험 문항·범위 전체를 대체하지 않습니다.
+  </footer>
+</div>
+
+<script>
+/* ====================== 시험 청사진 (가이드 기반) ====================== */
+/* 영역: [1점 수, 2점 수, 3점 수]  → 합계 60문항 / 100점 */
+const BLUEPRINT = {
+  "클라우드 개요":[6,5,2],
+  "서비스 이해":[8,7,1],
+  "비용·요금":[4,3,1],
+  "보안·권한":[4,4,1],
+  "운영·모니터링":[3,2,1],
+  "계정 관리":[1,1,1],
+  "기타·복합":[2,2,1],
+};
+const AREAS = Object.keys(BLUEPRINT);
+const PASS = 70, HIGH = 90; // 100점 만점 기준
+
+/* ====================== 문제 은행 ======================
+   area=영역, pt=배점(1/2/3), opts=4지선다, ans=정답 인덱스(0~3) */
+const BANK = [
+{area:"클라우드 개요",pt:1,q:"클라우드 컴퓨팅에서 사용한 만큼만 비용을 지불하는 과금 방식은?",opts:["정액제", "선불제", "연간 구독제", "종량제"],ans:3,exp:"종량제(pay-as-you-go)는 사용한 리소스만큼만 비용을 지불하는 클라우드의 대표 과금 방식이다."},
+{area:"클라우드 개요",pt:1,q:"서버·스토리지·네트워크 등 인프라를 가상화해 제공하는 클라우드 서비스 모델은?",opts:["IaaS", "PaaS", "SaaS", "DaaS"],ans:0,exp:"IaaS는 컴퓨팅·스토리지·네트워크 같은 인프라 자원을 가상화해 제공하는 모델이다."},
+{area:"클라우드 개요",pt:1,q:"완성된 소프트웨어를 설치 없이 인터넷으로 바로 사용하는 모델은?",opts:["IaaS", "PaaS", "SaaS", "FaaS"],ans:2,exp:"SaaS는 완성된 애플리케이션을 인터넷을 통해 바로 사용하는 모델이다(예: 웹메일)."},
+{area:"클라우드 개요",pt:1,q:"지리적으로 떨어진 데이터센터들의 묶음으로, 서비스가 제공되는 큰 지역 단위는?",opts:["가용 영역(AZ)", "리전(Region)", "엣지", "랙"],ans:1,exp:"리전은 지리적으로 분리된 데이터센터 집합 단위다."},
+{area:"클라우드 개요",pt:1,q:"하나의 리전 안에서 전력·네트워크가 독립적으로 격리된 인프라 단위는?",opts:["가용 영역(AZ)", "리전", "서브넷", "클러스터"],ans:0,exp:"가용 영역(AZ)은 리전 내에서 물리적으로 분리·격리된 독립 인프라 단위로, 장애 격리에 활용된다."},
+{area:"클라우드 개요",pt:1,q:"여러 사용자가 공용 클라우드 인프라를 공유해 사용하는 배포 모델은?",opts:["프라이빗 클라우드", "온프레미스", "퍼블릭 클라우드", "엣지 클라우드"],ans:2,exp:"퍼블릭 클라우드는 다수 사용자가 공용 인프라를 공유하는 배포 모델이다."},
+{area:"클라우드 개요",pt:1,q:"온프레미스 환경과 퍼블릭 클라우드를 함께 연계해 사용하는 배포 모델은?",opts:["하이브리드 클라우드", "퍼블릭 클라우드", "프라이빗 클라우드", "멀티 리전"],ans:0,exp:"하이브리드 클라우드는 온프레미스와 퍼블릭 클라우드를 연계해 함께 활용하는 모델이다."},
+{area:"클라우드 개요",pt:2,q:"PaaS 모델에서 사용자가 주로 책임지고 관리하는 범위로 가장 적절한 것은?",opts:["물리 서버와 네트워크", "애플리케이션과 데이터", "하이퍼바이저", "데이터센터 전력 설비"],ans:1,exp:"PaaS는 OS·런타임·인프라를 제공자가 관리하고, 사용자는 애플리케이션과 데이터에 집중한다."},
+{area:"클라우드 개요",pt:2,q:"종량제(pay-as-you-go) 과금의 이점으로 가장 적절한 것은?",opts:["초기 대규모 투자 없이 사용한 만큼만 지불", "사용량과 무관하게 매월 동일 비용", "항상 최저가를 보장", "무제한 무료 제공"],ans:0,exp:"종량제는 초기 설비 투자 없이 사용한 만큼만 지불해 비용 효율적이다."},
+{area:"클라우드 개요",pt:2,q:"트래픽 증가에 대응해 동일한 사양의 서버를 여러 대로 늘리는 확장 방식은?",opts:["수직 확장(Scale-up)", "다운사이징", "수평 확장(Scale-out)", "마이그레이션"],ans:2,exp:"수평 확장(Scale-out)은 동일 사양 서버를 여러 대로 늘려 부하를 분산하는 방식이다."},
+{area:"클라우드 개요",pt:2,q:"수요 변화에 따라 리소스를 자동으로 늘리고 줄이는 클라우드의 특성은?",opts:["탄력성(Elasticity)", "내구성", "지역성", "정합성"],ans:0,exp:"탄력성은 수요에 맞춰 리소스를 자동으로 증감하는 클라우드의 핵심 특성이다."},
+{area:"클라우드 개요",pt:2,q:"대규모 초기 설비 투자(CapEx)를 사용 기반 운영 비용(OpEx)으로 전환한다는 클라우드 이점은?",opts:["민첩성", "비용 구조 전환", "규제 회피", "데이터 주권"],ans:1,exp:"클라우드는 선투자(CapEx)를 사용량 기반 운영비(OpEx)로 바꿔 비용 부담을 분산한다."},
+{area:"클라우드 개요",pt:2,q:"애플리케이션의 고가용성을 높이기 위한 배포 방식으로 가장 적절한 것은?",opts:["단일 AZ에 모든 서버 집중", "온프레미스로만 운영", "여러 가용 영역(AZ)에 분산 배치", "단일 서버 수직 확장"],ans:2,exp:"여러 가용 영역에 분산 배치하면 한 AZ 장애 시에도 서비스 연속성을 확보할 수 있다."},
+{area:"클라우드 개요",pt:3,q:"평소 트래픽이 낮지만 이벤트 기간에만 급증하는 쇼핑몰을 비용 효율적으로 운영하려 한다. 가장 적절한 접근은?",opts:["항상 최대 용량 서버를 상시 운영", "온프레미스 고정 용량으로 증설", "수평 확장과 탄력적 오토스케일로 수요에 맞춰 증감", "단일 대형 서버로 수직 확장만 적용"],ans:2,exp:"수요가 변동적이면 탄력적 오토스케일과 수평 확장으로 필요한 만큼만 운영하는 것이 비용·성능 모두에 유리하다."},
+{area:"클라우드 개요",pt:3,q:"규제상 민감 데이터는 내부에 보관해야 하지만 일반 워크로드는 클라우드 확장성을 활용하려 한다. 가장 적절한 배포 모델은?",opts:["퍼블릭 전용", "하이브리드 클라우드", "프라이빗 전용", "온프레미스 전용"],ans:1,exp:"민감 데이터는 내부(프라이빗/온프레미스)에 두고 일반 워크로드는 퍼블릭 클라우드로 확장하는 하이브리드가 적합하다."},
+{area:"서비스 이해",pt:1,q:"카카오클라우드에서 논리적으로 격리된 가상 네트워크 공간을 제공하는 서비스는?",opts:["VPN", "VPC", "VPS", "VDI"],ans:1,exp:"VPC는 논리적으로 격리된 가상 네트워크 공간을 제공한다."},
+{area:"서비스 이해",pt:1,q:"대용량 데이터를 객체(key-value) 형태로 저장하는 스토리지 서비스는?",opts:["Block Storage", "File Storage", "Object Storage", "MemStore"],ans:2,exp:"Object Storage는 데이터를 키-값 객체로 저장하며 확장성·내구성에 강하다."},
+{area:"서비스 이해",pt:1,q:"NFS 프로토콜로 여러 서버가 데이터를 공유하도록 하는 스토리지는?",opts:["Object Storage", "Block Storage", "Container Registry", "File Storage"],ans:3,exp:"File Storage는 NFS 기반으로 여러 서버가 파일을 공유하는 스토리지다."},
+{area:"서비스 이해",pt:1,q:"서버의 기본(primary) 스토리지로 사용되는 블록 단위 스토리지는?",opts:["Object Storage", "Block Storage", "File Storage", "Pub/Sub"],ans:1,exp:"Block Storage는 서버 OS·데이터가 저장되는 기본 블록 스토리지다."},
+{area:"서비스 이해",pt:1,q:"가상화 기반으로 필요한 만큼 만들어 쓰는 가상 서버 서비스는?",opts:["VPC", "Container Registry", "DNS", "Virtual Machine"],ans:3,exp:"Virtual Machine(BCS)은 가상화 기반의 가상 서버를 제공한다."},
+{area:"서비스 이해",pt:1,q:"컨트롤 플레인 운영 부담 없이 사용할 수 있는 관리형 쿠버네티스 서비스는?",opts:["Container Registry", "Kubeflow", "OSS Library", "Kubernetes Engine"],ans:3,exp:"Kubernetes Engine은 VPC 기반의 관리형 쿠버네티스 서비스다."},
+{area:"서비스 이해",pt:1,q:"컨테이너 이미지를 안전하게 비공개로 저장·관리하는 서비스는?",opts:["Object Storage", "Data Catalog", "File Storage", "Container Registry"],ans:3,exp:"Container Registry는 컨테이너 이미지를 위한 비공개 저장소다."},
+{area:"서비스 이해",pt:1,q:"빠른 응답이 필요한 캐시·세션용 완전관리형 인메모리 데이터 저장소는?",opts:["MySQL", "MemStore", "PostgreSQL", "Hadoop Eco"],ans:1,exp:"MemStore는 완전관리형 인메모리 데이터 저장소다."},
+{area:"서비스 이해",pt:1,q:"도메인 이름을 IP 주소로 변환해 주는 서비스는?",opts:["DHCP", "CDN", "NAT", "DNS"],ans:3,exp:"DNS는 도메인 이름을 IP 주소로 변환한다."},
+{area:"서비스 이해",pt:2,q:"Object Storage와 File Storage의 가장 큰 차이점은?",opts:["Object Storage는 빠른 I/O를, File Storage는 대용량 저장에 적합하다", "Object Storage는 객체(key-value)로 저장하고, File Storage는 NFS 프로토콜로 파일을 공유한다", "Object Storage는 VM에 직접 연결하고, File Storage는 인터넷으로만 접근한다", "Object Storage는 Windows만, File Storage는 Linux만 지원한다"],ans:1,exp:"Object Storage는 키-값 객체 저장, File Storage는 NFS 기반 공유 파일 시스템이라는 점이 핵심 차이다."},
+{area:"서비스 이해",pt:2,q:"다음 중 Bare Metal Server를 사용하는 것이 가장 적합한 경우는?",opts:["간단한 웹사이트 호스팅", "데이터베이스 캐싱 서버", "독자적인 하이퍼바이저를 구동해야 하는 환경", "정적 파일 저장소"],ans:2,exp:"BMS는 가상화 없이 물리 서버를 전용 제공하므로, 독자 하이퍼바이저 구동 등 하드웨어 전용이 필요한 환경에 적합하다."},
+{area:"서비스 이해",pt:2,q:"세션 캐시처럼 매우 빠른 임시 데이터 저장이 필요할 때 가장 적합한 것은?",opts:["MySQL", "PostgreSQL", "Block Storage", "MemStore"],ans:3,exp:"인메모리 저장소 MemStore는 캐시·세션 등 초저지연 임시 데이터에 적합하다."},
+{area:"서비스 이해",pt:2,q:"로드 밸런서에서 클라이언트 요청을 받아 타깃 그룹으로 전달하는 구성 요소는?",opts:["Listener", "Target Group", "Health Check", "Internet Gateway"],ans:0,exp:"Listener가 요청을 수신해 Target Group으로 라우팅한다."},
+{area:"서비스 이해",pt:2,q:"Virtual Machine과 Bare Metal Server의 차이로 옳은 것은?",opts:["둘 다 가상화 기반이다", "BMS가 VM보다 항상 저렴하다", "VM은 GPU를 사용할 수 없다", "VM은 가상화 기반, BMS는 물리 서버를 전용 제공한다"],ans:3,exp:"VM은 가상화 기반, BMS는 가상화 없이 물리 서버를 통째로 전용 제공한다."},
+{area:"서비스 이해",pt:2,q:"Kubernetes Engine으로 생성한 워커 노드는 어디에 배포되는가?",opts:["퍼블릭 인터넷 전용 대역", "온프레미스 전용", "VPC", "Object Storage"],ans:2,exp:"K8sE는 VPC 기반 관리형 쿠버네티스로, 워커 노드는 VPC 위에 배포된다."},
+{area:"서비스 이해",pt:2,q:"별도 클러스터 운영 없이 표준 SQL로 데이터를 즉석 분석하는 서버리스 서비스는?",opts:["Data Query", "Hadoop Eco", "Pub/Sub", "MemStore"],ans:0,exp:"Data Query는 서버리스로 표준 SQL 즉석 분석을 제공한다."},
+{area:"서비스 이해",pt:2,q:"Object Storage에서 키에 포함된 'folder/'는 무엇을 의미하는가?",opts:["실제 물리 디렉터리", "삭제 불가한 예약어", "버킷 이름", "키 접두사일 뿐 실제 계층은 아님"],ans:3,exp:"Object Storage는 플랫 구조로, 'folder/'는 실제 디렉터리가 아니라 키 접두사다."},
+{area:"서비스 이해",pt:3,q:"카카오클라우드에서 하나의 프로젝트 내에 생성할 수 있는 VPC의 최대 개수는?",opts:["3개", "1개", "5개", "10개"],ans:0,exp:"한 프로젝트에서 생성 가능한 VPC는 최대 3개다."},
+{area:"서비스 이해",pt:3,q:"정적 콘텐츠는 저비용·고확장으로 제공하고 동적 API는 컨테이너로 운영하려 한다. 가장 적절한 구성은?",opts:["모든 것을 단일 VM에서 처리", "정적 콘텐츠는 Object Storage, 동적 API는 Kubernetes Engine", "정적 콘텐츠를 MemStore에 저장", "동적 API를 Object Storage에 저장"],ans:1,exp:"정적 콘텐츠는 Object Storage, 동적 처리는 Kubernetes Engine으로 나누면 비용·확장성·운영 측면에서 효율적이다."},
+{area:"비용·요금",pt:1,q:"카카오클라우드 사용 요금 예측·청구서 확인·크레딧 관리를 제공하는 서비스는?",opts:["IAM", "Cloud Trail", "Monitoring", "Billing"],ans:3,exp:"Billing은 요금 예측·청구·크레딧 관리 등 비용 기능을 담당한다."},
+{area:"비용·요금",pt:1,q:"카카오클라우드의 기본 과금 방식에 대한 설명으로 옳은 것은?",opts:["사용과 무관하게 매월 정액 무제한", "항상 무료", "선불 충전 시에만 사용 가능", "사용한 리소스만큼 과금(종량제)"],ans:3,exp:"기본 과금은 사용한 리소스만큼 부과되는 종량제다."},
+{area:"비용·요금",pt:1,q:"요금 차감·결제에 사용할 수 있도록 제공/충전되는 것은?",opts:["역할(Role)", "인증서", "크레딧(Credit)", "CIDR"],ans:2,exp:"크레딧은 요금 차감·결제에 사용되는 수단이다."},
+{area:"비용·요금",pt:1,q:"다음 중 클라우드 비용에 직접 영향을 주는 요소가 아닌 것은?",opts:["컴퓨팅 사용 시간", "스토리지 사용량", "아웃바운드 트래픽량", "콘솔 로그인 횟수"],ans:3,exp:"콘솔 로그인 횟수는 과금 요소가 아니다. 비용은 사용한 자원량(컴퓨팅·스토리지·트래픽 등)에 따라 결정된다."},
+{area:"비용·요금",pt:2,q:"클라우드 비용 최적화를 위해 가장 적절한 조치는?",opts:["모든 리소스를 최대 사양으로 운영", "로그를 모두 끈다", "사용하지 않는 유휴 리소스를 식별해 정리", "리전을 무작위로 선택"],ans:2,exp:"유휴 리소스 식별·정리는 대표적인 비용 최적화 활동이다."},
+{area:"비용·요금",pt:2,q:"트래픽이 적은 서비스가 고사양 인스턴스를 상시 운영 중이다. 비용 효율을 위한 조치는?",opts:["더 큰 인스턴스로 교체", "워크로드에 맞는 작은 타입으로 라이트사이징", "리소스를 두 배로 증설", "아무 조치도 하지 않는다"],ans:1,exp:"실제 사용량에 맞춰 인스턴스 크기를 조정(라이트사이징)하면 불필요한 비용을 줄일 수 있다."},
+{area:"비용·요금",pt:2,q:"평소 한가하고 가끔 트래픽이 튀는 소규모 앱에 비용 효율적인 인스턴스 선택은?",opts:["메모리 집약형", "버스터블(t1i)", "Bare Metal Server", "최대 사양 범용형"],ans:1,exp:"버스터블(t1i)은 평상시 크레딧을 모았다가 급증 시 버스트 성능을 제공해 간헐적 부하에 경제적이다."},
+{area:"비용·요금",pt:2,q:"월 비용이 예상을 초과하지 않도록 사전에 관리하려면?",opts:["사용자 권한을 회수", "인증서를 갱신", "서브넷을 추가", "예산 설정과 비용 모니터링을 활용"],ans:3,exp:"예산 설정과 비용 모니터링으로 초과 지출을 사전에 통제할 수 있다."},
+{area:"비용·요금",pt:3,q:"분석용 대형 클러스터를 24시간 상시 운영하지만 야간에는 사용하지 않는다. 비용·성능 균형을 위한 조치로 가장 적절한 것은?",opts:["항상 최대 규모로 유지", "온프레미스로 이전", "사용 시간대에만 운영하거나 서버리스 분석(Data Query)으로 전환 검토", "인스턴스 수를 두 배로 증설"],ans:2,exp:"상시 미사용 시간이 있다면 사용 시간대만 운영하거나 즉석 분석을 서버리스(Data Query)로 전환해 비용을 줄일 수 있다."},
+{area:"보안·권한",pt:1,q:"사용자와 리소스 접근 권한을 부여·관리하는 서비스는?",opts:["KMS", "DNS", "Billing", "IAM"],ans:3,exp:"IAM은 사용자·권한(역할 기반) 관리를 담당한다."},
+{area:"보안·권한",pt:1,q:"데이터 암호화·복호화에 쓰이는 암호화 키를 안전하게 관리하는 서비스는?",opts:["Secrets Manager", "IAM", "Container Registry", "KMS"],ans:3,exp:"KMS는 암호화 키를 안전하게 생성·관리한다."},
+{area:"보안·권한",pt:1,q:"API 키·DB 비밀번호 같은 민감한 자격 증명을 저장·관리하는 서비스는?",opts:["KMS", "Cloud Trail", "Object Storage", "Secrets Manager"],ans:3,exp:"Secrets Manager는 자격 증명을 안전하게 저장·중앙 관리한다."},
+{area:"보안·권한",pt:1,q:"보유한 SSL 인증서를 등록·관리하는 서비스는?",opts:["Secrets Manager", "KMS", "IAM", "Certificate Manager"],ans:3,exp:"Certificate Manager는 SSL 인증서를 등록·관리한다."},
+{area:"보안·권한",pt:1,q:"인스턴스로 들어오고 나가는 트래픽을 허용 규칙으로 제어하는 가상 방화벽은?",opts:["라우트 테이블", "인터넷 게이트웨이", "보안 그룹", "서브넷"],ans:2,exp:"보안 그룹은 인스턴스·네트워크 인터페이스 단위의 가상 방화벽이다."},
+{area:"보안·권한",pt:2,q:"보안 그룹에 인바운드 허용 규칙만 설정했을 때, 그 요청에 대한 응답 트래픽은?",opts:["아웃바운드 규칙을 따로 설정해야 한다", "자동으로 허용된다(Stateful)", "항상 차단된다", "포트와 무관하게 모두 허용된다"],ans:1,exp:"보안 그룹은 Stateful이라 허용된 인바운드의 응답은 별도 아웃바운드 규칙 없이 자동 허용된다."},
+{area:"보안·권한",pt:2,q:"IAM 권한을 부여할 때 가장 바람직한 보안 원칙은?",opts:["업무에 필요한 최소 권한만 부여", "모두에게 관리자 권한 부여", "권한 없이 운영", "공용 계정 공유"],ans:0,exp:"최소 권한 원칙은 필요한 만큼의 권한만 부여해 위험을 줄이는 기본 원칙이다."},
+{area:"보안·권한",pt:2,q:"암호화 키 자체의 생성·보관·교체를 담당하는 서비스는?",opts:["Secrets Manager", "KMS", "IAM", "Monitoring"],ans:1,exp:"KMS는 암호화 키 자체를 관리하고, Secrets Manager는 자격 증명을 저장(암호화에 KMS 키 활용)한다."},
+{area:"보안·권한",pt:2,q:"외부 노출을 막아야 하는 데이터베이스 서버의 배치로 가장 적절한 것은?",opts:["퍼블릭 서브넷에 두고 공인 IP 부여", "모든 IP의 접근을 허용", "인터넷 게이트웨이에 직접 연결", "프라이빗 서브넷에 두고 보안 그룹에서 웹 서버만 허용"],ans:3,exp:"DB는 프라이빗 서브넷에 배치하고, 보안 그룹으로 웹 서버만 접근하도록 제한하는 것이 안전하다."},
+{area:"보안·권한",pt:2,q:"VPC·서브넷·라우트 테이블을 생성할 수 있는 프로젝트 역할은?",opts:["Project Reader", "Project Member", "Guest", "Project Administrator"],ans:3,exp:"VPC·서브넷·라우트 테이블 생성은 Project Administrator 권한이 필요하다."},
+{area:"보안·권한",pt:3,q:"외부 사용자가 접근하는 웹 서버와, 웹 서버만 접근 가능한 DB 서버를 안전하게 구성하는 가장 올바른 방법은?",opts:["웹·DB 모두 퍼블릭 서브넷에 두고 DB 보안 그룹에서 웹 서버 IP만 허용", "웹·DB 모두 프라이빗 서브넷에 두고 웹 서버에만 공인 IP 연결", "웹·DB를 같은 서브넷에 두고 동일 보안 그룹 사용", "웹 서버는 퍼블릭 서브넷+공인 IP, DB는 프라이빗 서브넷에 두고 보안 그룹에서 웹 서버만 허용"],ans:3,exp:"웹은 퍼블릭 서브넷+공인 IP로 외부에 제공하고, DB는 프라이빗 서브넷에 두어 보안 그룹으로 웹 서버만 접근시키는 구성이 안전하다."},
+{area:"보안·권한",pt:3,q:"애플리케이션 코드에 DB 비밀번호가 하드코딩되어 있다. 가장 적절한 개선 방법은?",opts:["코드에 그대로 두고 주석 처리", "Secrets Manager에 저장해 런타임에 안전하게 불러오고 KMS로 암호화", "퍼블릭 버킷에 저장", "환경변수 파일을 깃 저장소에 커밋"],ans:1,exp:"자격 증명은 코드에서 분리해 Secrets Manager로 관리하고 KMS 키로 암호화하는 것이 안전하다."},
+{area:"운영·모니터링",pt:1,q:"리소스 지표를 차트로 시각화하고 로그를 대시보드에서 확인하는 서비스는?",opts:["Monitoring", "Billing", "IAM", "DNS"],ans:0,exp:"Monitoring은 지표 시각화와 로그 대시보드를 제공한다."},
+{area:"운영·모니터링",pt:1,q:"이벤트·리소스 장애 발생 시 지정한 채널로 알림을 보내도록 설정하는 서비스는?",opts:["Alert Center", "Cloud Trail", "KMS", "Container Registry"],ans:0,exp:"Alert Center는 알림 정책과 수신 채널을 설정한다."},
+{area:"운영·모니터링",pt:1,q:"콘솔 로그인, 리소스 생성·수정·삭제 등 사용자 활동 이력을 기록·감사하는 서비스는?",opts:["Monitoring", "Cloud Trail", "Alert Center", "Resource Explorer"],ans:1,exp:"Cloud Trail은 사용자 활동 이력을 자동 기록해 감사에 활용한다."},
+{area:"운영·모니터링",pt:1,q:"메타데이터와 태그를 기반으로 리소스를 검색·정리하는 서비스는?",opts:["Monitoring", "Resource Explorer", "IAM", "Billing"],ans:1,exp:"Resource Explorer는 메타데이터·태그로 리소스를 검색·정리한다."},
+{area:"운영·모니터링",pt:2,q:"특정 리소스를 누가 언제 삭제했는지 확인하려면 어떤 서비스를 보아야 하는가?",opts:["Monitoring", "Cloud Trail", "Alert Center", "Billing"],ans:1,exp:"활동·변경 이력 추적은 Cloud Trail의 역할이다. Monitoring은 지표·로그 모니터링용이다."},
+{area:"운영·모니터링",pt:2,q:"쿠버네티스 워크로드 지표를 Prometheus 호환 방식(PromQL)으로 다루려면?",opts:["Monitoring Flow", "Cloud Trail", "Advanced Managed Prometheus", "Resource Explorer"],ans:2,exp:"Advanced Managed Prometheus는 완전관리형 Prometheus로 PromQL 기반 지표 분석에 적합하다."},
+{area:"운영·모니터링",pt:2,q:"CPU 사용률이 임계치를 넘을 때 담당자에게 즉시 통지하려면?",opts:["IAM 권한을 변경", "인증서를 갱신", "Alert Center로 알림 정책·채널을 설정", "서브넷을 추가"],ans:2,exp:"임계치 초과 시 통지는 Alert Center의 알림 정책으로 구성한다."},
+{area:"운영·모니터링",pt:3,q:"특정 시각부터 간헐적 장애가 발생한다. 지표는 대체로 정상이며 그 무렵 구성 변경이 의심된다. 가장 적절한 조사 접근은?",opts:["모든 로그를 비활성화", "무조건 전체 재부팅", "Monitoring으로 지표 추세를 보고 Cloud Trail로 같은 시각의 변경 이력을 함께 분석", "원인 분석 없이 인스턴스 증설"],ans:2,exp:"지표(Monitoring)와 변경 이력(Cloud Trail)을 함께 분석하면 '무엇이 언제 어떻게 바뀌었는지'를 연결해 원인을 좁힐 수 있다."},
+{area:"계정 관리",pt:1,q:"카카오클라우드에서 리소스와 권한을 묶어 관리하는 기본 단위는?",opts:["버킷", "서브넷", "가용 영역", "프로젝트"],ans:3,exp:"프로젝트는 리소스와 접근 권한을 묶어 관리하는 단위다."},
+{area:"계정 관리",pt:1,q:"프로젝트 내 사용자에게 권한을 부여하기 위해 지정하는 것은?",opts:["인증서", "크레딧", "역할(Role)", "CIDR"],ans:2,exp:"역할(Role)을 통해 사용자에게 권한을 부여한다(RBAC)."},
+{area:"계정 관리",pt:2,q:"프로젝트에 새 사용자를 초대하고 권한을 관리할 수 있는 역할은?",opts:["Project Reader", "Guest", "Project Member(읽기 전용)", "Project Administrator"],ans:3,exp:"사용자 초대·권한 관리는 Project Administrator가 수행한다."},
+{area:"계정 관리",pt:2,q:"특정 멤버에게 운영 권한만 주고 결제 권한은 막으려 한다. 가장 적절한 방법은?",opts:["모든 권한을 일괄 부여", "역할 기반으로 필요한 권한만 선택 부여", "루트 계정을 공유", "권한을 부여하지 않고 방치"],ans:1,exp:"역할 기반(RBAC)으로 필요한 권한만 선택 부여해 결제 등 민감 권한을 분리한다."},
+{area:"계정 관리",pt:3,q:"여러 부서가 리소스와 비용을 분리해 관리하려 한다. 가장 적절한 접근은?",opts:["모든 부서를 하나의 프로젝트에 통합", "개인 계정을 공유", "부서별 프로젝트로 분리하고 역할로 접근을 통제", "모든 권한을 전사 개방"],ans:2,exp:"부서별 프로젝트로 분리하면 리소스·비용·권한을 독립적으로 관리하기 쉽다."},
+{area:"기타·복합",pt:1,q:"클라우드 보안에서 제공자와 사용자가 보안 책임을 나누어 진다는 개념은?",opts:["공동 책임 모델", "제로 트러스트", "단일 책임 모델", "무책임 모델"],ans:0,exp:"공동 책임 모델은 클라우드 제공자와 사용자가 각자의 영역에 대해 보안 책임을 나누는 개념이다."},
+{area:"기타·복합",pt:1,q:"쿠버네티스 기반에서 머신러닝 워크플로우를 구축·실행하는 서비스는?",opts:["Data Query", "Kubeflow", "Container Registry", "DNS"],ans:1,exp:"Kubeflow는 Kubernetes Engine 기반의 ML 워크플로우 플랫폼이다."},
+{area:"기타·복합",pt:2,q:"Secrets Manager가 자격 증명을 안전하게 저장할 때 암호화에 활용하는 것은?",opts:["SSL 인증서", "IAM 역할", "KMS의 암호화 키", "로드 밸런서"],ans:2,exp:"Secrets Manager는 KMS의 키를 활용해 자격 증명을 암호화 저장한다."},
+{area:"기타·복합",pt:2,q:"로드 밸런서에서 SSL Offloading을 적용하려면 인증서를 어떻게 준비하는가?",opts:["각 백엔드 서버에 직접 설치", "KMS 키로 대체", "Certificate Manager에 등록한 뒤 Listener에 연결", "Object Storage에 업로드"],ans:2,exp:"Certificate Manager에 인증서를 등록하고 Listener에 연결하면 로드 밸런서가 SSL Offloading을 수행한다."},
+{area:"기타·복합",pt:3,q:"글로벌 사용자 대상 웹서비스를 구성한다. 정적 콘텐츠 저장, 동적 처리, DB 보호, 자격 증명 관리를 모두 고려한 가장 적절한 조합은?",opts:["모두 단일 VM에 두고 비밀번호는 코드에 하드코딩", "정적은 Object Storage, 동적은 Kubernetes Engine, DB는 프라이빗 서브넷, 자격 증명은 Secrets Manager", "DB를 퍼블릭에 노출하고 모든 IP 허용", "정적 콘텐츠를 MemStore에 저장"],ans:1,exp:"정적은 Object Storage, 동적은 K8sE, DB는 프라이빗 서브넷으로 보호, 자격 증명은 Secrets Manager로 관리하는 조합이 보안·확장성 면에서 가장 적절하다."},
+{area:"클라우드 개요",pt:1,topic:"Network - Public IP",q:"인터넷에서 직접 접근할 수 있도록 인스턴스에 부여하는 IP 주소는?",opts:["공인 IP(Public IP)", "사설 IP", "루프백 IP", "멀티캐스트 IP"],ans:0,exp:"공인 IP(Public IP)는 인터넷에서 직접 접근 가능한 주소로, 외부 노출이 필요한 리소스에 부여한다."},
+{area:"클라우드 개요",pt:1,topic:"Compute - BCS 인스턴스 유형",q:"BCS 인스턴스 유형 분류에 해당하지 않는 것은?",opts:["범용형", "컴퓨팅 집약형", "메모리 집약형", "네트워크 면제형"],ans:3,exp:"BCS는 범용형·컴퓨팅 집약형·메모리 집약형 등으로 구분된다. '네트워크 면제형'은 존재하지 않는다."},
+{area:"클라우드 개요",pt:2,topic:"Network - VPC 구성 요소",q:"VPC를 구성하는 요소로 보기 어려운 것은?",opts:["서브넷", "라우트 테이블", "컨테이너 이미지", "인터넷 게이트웨이"],ans:2,exp:"VPC는 서브넷·라우트 테이블·인터넷 게이트웨이·보안 그룹 등으로 구성된다. 컨테이너 이미지는 VPC 구성 요소가 아니다."},
+{area:"서비스 이해",pt:1,topic:"Kubeflow - 기본 개념",q:"쿠버네티스 위에서 머신러닝 워크플로우를 구축·운영하도록 돕는 서비스는?",opts:["Kubernetes Engine", "Container Registry", "Kubeflow", "Data Query"],ans:2,exp:"Kubeflow는 Kubernetes Engine 기반에서 ML 워크플로우를 구축·운영하는 플랫폼이다."},
+{area:"서비스 이해",pt:2,topic:"Kubeflow - 컴포넌트",q:"Kubeflow에서 머신러닝 작업 단계를 연결해 자동 실행하는 구성 요소는?",opts:["Listener", "Bucket", "Target Group", "Pipelines"],ans:3,exp:"Kubeflow Pipelines는 ML 작업 단계를 워크플로우로 연결해 실행하는 핵심 컴포넌트다."},
+{area:"서비스 이해",pt:1,topic:"알림 설정 가능 서비스",q:"리소스 이벤트·장애에 대한 알림을 설정하고 발송하는 서비스는?",opts:["Alert Center", "Monitoring", "Resource Explorer", "Cloud Trail"],ans:0,exp:"Alert Center는 알림 정책과 수신 채널을 설정해 이벤트·장애 알림을 발송한다."},
+{area:"서비스 이해",pt:2,topic:"Resource Explorer - 기본 개념",q:"여러 리소스를 메타데이터·태그로 한 곳에서 검색·조회하는 서비스는?",opts:["IAM", "Billing", "DNS", "Resource Explorer"],ans:3,exp:"Resource Explorer는 메타데이터·태그 기반으로 리소스를 통합 검색·조회한다."},
+{area:"서비스 이해",pt:1,topic:"File Storage - 기본 개념",q:"File Storage에 대한 설명으로 옳은 것은?",opts:["NFS 기반으로 여러 서버가 동시에 공유하는 파일 스토리지", "객체를 key-value로 저장하는 스토리지", "인메모리 캐시 저장소", "컨테이너 이미지 저장소"],ans:0,exp:"File Storage는 NFS 기반으로 다수 서버가 동시에 데이터를 공유하는 파일 스토리지다."},
+{area:"서비스 이해",pt:2,topic:"File Storage - 백업",q:"File Storage 데이터를 특정 시점 상태로 보호·복원하기 위해 활용하는 것은?",opts:["로드 밸런서", "백업(스냅샷)", "보안 그룹", "라우트 테이블"],ans:1,exp:"백업(스냅샷)을 통해 특정 시점의 데이터를 보호하고 필요 시 복원할 수 있다."},
+{area:"서비스 이해",pt:1,topic:"Pub/Sub - 토픽 생성",q:"Pub/Sub에서 메시지를 발행·구독하는 논리적 채널 단위는?",opts:["버킷", "서브넷", "토픽(Topic)", "존(Zone)"],ans:2,exp:"Pub/Sub에서 토픽(Topic)은 메시지를 발행·구독하는 논리적 채널 단위다."},
+{area:"서비스 이해",pt:2,topic:"Certificate Manager",q:"SSL/TLS 인증서를 등록·관리해 서비스에 적용하도록 돕는 서비스는?",opts:["KMS", "Certificate Manager", "Secrets Manager", "IAM"],ans:1,exp:"Certificate Manager는 SSL/TLS 인증서를 등록·관리하고 로드 밸런서 등에 적용한다."},
+{area:"비용·요금",pt:2,topic:"Virtual Machine - 요금",q:"Virtual Machine 요금에 가장 직접적으로 영향을 주는 요소는?",opts:["콘솔 테마", "태그 개수", "인스턴스 실행 시간과 사양", "프로젝트 이름 길이"],ans:2,exp:"VM 요금은 주로 인스턴스 사양과 실행 시간(가동 시간)에 따라 결정된다."},
+{area:"비용·요금",pt:1,topic:"GPU - 요금",q:"일반 CPU 인스턴스 대비 GPU 인스턴스 요금에 대한 설명으로 옳은 것은?",opts:["항상 무료다", "일반적으로 더 높다", "항상 더 저렴하다", "GPU는 과금되지 않는다"],ans:1,exp:"GPU 인스턴스는 고성능 가속기를 제공하므로 일반 CPU 인스턴스보다 요금이 높은 편이다."},
+{area:"비용·요금",pt:2,topic:"Object Storage - 요금",q:"Object Storage 요금을 구성하는 요소로 보기 어려운 것은?",opts:["인스턴스 부팅 시간", "저장 용량", "요청 수", "아웃바운드 트래픽"],ans:0,exp:"Object Storage 요금은 저장 용량·요청 수·아웃바운드 트래픽 등으로 구성되며, 인스턴스 부팅 시간과는 무관하다."},
+{area:"비용·요금",pt:1,topic:"요금 체계 확인",q:"각 서비스의 정확한 요금 체계를 확인하려면 우선 참고할 곳으로 가장 적절한 것은?",opts:["임의의 개인 블로그", "소셜 미디어 게시물", "카카오클라우드 요금 소개 페이지", "대략적인 추측"],ans:2,exp:"요금 정보는 카카오클라우드 공식 '요금 소개' 페이지에서 확인하는 것이 정확하다."},
+{area:"보안·권한",pt:1,topic:"조직 역할",q:"카카오클라우드 권한 관리의 계층 구조 순서로 옳은 것은?",opts:["사용자 → 조직 → 프로젝트", "프로젝트 → 조직 → 사용자", "조직 → 프로젝트 → 사용자", "사용자 → 프로젝트 → 조직"],ans:2,exp:"권한 체계는 조직 → 프로젝트 → 사용자의 계층 구조로 구성된다."},
+{area:"보안·권한",pt:2,topic:"Container Registry - 리포지토리 권한",q:"Container Registry에서 특정 리포지토리에 대한 push/pull 접근을 통제하려면?",opts:["보안 그룹 규칙을 추가", "DNS 레코드를 생성", "리포지토리 접근 권한(역할)을 설정", "라우트 테이블을 수정"],ans:2,exp:"Container Registry는 리포지토리 단위 접근 권한(역할)으로 push/pull을 통제한다."},
+{area:"보안·권한",pt:2,topic:"Cloud Trail - 이벤트 검색",q:"감사 시 특정 사용자·기간·리소스의 활동을 찾으려면 Cloud Trail에서 무엇을 활용하는가?",opts:["이벤트 검색(필터)", "로드 밸런싱", "인증서 등록", "스냅샷 생성"],ans:0,exp:"Cloud Trail의 이벤트 검색(필터)으로 사용자·기간·리소스별 활동 이력을 조회한다."},
+{area:"운영·모니터링",pt:2,topic:"DNS - TTL",q:"DNS 레코드의 TTL(Time To Live)이 의미하는 것은?",opts:["도메인 만료일", "인증서 유효기간", "세션 지속 시간", "레코드가 캐시에 유지되는 시간"],ans:3,exp:"TTL은 DNS 레코드가 리졸버 캐시에 유지되는 시간으로, 값이 작을수록 변경이 빨리 반영되고 질의가 늘어난다."},
+{area:"운영·모니터링",pt:2,topic:"Load Balancing - 알고리즘",q:"로드 밸런서가 백엔드로 트래픽을 나누는 방식(라운드 로빈, 최소 연결 등)을 결정하는 것은?",opts:["분산 알고리즘", "SSL 인증서", "보안 그룹", "라우트 테이블"],ans:0,exp:"분산 알고리즘(라운드 로빈, 최소 연결 등)이 트래픽을 어떤 타깃으로 보낼지 결정한다."},
+{area:"운영·모니터링",pt:2,topic:"Container Registry - 이미지 스캔",q:"Container Registry의 이미지 취약점 스캔 기능의 목적은?",opts:["이미지 용량 축소", "트래픽 분산", "요금 절감", "이미지의 보안 취약점을 점검"],ans:3,exp:"이미지 스캔은 컨테이너 이미지에 포함된 알려진 보안 취약점을 점검하기 위한 기능이다."},
+{area:"운영·모니터링",pt:1,topic:"Container Registry - 이미지 Push",q:"로컬에서 빌드한 컨테이너 이미지를 Container Registry에 업로드하는 동작은?",opts:["push", "pull", "mount", "query"],ans:0,exp:"이미지를 레지스트리에 올리는 동작은 push, 내려받는 동작은 pull이다."},
+{area:"운영·모니터링",pt:1,topic:"Kubernetes Engine - 로드 밸런서 생성",q:"Kubernetes Engine에서 외부 트래픽을 파드로 분산하기 위해 흔히 함께 생성하는 것은?",opts:["로드 밸런서", "버킷", "인증서", "크레딧"],ans:0,exp:"외부 트래픽을 파드로 분산하려면 로드 밸런서를 함께 구성한다."},
+{area:"계정 관리",pt:1,topic:"조직 관리자",q:"조직 전체 설정과 프로젝트·구성원을 총괄 관리하는 최상위 관리자 역할은?",opts:["조직 관리자", "게스트", "읽기 전용 사용자", "외부 협력자"],ans:0,exp:"조직 관리자는 조직 전체와 하위 프로젝트·구성원을 총괄 관리하는 최상위 역할이다."},
+{area:"계정 관리",pt:2,topic:"서비스 계정",q:"사람이 아닌 애플리케이션·자동화가 API로 리소스에 접근할 때 사용하도록 발급하는 계정은?",opts:["게스트 계정", "루트 계정", "서비스 계정", "임시 세션"],ans:2,exp:"서비스 계정은 사람 대신 애플리케이션·자동화가 프로그래밍 방식으로 접근할 때 사용하는 계정이다."},
+{area:"계정 관리",pt:2,topic:"비밀번호 만료 설정",q:"계정 보안을 강화하기 위해 일정 주기마다 비밀번호를 변경하도록 강제하는 정책은?",opts:["비밀번호 만료(변경 주기) 설정", "종량제", "TTL", "세션 지속성"],ans:0,exp:"비밀번호 만료 설정은 일정 주기마다 변경을 강제해 자격 증명 탈취 위험을 줄인다."},
+{area:"계정 관리",pt:1,topic:"수신 채널",q:"Alert Center에서 알림을 전달받을 대상(이메일·메신저 등)을 지정하는 설정은?",opts:["라우트 테이블", "수신 채널", "타깃 그룹", "버킷 정책"],ans:1,exp:"수신 채널은 알림을 어디로(이메일·메신저 등) 보낼지 지정하는 설정이다."},
+{area:"기타·복합",pt:1,topic:"서브넷",q:"VPC를 더 작은 IP 범위로 나눈 네트워크 구획으로, 퍼블릭/프라이빗으로 구분되는 것은?",opts:["버킷", "토픽", "서브넷", "리스너"],ans:2,exp:"서브넷은 VPC의 IP 대역을 나눈 구획으로, 인터넷 게이트웨이 경로 유무에 따라 퍼블릭/프라이빗으로 나뉜다."},
+{area:"기타·복합",pt:2,topic:"Kubernetes Engine 특징",q:"Kubernetes Engine의 특징으로 옳은 것은?",opts:["객체를 key-value로 저장한다", "컨테이너 오케스트레이션을 자동화하고 컨트롤 플레인을 관리해 준다", "SSL 인증서를 발급한다", "도메인을 IP로 변환한다"],ans:1,exp:"K8sE는 컨테이너 오케스트레이션을 자동화하고 컨트롤 플레인을 관리형으로 제공한다."},
+{area:"기타·복합",pt:2,topic:"Data Catalog - Pub/Sub 연동",q:"여러 소스의 메타데이터는 Data Catalog로 통합하고 이벤트는 Pub/Sub로 전달하는 파이프라인을 구성한다. 두 서비스의 역할로 옳은 것은?",opts:["둘 다 트래픽 분산", "둘 다 암호화 키 관리", "둘 다 인증서 발급", "Data Catalog는 메타데이터 관리, Pub/Sub는 이벤트 메시지 전달"],ans:3,exp:"Data Catalog는 메타데이터 통합 관리, Pub/Sub는 이벤트 메시지 전달을 담당한다."},
+{area:"기타·복합",pt:1,topic:"Hadoop Eco - 클러스터 번들",q:"Hadoop Eco가 제공하는 것으로 옳은 것은?",opts:["Hadoop·Spark·Hive 등 오픈소스 빅데이터 프레임워크 묶음", "가상 서버", "인증서 관리", "도메인 이름 변환"],ans:0,exp:"Hadoop Eco는 Hadoop·HBase·Spark·Hive 등 오픈소스 빅데이터 프레임워크를 묶어 제공하는 분석 생태계다."},
+{area:"기타·복합",pt:1,topic:"Object Storage - 사용 목적 및 사례",q:"Object Storage의 대표적인 사용 사례로 가장 적절한 것은?",opts:["정적 콘텐츠·백업·로그 등 대용량 데이터 저장", "관계형 트랜잭션 처리", "인메모리 캐시", "컨테이너 오케스트레이션"],ans:0,exp:"Object Storage는 정적 콘텐츠 호스팅, 백업, 로그 등 대용량 비정형 데이터 저장에 적합하다."},
+{area:"클라우드 개요",pt:1,topic:"서비스 모델",q:"개발자가 코드만 배포하면 인프라·OS·런타임을 모두 관리해 주는 모델은?",opts:["IaaS", "SaaS", "NaaS", "PaaS"],ans:3,exp:"PaaS는 인프라·OS·런타임을 제공자가 관리하고, 사용자는 코드와 데이터에만 집중한다."},
+{area:"클라우드 개요",pt:1,topic:"서비스 모델",q:"스토리지·네트워크·컴퓨팅 자원을 제공하지만 OS 이상은 사용자가 직접 관리하는 모델은?",opts:["IaaS", "SaaS", "PaaS", "FaaS"],ans:0,exp:"IaaS는 인프라까지만 제공하며 OS·미들웨어·앱은 사용자 책임이다."},
+{area:"클라우드 개요",pt:1,topic:"가용 영역",q:"단일 가용 영역(AZ) 장애 시에도 서비스가 유지되려면?",opts:["다중 AZ에 리소스를 분산 배치", "단일 AZ에 고사양 서버 집중", "리전을 자주 변경", "CDN만 사용"],ans:0,exp:"단일 AZ 장애를 대비하려면 다중 AZ에 리소스를 분산해야 한다."},
+{area:"클라우드 개요",pt:2,topic:"탄력성 vs 확장성",q:"'수요가 낮아지면 자동으로 리소스를 줄이는' 특성은 탄력성과 확장성 중 어느 쪽에 가장 가까운가?",opts:["확장성(Scalability)", "탄력성(Elasticity)", "내구성(Durability)", "가용성(Availability)"],ans:1,exp:"탄력성은 수요 증감에 따라 리소스를 자동으로 늘리고 줄이는 특성이다. 확장성은 증가 방향의 역량이다."},
+{area:"클라우드 개요",pt:2,topic:"공유 책임",q:"IaaS 모델에서 클라우드 제공자가 책임지는 영역은?",opts:["애플리케이션 코드", "물리 인프라와 하이퍼바이저", "OS 패치", "데이터 암호화"],ans:1,exp:"IaaS에서 제공자는 물리 인프라·하이퍼바이저까지 관리하고, OS 이상은 사용자 책임이다."},
+{area:"클라우드 개요",pt:2,topic:"CapEx vs OpEx",q:"클라우드 도입으로 기대하는 비용 구조 변화로 옳은 것은?",opts:["OpEx를 CapEx로 전환해 감가상각 혜택 확보", "CapEx와 OpEx 모두 동시 증가", "고정비만 증가하고 변동비는 감소", "CapEx를 OpEx로 전환해 초기 투자 부담 감소"],ans:3,exp:"클라우드는 대규모 선투자(CapEx)를 사용량 기반 운영비(OpEx)로 전환하는 것이 핵심 이점이다."},
+{area:"클라우드 개요",pt:2,topic:"고가용성 설계",q:"리전 전체 장애에 대비하려면?",opts:["단일 리전 내 AZ를 최대한 늘린다", "단일 AZ에 서버 수를 극대화한다", "복수 리전에 분산 배포한다", "CDN 캐시만으로 충분하다"],ans:2,exp:"리전 전체 장애 대비는 멀티 리전 배포로만 가능하다. AZ 분산은 AZ 장애만 커버한다."},
+{area:"클라우드 개요",pt:2,topic:"Scale-up vs Scale-out",q:"단일 서버의 CPU·메모리를 업그레이드하는 방식은?",opts:["수직 확장(Scale-up)", "수평 확장(Scale-out)", "오토스케일링", "로드 밸런싱"],ans:0,exp:"수직 확장(Scale-up)은 단일 서버의 사양을 높이는 방식이다."},
+{area:"클라우드 개요",pt:3,topic:"아키텍처 설계",q:"이벤트 시 트래픽이 평소의 50배로 급증하는 이커머스 서비스를 설계할 때, 비용과 가용성을 모두 만족하는 구성은?",opts:["피크 기준 서버를 상시 고정 운영", "오토스케일링 + 다중 AZ 분산 + 로드 밸런서", "단일 대형 서버 수직 확장 고정", "예약 인스턴스 100% 고정"],ans:1,exp:"오토스케일링으로 수요 대응, 다중 AZ로 고가용성, 로드 밸런서로 트래픽 분산하는 조합이 비용·가용성 모두에 유리하다."},
+{area:"클라우드 개요",pt:3,topic:"배포 모델 선택",q:"보안 규정상 모든 데이터를 자사 데이터센터에 두어야 하지만, 개발·테스트 환경은 클라우드를 활용하고 싶다. 가장 적합한 모델은?",opts:["퍼블릭 클라우드 전용", "프라이빗 클라우드 전용", "멀티 퍼블릭 클라우드", "하이브리드 클라우드"],ans:3,exp:"운영 데이터는 온프레미스(프라이빗), 개발·테스트는 퍼블릭 클라우드를 쓰는 하이브리드가 적합하다."},
+{area:"서비스 이해",pt:1,topic:"스토리지 구분",q:"서버 부팅 디스크로 사용되며 인스턴스에 직접 마운트하는 스토리지는?",opts:["Block Storage", "Object Storage", "File Storage", "MemStore"],ans:0,exp:"Block Storage는 인스턴스에 직접 마운트해 부팅 디스크나 데이터 볼륨으로 사용한다."},
+{area:"서비스 이해",pt:1,topic:"네트워킹",q:"VPC 내부에서 서브넷을 나누는 주된 목적은?",opts:["인스턴스 성능 향상", "요금 절감", "DNS 변환 속도 개선", "퍼블릭/프라이빗 영역 분리 및 IP 범위 관리"],ans:3,exp:"서브넷은 VPC의 IP 대역을 나누어 퍼블릭/프라이빗 영역을 분리하고 보안·라우팅을 세분화한다."},
+{area:"서비스 이해",pt:1,topic:"데이터베이스",q:"완전관리형 서비스에서 사용자가 직접 하지 않아도 되는 작업은?",opts:["쿼리 작성", "OS 패치와 백업", "스키마 설계", "데이터 입력"],ans:1,exp:"완전관리형 DB는 OS 패치·백업·장애 조치 등 인프라 운영을 제공자가 대신한다."},
+{area:"서비스 이해",pt:1,topic:"컨테이너",q:"Docker 이미지를 빌드한 뒤 레지스트리에 업로드하는 명령은?",opts:["pull", "deploy", "run", "push"],ans:3,exp:"이미지를 레지스트리에 업로드하는 것은 push, 다운로드는 pull이다."},
+{area:"서비스 이해",pt:1,topic:"로드 밸런싱",q:"로드 밸런서의 Health Check 역할로 옳은 것은?",opts:["트래픽을 암호화한다", "인증서를 발급한다", "DNS 레코드를 갱신한다", "비정상 타깃을 감지해 요청 분산에서 제외한다"],ans:3,exp:"Health Check는 타깃 상태를 주기적으로 점검해 비정상 타깃으로의 트래픽 전달을 자동 중단한다."},
+{area:"서비스 이해",pt:2,topic:"스토리지 선택",q:"머신러닝 학습 데이터셋(수TB 비정형 파일)을 저렴하게 저장하고 다수 워커가 읽어야 한다. 가장 적합한 스토리지는?",opts:["Block Storage 다중 마운트", "File Storage NFS 공유", "Object Storage", "MemStore 클러스터"],ans:2,exp:"대용량 비정형 데이터의 저비용 저장과 다수 클라이언트 읽기에는 Object Storage가 적합하다."},
+{area:"서비스 이해",pt:2,topic:"스토리지 선택",q:"컨테이너 파드 수십 개가 동시에 같은 설정 파일을 읽고 써야 한다. 가장 적합한 스토리지는?",opts:["Object Storage", "Block Storage 복수 마운트", "Container Registry", "File Storage(NFS)"],ans:3,exp:"다수 파드가 동시에 읽고 쓰는 공유 파일 시스템은 NFS 기반 File Storage가 적합하다. Block Storage는 단일 마운트가 원칙이다."},
+{area:"서비스 이해",pt:2,topic:"DB 선택",q:"JSON 형태의 유연한 스키마 없는 데이터를 다루는 데 MemStore의 Redis가 잘 맞는 이유는?",opts:["ACID 트랜잭션을 완벽히 보장하기 때문", "대용량 파일을 블록으로 분할 저장하기 때문", "키-값·해시·리스트 등 다양한 자료구조를 메모리에서 빠르게 처리하기 때문", "SQL 쿼리 처리에 최적화되었기 때문"],ans:2,exp:"Redis(MemStore)는 키-값·해시·리스트·셋 등 다양한 자료구조를 메모리에서 처리해 초저지연을 제공한다."},
+{area:"서비스 이해",pt:2,topic:"네트워킹",q:"보안 그룹 규칙에서 '소스'로 다른 보안 그룹 ID를 지정하는 이점은?",opts:["모든 IP를 허용하는 것과 동일하다", "SSL 인증서가 자동 갱신된다", "라우트 테이블이 자동 생성된다", "IP 대역이 바뀌어도 규칙이 자동 추적된다"],ans:3,exp:"보안 그룹 ID를 소스로 지정하면 인스턴스 IP가 바뀌어도 해당 그룹에 속한 인스턴스의 접근이 자동 유지된다."},
+{area:"서비스 이해",pt:2,topic:"로드 밸런싱",q:"HTTPS를 ALB에서 종료(SSL Offload)하고 백엔드에는 HTTP로 전달하는 구성의 이점은?",opts:["모든 트래픽이 암호화 없이 전달된다", "백엔드 서버의 암복호화 부담을 줄인다", "인증서를 백엔드에 분산 설치해야 한다", "세션 지속성이 자동으로 비활성화된다"],ans:1,exp:"SSL Offload는 암복호화를 LB에서 처리해 백엔드 서버의 CPU 부담을 줄인다."},
+{area:"서비스 이해",pt:2,topic:"K8s",q:"Kubernetes에서 실제로 컨테이너가 실행되는 최소 배포 단위는?",opts:["파드(Pod)", "노드", "클러스터", "네임스페이스"],ans:0,exp:"파드(Pod)는 쿠버네티스에서 하나 이상의 컨테이너가 함께 실행되는 최소 배포 단위다."},
+{area:"서비스 이해",pt:2,topic:"K8s",q:"Kubernetes Engine에서 외부 트래픽을 특정 파드로 안정적으로 노출하는 오브젝트는?",opts:["Service(LoadBalancer 타입)", "ConfigMap", "Secret", "Namespace"],ans:0,exp:"Service(LoadBalancer 타입)는 외부 로드 밸런서와 연동해 파드를 외부에 안정적으로 노출한다."},
+{area:"서비스 이해",pt:2,topic:"Pub/Sub",q:"Pub/Sub에서 메시지를 소비하기 위해 토픽에 연결하는 구독 단위는?",opts:["서브스크립션(Subscription)", "버킷", "리스너", "타깃 그룹"],ans:0,exp:"서브스크립션은 토픽에 연결해 메시지를 소비하는 구독 단위다."},
+{area:"서비스 이해",pt:2,topic:"DNS",q:"도메인 이전 후 변경된 IP가 전파되는 속도를 높이려면?",opts:["SSL 인증서를 재발급한다", "TTL 값을 낮게 설정한다", "보안 그룹을 수정한다", "서브넷을 추가한다"],ans:1,exp:"TTL을 낮게 설정하면 캐시 유지 시간이 줄어 DNS 변경이 빨리 전파된다."},
+{area:"서비스 이해",pt:2,topic:"Data Query",q:"Data Query가 Hadoop Eco보다 적합한 상황은?",opts:["수TB 데이터를 상시 반복 처리하는 배치 파이프라인", "실시간 스트리밍 처리", "비정기적으로 즉석 SQL 분석이 필요할 때", "머신러닝 모델 학습"],ans:2,exp:"Data Query는 서버리스라 클러스터 상시 운영 비용 없이 비정기 즉석 쿼리에 유리하다. 상시 대규모 배치는 Hadoop Eco가 효율적이다."},
+{area:"서비스 이해",pt:3,topic:"아키텍처 설계",q:"신규 서비스에서 동영상 원본은 저장, 썸네일은 즉시 서비스, 시청 로그는 배치 분석이 필요하다. 가장 적절한 조합은?",opts:["동영상·썸네일은 Object Storage, 로그 배치 분석은 Data Query", "동영상·썸네일·로그 모두 Block Storage", "동영상은 MemStore, 썸네일은 MySQL, 로그는 Container Registry", "전부 단일 VM의 로컬 디스크"],ans:0,exp:"대용량 파일은 Object Storage, 비정기 배치 로그 분석은 서버리스 Data Query가 비용·확장성 측면에서 최적이다."},
+{area:"서비스 이해",pt:3,topic:"DB 아키텍처",q:"초당 수만 건의 읽기 요청이 몰려 MySQL 부하가 임계치를 넘었다. 즉각 효과적인 조치는?",opts:["MySQL 인스턴스를 수직 확장만 적용", "PostgreSQL로 마이그레이션", "Pub/Sub로 쿼리를 큐잉", "MemStore를 캐시 계층으로 도입해 반복 읽기를 처리"],ans:3,exp:"MemStore(인메모리 캐시) 앞단 도입으로 자주 조회되는 데이터를 MySQL 대신 처리해 DB 부하를 즉시 줄일 수 있다."},
+{area:"서비스 이해",pt:3,topic:"멀티 서비스 설계",q:"이벤트 발생 시 Pub/Sub로 메시지를 받아 처리하는 파이프라인을 구성한다. 처리 결과는 검색 가능해야 하고 메타데이터는 통합 관리해야 한다. 적절한 조합은?",opts:["Pub/Sub → Block Storage 저장, 메타데이터는 DNS", "Pub/Sub → Advanced Managed Search 색인, 메타데이터는 Data Catalog", "Pub/Sub → Certificate Manager, 메타데이터는 KMS", "Pub/Sub → MemStore만으로 충분"],ans:1,exp:"처리 결과 검색은 Advanced Managed Search, 메타데이터 통합은 Data Catalog, 이벤트 전달은 Pub/Sub의 역할이다."},
+{area:"비용·요금",pt:1,topic:"과금 단위",q:"인스턴스를 중지(Stop)하면 요금이 어떻게 되는가?",opts:["요금이 계속 동일하게 청구된다", "컴퓨팅 요금은 중단되지만 스토리지는 계속 청구될 수 있다", "모든 요금이 즉시 0원이 된다", "중지 후 24시간은 무료다"],ans:1,exp:"인스턴스를 중지하면 컴퓨팅(CPU·메모리) 요금은 멈추지만, 연결된 Block Storage 등 스토리지 요금은 계속 발생할 수 있다."},
+{area:"비용·요금",pt:1,topic:"과금 단위",q:"데이터를 클라우드 외부로 내보낼 때 일반적으로 발생하는 요금은?",opts:["인바운드(수신) 트래픽 요금", "CPU 추가 요금", "DNS 질의 요금", "아웃바운드(송신) 트래픽 요금"],ans:3,exp:"클라우드에서는 외부로 나가는 아웃바운드(송신) 트래픽에 요금이 발생하는 것이 일반적이다."},
+{area:"비용·요금",pt:2,topic:"비용 최적화",q:"개발·테스트 환경의 인스턴스를 업무 시간 외에도 상시 운영하고 있다. 비용 절감 방법은?",opts:["더 큰 사양으로 교체", "리전을 자주 변경", "업무 시간 이외 자동 중지 스케줄 적용", "보안 그룹 규칙 수를 늘린다"],ans:2,exp:"사용하지 않는 시간대에 인스턴스를 자동 중지하면 컴퓨팅 요금을 크게 줄일 수 있다."},
+{area:"비용·요금",pt:2,topic:"스토리지 요금",q:"Object Storage의 요금 절감을 위해 가장 효과적인 방법은?",opts:["버킷 이름을 짧게 설정", "보안 그룹에서 아웃바운드를 차단", "DNS TTL을 높게 설정", "더 이상 필요 없는 오래된 객체를 라이프사이클 정책으로 자동 삭제"],ans:3,exp:"라이프사이클 정책으로 불필요한 객체를 자동 삭제하면 저장 용량 요금을 줄일 수 있다."},
+{area:"비용·요금",pt:2,topic:"요금 구조",q:"예약 인스턴스(Reserved)와 온디맨드(On-demand)의 차이로 옳은 것은?",opts:["예약은 항상 더 비싸다", "예약은 약정 기간 동안 할인 단가를 적용받지만 중도 해지가 어렵다", "온디맨드가 장기적으로 항상 저렴하다", "둘의 요금은 동일하다"],ans:1,exp:"예약 인스턴스는 일정 기간 약정 대신 단가 할인을 받는다. 수요가 안정적이면 비용 절감에 유리하지만 중도 변경이 어렵다."},
+{area:"비용·요금",pt:2,topic:"요금 예측",q:"월말 청구 금액이 예상보다 많을 때 원인 분석에 활용하는 서비스는?",opts:["Cloud Trail 이벤트 로그", "보안 그룹 로그", "DNS TTL 기록", "Billing 사용 내역 및 비용 분석"],ans:3,exp:"Billing의 사용 내역 및 비용 분석 기능으로 어느 서비스·리소스에서 비용이 발생했는지 파악할 수 있다."},
+{area:"비용·요금",pt:3,topic:"비용 설계",q:"갑자기 트래픽이 5배 급증했고 이후 원래 수준으로 돌아왔다. 총 비용을 최소화하려면?",opts:["예약 인스턴스를 5배 규모로 미리 약정", "항상 최대 용량으로 온디맨드 고정", "단일 서버 수직 확장 약정", "오토스케일링으로 급증 시 수평 확장 후 원복"],ans:3,exp:"오토스케일링은 급증 시에만 인스턴스를 늘리고 수요 감소 후 자동 축소해 비용을 최소화한다."},
+{area:"비용·요금",pt:3,topic:"비용 설계",q:"여러 팀이 같은 클라우드 계정을 쓰며 비용 책임이 불분명하다. 팀별 비용을 추적하는 가장 적절한 방법은?",opts:["모든 리소스를 삭제하고 재생성", "보안 그룹으로 트래픽을 팀별 분리", "DNS 레코드를 팀별로 분리 관리", "팀별 리소스에 비용 태그를 붙이고 Billing에서 태그별 분류 확인"],ans:3,exp:"태그로 팀·프로젝트를 표시하고 Billing에서 태그별 비용을 집계하면 팀별 책임을 명확히 할 수 있다."},
+{area:"보안·권한",pt:1,topic:"IAM 개념",q:"IAM에서 여러 권한을 묶어 사용자에게 할당하는 단위는?",opts:["역할(Role)", "버킷", "토픽", "CIDR"],ans:0,exp:"역할(Role)은 여러 권한(정책)을 묶어 사용자·서비스 계정에 할당하는 단위다."},
+{area:"보안·권한",pt:1,topic:"네트워크 보안",q:"퍼블릭 서브넷에 있는 인스턴스가 인터넷과 통신하려면 필요한 것은?",opts:["Private IP만 있으면 된다", "VPN만 있으면 된다", "DNS 레코드만 있으면 된다", "공인 IP와 인터넷 게이트웨이 경로가 필요하다"],ans:3,exp:"인터넷 통신에는 공인 IP와 라우트 테이블에 인터넷 게이트웨이 경로가 모두 필요하다."},
+{area:"보안·권한",pt:1,topic:"암호화",q:"저장 데이터(Data at Rest)를 암호화할 때 키를 중앙에서 관리하는 서비스는?",opts:["Certificate Manager", "Secrets Manager", "Cloud Trail", "KMS"],ans:3,exp:"KMS는 저장 데이터 암호화에 쓰이는 키를 중앙에서 안전하게 관리한다."},
+{area:"보안·권한",pt:2,topic:"보안 그룹 설계",q:"웹 서버 보안 그룹에 HTTP(80)·HTTPS(443) 인바운드를 허용했다. DB 서버 보안 그룹에 추가해야 할 최소 규칙은?",opts:["0.0.0.0/0 전체 허용", "모든 포트 허용", "아무 규칙도 없어도 된다", "웹 서버 보안 그룹 ID를 소스로 DB 포트만 허용"],ans:3,exp:"DB는 웹 서버 보안 그룹 ID를 소스로 지정해 필요한 포트만 여는 것이 최소 권한 원칙이다."},
+{area:"보안·권한",pt:2,topic:"IAM 설계",q:"운영팀과 개발팀이 같은 프로젝트를 사용한다. 운영팀은 배포 권한, 개발팀은 읽기 권한만 부여하려면?",opts:["팀별로 다른 역할(Role)을 부여", "모두 Admin으로 통일", "공용 계정 하나를 공유", "권한 없이 자유롭게 접근"],ans:0,exp:"역할 기반(RBAC)으로 팀별 다른 역할을 부여해 최소 권한 원칙을 구현한다."},
+{area:"보안·권한",pt:2,topic:"시크릿 관리",q:"DB 비밀번호를 환경변수에 평문으로 넣었을 때의 문제점은?",opts:["쿼리 성능이 저하된다", "소스 코드·로그를 통해 노출될 위험이 있다", "DNS 질의가 실패한다", "인스턴스가 자동 재시작된다"],ans:1,exp:"평문 환경변수는 소스 코드 저장소·컨테이너 로그 등에 노출될 위험이 있다. Secrets Manager를 사용해야 한다."},
+{area:"보안·권한",pt:2,topic:"KMS vs Secrets Manager",q:"KMS와 Secrets Manager를 함께 사용하는 이유로 가장 적절한 것은?",opts:["KMS로 비밀번호를 저장하고 Secrets Manager로 키를 생성한다", "Secrets Manager가 자격 증명을 저장할 때 KMS 키로 암호화해 이중 보안을 구현한다", "둘 다 같은 기능이라 중복 제거를 위해 하나만 쓴다", "KMS는 네트워크 보안, Secrets Manager는 파일 보안을 담당한다"],ans:1,exp:"Secrets Manager는 자격 증명 저장 시 KMS 키를 이용해 암호화해, 저장 데이터 보안을 강화한다."},
+{area:"보안·권한",pt:2,topic:"인증서",q:"Certificate Manager에 등록된 인증서를 로드 밸런서 Listener에 적용하는 목적은?",opts:["HTTPS 통신을 위한 SSL/TLS 암호화 처리", "인스턴스 성능 최적화", "DB 접속 인증", "DNS 레코드 자동 갱신"],ans:0,exp:"Listener에 인증서를 연결하면 로드 밸런서가 SSL/TLS를 처리해 HTTPS 통신을 지원한다."},
+{area:"보안·권한",pt:3,topic:"보안 설계",q:"멀티 티어 웹 앱에서 각 계층 간 최소 통신만 허용하려 한다. 가장 올바른 보안 그룹 설계는?",opts:["계층별 전용 보안 그룹을 만들어 상위 계층 SG ID를 소스로 지정", "단일 보안 그룹으로 모든 계층을 묶어 관리", "0.0.0.0/0 허용 규칙으로 단순화", "라우트 테이블만으로 접근 제어"],ans:0,exp:"계층별 보안 그룹을 만들고 상위 계층 SG ID를 소스로 지정하면 IP 변경 없이 최소 권한 통신을 유지할 수 있다."},
+{area:"보안·권한",pt:3,topic:"보안 사고 대응",q:"보안 사고 발생 후 '언제, 누가, 어떤 리소스를 변경했는지' 파악하려 한다. 절차로 가장 적절한 것은?",opts:["Cloud Trail 이벤트 로그를 기간·사용자·리소스로 필터링해 분석", "Monitoring 지표 차트만 확인", "보안 그룹 규칙을 전부 초기화", "인스턴스를 전부 재시작"],ans:0,exp:"Cloud Trail은 사용자 활동(API 호출·리소스 변경)을 기록하므로 사고 시 이벤트를 필터링해 원인을 추적한다."},
+{area:"보안·권한",pt:3,topic:"권한 설계",q:"외부 파트너에게 특정 Object Storage 버킷 읽기 권한만 임시로 부여하려 한다. 가장 적절한 방법은?",opts:["루트 계정 공유", "모든 권한을 부여한 뒤 나중에 회수", "최소 권한의 임시 역할 또는 버킷 정책으로 해당 파트너에게만 읽기 권한 부여", "버킷을 퍼블릭으로 공개"],ans:2,exp:"최소 권한의 역할이나 버킷 정책으로 특정 대상에게만 읽기 권한을 부여하고 기간 종료 후 회수하는 것이 안전하다."},
+{area:"운영·모니터링",pt:1,topic:"모니터링 지표",q:"CPU 사용률, 메모리 사용량 같은 수치 데이터를 시계열로 수집·시각화하는 것은?",opts:["로그(Log)", "이벤트(Event)", "지표(Metric)", "트레이스(Trace)"],ans:2,exp:"지표(Metric)는 CPU·메모리 등 수치 데이터를 시계열로 수집해 추세를 파악하는 데 사용한다."},
+{area:"운영·모니터링",pt:1,topic:"Cloud Trail",q:"Cloud Trail이 기록하는 것은?",opts:["사용자 및 서비스의 API 호출·리소스 변경 이력", "CPU·메모리 사용률", "컨테이너 이미지 레이어", "DNS TTL 만료 기록"],ans:0,exp:"Cloud Trail은 API 호출과 리소스 변경 이력을 기록해 감사·보안 분석에 활용한다."},
+{area:"운영·모니터링",pt:1,topic:"Alert Center",q:"디스크 사용률 90% 초과 시 담당자에게 이메일을 자동 발송하려면?",opts:["Cloud Trail에 이벤트 검색 쿼리 저장", "Alert Center에 임계치 기반 알림 정책 설정", "DNS TTL을 낮게 조정", "보안 그룹에 알림 규칙 추가"],ans:1,exp:"Alert Center에서 임계치 기반 알림 정책을 만들고 이메일 수신 채널을 지정하면 자동 알림이 발송된다."},
+{area:"운영·모니터링",pt:2,topic:"Monitoring vs Cloud Trail",q:"'어제 오후 2시에 CPU가 급등했다'는 현상의 원인을 추적하는 올바른 순서는?",opts:["Cloud Trail 먼저 → Monitoring 지표 확인", "Alert Center에서 알림 내역 삭제 → 재부팅", "Monitoring에서 오후 2시 지표 급등 구간 확인 → Cloud Trail에서 같은 시각 변경 이벤트 검색", "Resource Explorer에서 태그 변경"],ans:2,exp:"먼저 Monitoring으로 현상을 시각화하고, 동시에 Cloud Trail로 원인이 될 변경 이벤트를 교차 분석하는 것이 효율적이다."},
+{area:"운영·모니터링",pt:2,topic:"Advanced Managed Prometheus",q:"Advanced Managed Prometheus가 기본 Monitoring과 다른 점은?",opts:["지표를 수집하지 않는다", "Cloud Trail 로그를 저장한다", "PromQL로 세밀한 쿼리가 가능하고 Grafana 등 외부 도구와 연동이 쉽다", "DNS 레코드를 관리한다"],ans:2,exp:"AMP는 Prometheus 호환 인터페이스와 PromQL을 지원해 쿠버네티스 등 고급 모니터링 요구에 적합하다."},
+{area:"운영·모니터링",pt:2,topic:"CR 이미지 관리",q:"Container Registry에 이미지를 push할 때 태그(tag)를 사용하는 이유는?",opts:["이미지 크기를 줄이기 위해", "요금을 줄이기 위해", "특정 버전을 식별하고 롤백 시 이전 버전을 찾기 위해", "보안 그룹 규칙을 적용하기 위해"],ans:2,exp:"태그로 버전을 구분하면 배포 시 특정 버전을 지정하거나 문제 발생 시 이전 태그로 롤백할 수 있다."},
+{area:"운영·모니터링",pt:2,topic:"Monitoring Flow",q:"여러 API 엔드포인트를 주기적으로 호출해 정상 응답 여부를 자동으로 점검하는 것은?",opts:["Cloud Trail 이벤트 필터", "Monitoring Flow의 합성 모니터링", "KMS 키 교체", "Container Registry 이미지 스캔"],ans:1,exp:"Monitoring Flow는 API 엔드포인트를 주기적으로 호출해 가용성을 자동 점검하는 합성 모니터링을 제공한다."},
+{area:"운영·모니터링",pt:3,topic:"SLA 설계",q:"서비스 SLA 99.9%를 달성하기 위해 모니터링 체계를 구성할 때 가장 중요한 것은?",opts:["로그를 전혀 수집하지 않는다", "지표 임계치 알림(Alert Center)과 이상 탐지를 결합해 장애를 사전에 감지", "서버를 주기적으로 재부팅", "보안 그룹 규칙을 매일 초기화"],ans:1,exp:"SLA 달성에는 이상 징후를 사전에 탐지하는 임계치 알림과 지표 기반 이상 탐지가 핵심이다."},
+{area:"계정 관리",pt:1,topic:"조직 구조",q:"카카오클라우드에서 여러 프로젝트를 하나의 단위로 묶어 관리하는 최상위 구조는?",opts:["서브넷", "프로젝트", "가용 영역", "조직"],ans:3,exp:"조직은 여러 프로젝트를 포함하는 최상위 관리 단위다."},
+{area:"계정 관리",pt:1,topic:"사용자 등록",q:"새 팀원을 프로젝트에 초대하는 절차로 옳은 것은?",opts:["DNS 레코드를 생성한다", "Project Administrator가 사용자를 초대하고 역할을 부여한다", "보안 그룹에 IP를 추가한다", "버킷 정책을 수정한다"],ans:1,exp:"Project Administrator가 사용자를 초대하고 적절한 역할을 부여하는 것이 올바른 절차다."},
+{area:"계정 관리",pt:2,topic:"서비스 계정",q:"CI/CD 파이프라인이 자동으로 이미지를 Container Registry에 push하려 한다. 권한 부여 방법으로 가장 적절한 것은?",opts:["개인 계정 비밀번호를 파이프라인에 하드코딩", "루트 계정 자격 증명 공유", "파이프라인에 서비스 계정과 최소 권한 역할 부여", "모든 권한을 부여한 뒤 나중에 정리"],ans:2,exp:"자동화 워크플로우에는 개인 계정 대신 서비스 계정에 최소 권한을 부여하는 것이 안전하다."},
+{area:"계정 관리",pt:2,topic:"계정 보안",q:"퇴사한 직원의 계정 처리로 가장 적절한 방법은?",opts:["역할과 접근 권한을 모두 회수하고 계정을 비활성화 또는 삭제", "비밀번호만 변경", "그대로 방치", "비밀번호 만료 기간만 줄인다"],ans:0,exp:"퇴사자 계정은 즉시 권한 회수 및 비활성화·삭제로 보안 리스크를 제거해야 한다."},
+{area:"계정 관리",pt:3,topic:"조직 설계",q:"대기업 A사가 계열사 3곳의 클라우드 사용량을 독립적으로 관리하되 IT 관리 조직이 전체를 통제하려 한다. 가장 적합한 구성은?",opts:["모두 하나의 프로젝트에 통합", "계열사별 개인 계정 공유", "계열사별 별도 조직 생성, 공통 IT는 조직 관리자 역할로 통제", "DNS로 계열사를 구분"],ans:2,exp:"계열사별 프로젝트를 분리하고 공통 IT 조직이 조직 관리자 권한으로 전체를 통제하는 구성이 적합하다."},
+{area:"기타·복합",pt:1,topic:"공동 책임",q:"SaaS 모델에서 사용자의 책임 범위는?",opts:["물리 인프라", "OS와 런타임", "네트워크 하드웨어", "데이터와 접근 계정 관리"],ans:3,exp:"SaaS에서는 앱·인프라 전부를 제공자가 관리하고, 사용자는 데이터와 접근 계정만 책임진다."},
+{area:"기타·복합",pt:1,topic:"서비스 연계",q:"Kubernetes Engine 클러스터 위에서 실행되는 AI/ML 플랫폼은?",opts:["Container Registry", "Kubeflow", "Data Query", "Pub/Sub"],ans:1,exp:"Kubeflow는 Kubernetes Engine 클러스터 위에서 동작하는 ML 워크플로우 플랫폼이다."},
+{area:"기타·복합",pt:2,topic:"보안+스토리지",q:"Object Storage에 저장된 민감 데이터를 암호화하려 한다. 가장 적절한 방법은?",opts:["퍼블릭 버킷으로 전환", "DNS TTL을 0으로 설정", "KMS 키로 서버 측 암호화(SSE) 적용", "Certificate Manager에 등록"],ans:2,exp:"KMS 키를 이용한 서버 측 암호화(SSE)로 저장 데이터를 보호하는 것이 표준 방법이다."},
+{area:"기타·복합",pt:2,topic:"네트워크+보안",q:"프라이빗 서브넷의 인스턴스가 인터넷에서 패키지를 다운받으려 한다. 공인 IP 없이 가능한 방법은?",opts:["인터넷 게이트웨이에 직접 연결", "보안 그룹에 인바운드를 전체 허용", "DNS TTL을 낮게 설정", "퍼블릭 서브넷의 NAT 게이트웨이를 통해 아웃바운드만 허용"],ans:3,exp:"NAT 게이트웨이는 프라이빗 인스턴스가 공인 IP 없이 인터넷으로 아웃바운드 트래픽을 내보내는 구성이다."},
+{area:"기타·복합",pt:2,topic:"모니터링+알림",q:"서비스 장애 시 자동으로 온콜 팀에 알림을 보내고 Runbook을 실행하려 한다. 관련 서비스 조합은?",opts:["Alert Center(알림 정책) + Monitoring Flow(자동화)", "Billing + Resource Explorer", "KMS + Certificate Manager", "Cloud Trail + DNS"],ans:0,exp:"Alert Center로 임계치 알림을 설정하고 Monitoring Flow로 자동 대응 프로세스를 실행하는 조합이 적합하다."},
+{area:"기타·복합",pt:3,topic:"풀스택 설계",q:"글로벌 서비스를 구성하려 한다: ①정적 웹 파일 호스팅 ②컨테이너 API 서버 ③세션 캐시 ④감사 로그 ⑤자격 증명 보관. 각각 가장 적합한 서비스 매핑은?",opts:["① Object Storage ② K8sE ③ MemStore ④ Cloud Trail ⑤ Secrets Manager", "① Container Registry ② Pub/Sub ③ MySQL ④ Billing ⑤ KMS", "① Block Storage ② DNS ③ Hadoop Eco ④ Monitoring ⑤ Certificate Manager", "① MemStore ② Kubeflow ③ DNS ④ Alert Center ⑤ Resource Explorer"],ans:0,exp:"정적 파일은 Object Storage, 컨테이너 API는 K8sE, 캐시는 MemStore, 감사는 Cloud Trail, 자격 증명은 Secrets Manager가 각각 최적이다."},
+{area:"기타·복합",pt:3,topic:"장애 대응",q:"운영 중 DB 연결 오류가 갑자기 발생했다. 원인 파악을 위한 가장 체계적인 접근은?",opts:["무조건 DB 인스턴스 재시작", "Monitoring으로 DB 지표 이상 확인 → Cloud Trail로 최근 구성 변경 점검 → 보안 그룹 규칙 검토", "Alert Center만 확인하고 대기", "Billing에서 비용 초과 여부만 확인"],ans:1,exp:"DB 오류는 ①지표(Monitoring)로 현상 파악 ②구성 변경(Cloud Trail) 확인 ③보안 그룹 등 네트워크 설정 점검 순서로 체계적으로 접근한다."},
+{area:"기타·복합",pt:3,topic:"데이터 파이프라인",q:"IoT 기기에서 초당 수천 건의 이벤트가 들어온다. 이 데이터를 실시간 처리하고 메타데이터는 통합 관리해야 한다. 적합한 조합은?",opts:["DNS로 이벤트 수집 → Block Storage 저장 → IAM으로 메타데이터 관리", "Container Registry로 이벤트 수신 → MySQL 단독 처리 → Billing 분석", "Pub/Sub로 이벤트 수집 → Advanced Managed Kafka로 스트림 처리 → Data Catalog로 메타데이터 관리", "MemStore 단독으로 모든 처리"],ans:2,exp:"Pub/Sub로 이벤트를 수집하고 Kafka(AMK)로 실시간 스트림 처리, Data Catalog로 메타데이터를 통합 관리하는 조합이 적합하다."},
+{area:"클라우드 개요",pt:1,topic:"클라우드 정의",q:"클라우드 컴퓨팅의 핵심 특징으로 옳지 않은 것은?",opts:["인터넷을 통한 자원 접근", "사용량 기반 과금", "필요 시 즉시 자원 확장", "물리 서버를 직접 구매해야만 사용 가능"],ans:3,exp:"클라우드는 물리 서버 직접 구매 없이 인터넷으로 자원을 이용하는 것이 핵심이다."},
+{area:"클라우드 개요",pt:1,topic:"클라우드 정의",q:"클라우드의 '온디맨드 셀프서비스' 특성이란?",opts:["전화로 요청해야 자원을 받는다", "사용자가 직접 필요한 자원을 즉시 프로비저닝할 수 있다", "한 달 전 신청해야 한다", "관리자 승인 후 수일 내 제공된다"],ans:1,exp:"온디맨드 셀프서비스는 사람의 개입 없이 사용자가 스스로 즉시 자원을 프로비저닝하는 특성이다."},
+{area:"클라우드 개요",pt:1,topic:"서비스 모델",q:"'서버리스(Serverless)' 컴퓨팅이 속하는 서비스 모델과 가장 가까운 것은?",opts:["IaaS", "SaaS", "PaaS/FaaS", "DaaS"],ans:2,exp:"서버리스는 인프라 관리를 완전히 제공자에게 위임하고 함수 코드만 배포하는 FaaS/PaaS 계열이다."},
+{area:"클라우드 개요",pt:1,topic:"서비스 모델",q:"이메일·협업 도구처럼 브라우저로 바로 쓰는 클라우드 서비스 모델은?",opts:["IaaS", "SaaS", "PaaS", "NaaS"],ans:1,exp:"SaaS는 완성된 소프트웨어를 인터넷 브라우저로 바로 사용하는 모델이다."},
+{area:"클라우드 개요",pt:1,topic:"리전·AZ",q:"같은 리전 내 두 AZ 간 통신 지연이 다른 리전 간보다 낮은 이유는?",opts:["같은 리전의 AZ는 지리적으로 가까워 물리 거리가 짧기 때문", "같은 AZ는 동일 서버 랙을 사용하기 때문", "AZ 간에는 전용 광케이블만 사용하기 때문", "리전 간 통신은 암호화로 느리기 때문"],ans:0,exp:"같은 리전 내 AZ들은 지리적으로 가까워 물리 거리가 짧아 지연이 낮다."},
+{area:"클라우드 개요",pt:1,topic:"클라우드 이점",q:"기존 온프레미스 대비 클라우드의 장점으로 옳지 않은 것은?",opts:["초기 설비 투자 최소화", "즉각적인 글로벌 확장", "빠른 실험과 혁신", "항상 온프레미스보다 저렴한 총 비용"],ans:3,exp:"클라우드가 항상 온프레미스보다 저렴하진 않다. 워크로드 특성에 따라 온프레미스가 저렴할 수 있다."},
+{area:"클라우드 개요",pt:1,topic:"가용성",q:"RTO(Recovery Time Objective)란?",opts:["장애 발생 후 서비스를 복구하는 데 허용되는 최대 시간", "데이터 손실을 허용하는 최대 시간", "월 가용성 목표치", "백업 보존 기간"],ans:0,exp:"RTO는 장애 발생 후 서비스를 복구하는 데 허용되는 목표 시간이다."},
+{area:"클라우드 개요",pt:1,topic:"가용성",q:"RPO(Recovery Point Objective)란?",opts:["서비스 복구 목표 시간", "월 가동률 목표", "데이터 손실을 허용하는 최대 시점 간격", "리전 간 복제 주기"],ans:2,exp:"RPO는 재해 발생 시 허용 가능한 최대 데이터 손실 시점 간격이다. 백업 주기와 밀접하다."},
+{area:"클라우드 개요",pt:2,topic:"서비스 모델 비교",q:"IaaS, PaaS, SaaS를 사용자 관리 범위 기준으로 옳게 나열한 것은?",opts:["SaaS < PaaS < IaaS (관리 범위가 넓은 순)", "IaaS < PaaS < SaaS (관리 범위가 넓은 순)", "모두 동일", "PaaS > IaaS > SaaS"],ans:1,exp:"사용자가 관리해야 하는 범위: IaaS(OS~앱) > PaaS(앱·데이터) > SaaS(데이터·계정만). IaaS가 가장 넓다."},
+{area:"클라우드 개요",pt:2,topic:"고가용성",q:"99.99% SLA(가용성)를 월 기준으로 환산하면 허용 다운타임은 약 얼마인가?",opts:["약 4.4시간", "약 44분", "약 4.4분", "약 26초"],ans:2,exp:"99.99% = 0.01% 다운타임. 월 약 43,200분 × 0.0001 ≈ 4.3분이다."},
+{area:"클라우드 개요",pt:2,topic:"네트워크 개념",q:"CDN(Content Delivery Network)의 주된 역할은?",opts:["데이터베이스 쿼리 최적화", "VPC 간 라우팅", "사용자와 가까운 엣지에 콘텐츠를 캐싱해 응답 지연 감소", "SSL 인증서 발급"],ans:2,exp:"CDN은 사용자와 가까운 엣지 서버에 콘텐츠를 캐싱해 응답 속도를 높이고 원본 서버 부하를 줄인다."},
+{area:"클라우드 개요",pt:2,topic:"재해 복구",q:"액티브-패시브(Active-Passive) DR 구성과 액티브-액티브(Active-Active)의 차이는?",opts:["액티브-패시브는 두 사이트 모두 트래픽을 처리, 액티브-액티브는 하나만 처리", "둘의 비용은 동일하다", "액티브-패시브는 RTO가 0이다", "액티브-액티브는 두 사이트 모두 트래픽을 처리, 액티브-패시브는 하나만 대기"],ans:3,exp:"액티브-액티브는 양쪽 모두 트래픽을 처리하고, 액티브-패시브는 한쪽이 대기 상태다."},
+{area:"클라우드 개요",pt:2,topic:"확장 전략",q:"오토스케일링의 스케일 인(Scale-in)과 스케일 아웃(Scale-out)의 차이는?",opts:["스케일 아웃은 서버 수 증가, 스케일 인은 서버 수 감소", "스케일 아웃은 서버 사양 증가, 스케일 인은 사양 감소", "스케일 아웃은 수직 확장, 스케일 인은 수평 확장", "둘 다 동일한 의미다"],ans:0,exp:"스케일 아웃은 인스턴스 수를 늘리는 것, 스케일 인은 수를 줄이는 것이다."},
+{area:"클라우드 개요",pt:3,topic:"아키텍처",q:"글로벌 서비스에서 한 리전 장애 시에도 서비스가 유지되어야 하고, 비용도 최적화해야 한다. 가장 적합한 구성은?",opts:["단일 리전 멀티 AZ만 구성", "단일 AZ 단일 리전으로 최저 비용", "멀티 리전 모두 최대 규모로 상시 운영", "멀티 리전 액티브-패시브, 평소 패시브는 최소 규모 유지"],ans:3,exp:"리전 장애 대비는 멀티 리전이 필요하고, 비용 최적화를 위해 패시브 리전은 최소 규모로 유지한다."},
+{area:"클라우드 개요",pt:3,topic:"마이크로서비스",q:"모놀리식 앱을 마이크로서비스로 전환할 때 클라우드에서 얻는 주요 이점은?",opts:["서비스 간 강결합으로 배포 단순화", "단일 DB로 모든 서비스가 통신해 일관성 확보", "전체 시스템을 한 번에 재배포", "각 서비스를 독립적으로 배포·확장·장애 격리 가능"],ans:3,exp:"마이크로서비스는 독립 배포·독립 확장·장애 격리가 가능해 클라우드의 탄력성과 시너지를 낸다."},
+{area:"클라우드 개요",pt:3,topic:"비용+성능 트레이드오프",q:"ML 학습 작업이 월 3회 실행되고 각 10시간 소요된다. 비용 최적화 전략은?",opts:["고사양 예약 인스턴스를 연간 약정", "학습 시에만 온디맨드 GPU 인스턴스를 프로비저닝하고 완료 후 종료", "상시 실행 서버를 유지", "서버리스 함수로 학습을 처리"],ans:1,exp:"월 30시간만 필요한 작업에는 필요할 때만 온디맨드로 프로비저닝하고 종료하는 것이 비용 최적이다."},
+{area:"서비스 이해",pt:1,topic:"VPC 개념",q:"VPC에서 서브넷의 CIDR 블록이 의미하는 것은?",opts:["서브넷의 최대 인스턴스 수", "서브넷에 할당된 IP 주소 범위", "서브넷의 보안 정책", "서브넷의 가용 영역"],ans:1,exp:"CIDR 블록은 서브넷에 할당된 IP 주소 범위를 나타낸다."},
+{area:"서비스 이해",pt:1,topic:"VPC 개념",q:"인터넷 게이트웨이(IGW)가 없는 서브넷의 특성은?",opts:["외부 인터넷과 직접 통신 가능", "DNS 질의가 불가능하다", "외부 인터넷과 직접 통신 불가(프라이빗 서브넷)", "인스턴스를 배포할 수 없다"],ans:2,exp:"IGW 경로가 없는 서브넷은 직접 인터넷 통신이 불가한 프라이빗 서브넷이다."},
+{area:"서비스 이해",pt:1,topic:"로드 밸런싱",q:"로드 밸런서의 타깃 그룹(Target Group)이란?",opts:["요청을 전달할 백엔드 인스턴스의 그룹", "DNS 레코드 묶음", "SSL 인증서 목록", "보안 그룹 집합"],ans:0,exp:"타깃 그룹은 로드 밸런서가 트래픽을 분산할 백엔드 인스턴스들의 논리적 그룹이다."},
+{area:"서비스 이해",pt:1,topic:"스토리지",q:"Object Storage에서 데이터의 최소 저장 단위는?",opts:["객체(Object)", "블록(Block)", "파일(File)", "레코드(Record)"],ans:0,exp:"Object Storage의 최소 저장 단위는 메타데이터+데이터 본문으로 구성된 객체(Object)다."},
+{area:"서비스 이해",pt:1,topic:"데이터베이스",q:"MySQL과 PostgreSQL의 공통점은?",opts:["모두 완전관리형 관계형 DB 서비스", "모두 인메모리 저장소", "모두 NoSQL", "모두 키-값 저장소"],ans:0,exp:"MySQL과 PostgreSQL 모두 완전관리형 관계형 데이터베이스 서비스다."},
+{area:"서비스 이해",pt:1,topic:"컨테이너",q:"Kubernetes의 Deployment 오브젝트의 역할은?",opts:["네트워크 정책 설정", "스토리지 볼륨 프로비저닝", "파드의 복제본 수와 업데이트 전략을 관리", "DNS 레코드 생성"],ans:2,exp:"Deployment는 파드의 복제본 수 유지와 롤링 업데이트 등 배포 전략을 관리한다."},
+{area:"서비스 이해",pt:1,topic:"DNS",q:"CNAME 레코드의 용도는?",opts:["IP 주소를 도메인으로 역변환", "메일 서버 지정", "도메인을 다른 도메인으로 별칭(alias) 연결", "IPv6 주소 매핑"],ans:2,exp:"CNAME은 도메인을 다른 도메인으로 별칭 연결하는 레코드다."},
+{area:"서비스 이해",pt:1,topic:"DNS",q:"A 레코드의 역할은?",opts:["도메인을 다른 도메인으로 별칭", "메일 서버 지정", "IPv6 주소 매핑", "도메인을 IPv4 주소로 매핑"],ans:3,exp:"A 레코드는 도메인 이름을 IPv4 주소로 매핑한다."},
+{area:"서비스 이해",pt:1,topic:"DNS",q:"AAAA 레코드의 역할은?",opts:["도메인을 IPv6 주소로 매핑", "도메인을 IPv4 주소로 매핑", "메일 서버를 지정", "부하 분산 설정"],ans:0,exp:"AAAA 레코드는 도메인 이름을 IPv6 주소로 매핑한다."},
+{area:"서비스 이해",pt:1,topic:"Analytics",q:"Advanced Managed Kafka가 제공하는 핵심 기능은?",opts:["관계형 DB 쿼리", "정적 파일 호스팅", "실시간 고처리량 메시지 스트리밍", "ML 모델 학습"],ans:2,exp:"Advanced Managed Kafka는 실시간 고처리량 메시지 스트리밍을 위한 완전관리형 Kafka 서비스다."},
+{area:"서비스 이해",pt:1,topic:"Analytics",q:"Data Catalog의 주된 목적은?",opts:["실시간 이벤트 처리", "여러 데이터 소스의 메타데이터를 검색·통합 관리", "컨테이너 이미지 저장", "인스턴스 성능 모니터링"],ans:1,exp:"Data Catalog는 분산된 데이터 소스의 메타데이터를 검색하고 통합 관리한다."},
+{area:"서비스 이해",pt:1,topic:"Analytics",q:"Hadoop Eco에서 Spark의 역할은?",opts:["관계형 쿼리 전용 도구", "컨테이너 오케스트레이션", "인메모리 기반 고속 대용량 데이터 처리", "DNS 관리"],ans:2,exp:"Spark는 인메모리 처리로 MapReduce보다 빠른 대용량 데이터 처리를 제공하는 프레임워크다."},
+{area:"서비스 이해",pt:1,topic:"보안 서비스",q:"전송 중 데이터(Data in Transit) 보호에 주로 사용되는 것은?",opts:["KMS 키 암호화", "보안 그룹 규칙", "SSL/TLS 인증서를 통한 암호화", "VPC 서브넷 분리"],ans:2,exp:"전송 중 데이터는 SSL/TLS로 암호화해 보호하는 것이 표준이다."},
+{area:"서비스 이해",pt:1,topic:"Kubeflow",q:"Kubeflow Notebooks의 역할은?",opts:["컨테이너 이미지를 빌드한다", "DNS 레코드를 관리한다", "Jupyter 기반 인터랙티브 ML 실험 환경을 제공한다", "블록 스토리지를 프로비저닝한다"],ans:2,exp:"Kubeflow Notebooks는 Kubernetes 위에서 Jupyter 기반 인터랙티브 ML 실험 환경을 제공한다."},
+{area:"서비스 이해",pt:2,topic:"네트워크 설계",q:"퍼블릭 서브넷과 프라이빗 서브넷을 구분하는 기준은?",opts:["서브넷 이름에 'public' 포함 여부", "서브넷의 IP 범위 크기", "가용 영역의 위치", "라우트 테이블에 인터넷 게이트웨이 경로 유무"],ans:3,exp:"라우트 테이블에 0.0.0.0/0 → IGW 경로가 있으면 퍼블릭, 없으면 프라이빗 서브넷이다."},
+{area:"서비스 이해",pt:2,topic:"로드 밸런서 선택",q:"TCP 레이어(L4)에서 초저지연으로 대량 요청을 처리해야 한다. 가장 적합한 로드 밸런서는?",opts:["ALB(Application LB)", "DSRNLB", "DNS 라운드로빈", "NLB(Network LB)"],ans:3,exp:"NLB는 L4(TCP/UDP)에서 동작하며 초저지연 고처리량에 최적화되어 있다."},
+{area:"서비스 이해",pt:2,topic:"스토리지 비교",q:"Object Storage의 일관성 모델에 대한 설명으로 가장 적절한 것은?",opts:["즉시 강력 일관성을 항상 보장한다", "최종 일관성(Eventual Consistency)으로 동작하는 경우가 많다", "트랜잭션 롤백을 지원한다", "ACID를 완벽히 보장한다"],ans:1,exp:"Object Storage는 대용량·분산 구조로 최종 일관성으로 동작하는 경우가 많다. 강력 일관성이 필요하면 DB를 사용해야 한다."},
+{area:"서비스 이해",pt:2,topic:"K8s 심화",q:"Kubernetes의 HPA(Horizontal Pod Autoscaler)란?",opts:["CPU·메모리 등 지표 기준으로 파드 수를 자동 조절하는 오브젝트", "파드를 수동으로 스케일하는 CLI 명령", "노드(서버) 수를 자동 조절하는 컴포넌트", "컨테이너 이미지를 자동 업데이트하는 기능"],ans:0,exp:"HPA는 CPU·메모리 등 지표를 기준으로 파드 복제본 수를 자동으로 늘리거나 줄인다."},
+{area:"서비스 이해",pt:2,topic:"K8s 심화",q:"Kubernetes ConfigMap의 용도는?",opts:["컨테이너 이미지 저장", "환경변수·설정 파일 등 비민감 설정 데이터를 파드에 주입", "DB 비밀번호 보관", "네트워크 정책 정의"],ans:1,exp:"ConfigMap은 비민감 설정 데이터(환경변수, 설정 파일 등)를 파드에 주입하는 오브젝트다."},
+{area:"서비스 이해",pt:2,topic:"K8s 심화",q:"Kubernetes Secret과 ConfigMap의 차이는?",opts:["Secret은 민감 데이터(비밀번호·토큰)를 base64 인코딩해 저장, ConfigMap은 비민감 설정", "완전히 동일하다", "ConfigMap이 더 보안이 강하다", "Secret은 볼륨으로 마운트 불가"],ans:0,exp:"Secret은 비밀번호 등 민감 데이터를 저장하고 ConfigMap은 일반 설정을 저장한다. 둘 다 파드에 주입 가능하다."},
+{area:"서비스 이해",pt:2,topic:"데이터베이스 선택",q:"지리공간 데이터 처리, 복잡한 조인, 확장 타입이 필요한 RDBMS 워크로드에 더 적합한 것은?",opts:["MySQL", "PostgreSQL", "MemStore", "Hadoop Eco"],ans:1,exp:"PostgreSQL은 확장 타입, 지리공간(PostGIS), 복잡한 쿼리에 강점을 가진 ORDBMS다."},
+{area:"서비스 이해",pt:2,topic:"Analytics 비교",q:"Pub/Sub와 Advanced Managed Kafka의 가장 큰 차이는?",opts:["Kafka는 소비자 그룹·오프셋 관리 등 Kafka 프로토콜 호환이 필요한 경우 사용, Pub/Sub는 설치 없이 간편 메시지 전달", "둘 다 동일한 프로토콜을 사용한다", "Pub/Sub가 항상 더 고성능이다", "Kafka는 SQL 쿼리를 지원한다"],ans:0,exp:"기존 Kafka 클라이언트·생태계를 그대로 쓰려면 AMK, 간편한 설치 없는 메시지 큐가 필요하면 Pub/Sub가 적합하다."},
+{area:"서비스 이해",pt:2,topic:"Kubeflow 심화",q:"Kubeflow Pipeline에서 각 단계(컴포넌트)가 독립적으로 실행되는 이점은?",opts:["각 단계를 별도 컨테이너로 실행해 재사용·버전 관리·병렬화가 가능하다", "단계 간 코드가 공유되어 유지보수가 쉽다", "단일 파드에서 실행되어 지연이 없다", "GPU를 자동으로 할당한다"],ans:0,exp:"각 컴포넌트를 독립 컨테이너로 실행하면 재사용·독립 버전 관리·병렬 실행이 가능하다."},
+{area:"서비스 이해",pt:2,topic:"CR 심화",q:"Container Registry에서 이미지 레이어를 캐싱하는 이점은?",opts:["변경된 레이어만 전송해 push/pull 속도가 빨라진다", "보안이 강화된다", "이미지 크기가 자동 압축된다", "비밀번호가 자동 갱신된다"],ans:0,exp:"이미지는 레이어로 구성되며, 변경된 레이어만 전송하므로 캐싱 시 push/pull 속도가 크게 향상된다."},
+{area:"서비스 이해",pt:3,topic:"스토리지 아키텍처",q:"게임 서버가 사용자 세션(수백만 건)을 ms 단위로 읽고 쓰며, 서버 재시작 시에도 세션이 유지되어야 한다. 가장 적절한 구성은?",opts:["MemStore(Redis) 단독 사용 - 재시작 시 데이터 소실 가능성 있음", "MemStore를 캐시로, MySQL을 영속 저장소로 조합", "Object Storage에 세션 파일 저장", "단일 VM 로컬 디스크"],ans:1,exp:"MemStore로 초저지연 읽기/쓰기, MySQL로 영속성을 보장하는 조합이 성능과 안정성을 모두 충족한다."},
+{area:"서비스 이해",pt:3,topic:"마이크로서비스 설계",q:"마이크로서비스 간 비동기 이벤트 통신 시스템을 구축하되, 기존 Kafka 클라이언트 라이브러리를 그대로 사용해야 한다. 가장 적합한 서비스는?",opts:["Pub/Sub", "Advanced Managed Kafka", "Hadoop Eco", "Data Query"],ans:1,exp:"기존 Kafka 클라이언트를 그대로 사용해야 한다면 Kafka 프로토콜 호환인 Advanced Managed Kafka가 필요하다."},
+{area:"서비스 이해",pt:3,topic:"하이브리드 데이터",q:"온프레미스 DB, Object Storage, MySQL을 모두 아우르는 데이터 거버넌스 체계를 만들려 한다. 핵심 서비스는?",opts:["모든 데이터를 단일 MySQL로 이전", "Pub/Sub로 모든 데이터를 스트리밍", "Data Catalog를 허브로 메타데이터를 통합 관리", "MemStore로 통합 캐싱"],ans:2,exp:"Data Catalog는 다양한 소스(온프레미스·클라우드)의 메타데이터를 통합해 데이터 거버넌스·검색을 지원한다."},
+{area:"비용·요금",pt:1,topic:"과금 구조",q:"클라우드에서 '무료 티어(Free Tier)'란?",opts:["모든 서비스가 영구 무료", "유료 플랜만 존재", "신규 사용자에게 일정 한도 내 무료로 제공되는 사용량", "크레딧과 동일하다"],ans:2,exp:"무료 티어는 신규 사용자에게 특정 기간·용량 내에서 무료로 사용할 수 있는 혜택이다."},
+{area:"비용·요금",pt:1,topic:"스토리지 요금",q:"Block Storage 요금의 기본 과금 단위는?",opts:["프로비저닝된 용량(GB)과 시간", "요청 건수", "아웃바운드 트래픽", "인스턴스 수"],ans:0,exp:"Block Storage는 프로비저닝한 용량(GB)에 사용 시간을 곱해 과금되며, 인스턴스 중지 중에도 비용이 발생한다."},
+{area:"비용·요금",pt:1,topic:"네트워크 요금",q:"같은 리전 내 AZ 간 데이터 전송 요금과 리전 간 전송 요금을 비교하면?",opts:["동일하다", "AZ 간 전송이 더 비싸다", "모두 무료다", "리전 간 전송이 더 비싸다"],ans:3,exp:"리전 간 데이터 전송은 물리적 거리가 멀어 AZ 간보다 요금이 높다."},
+{area:"비용·요금",pt:1,topic:"과금 구조",q:"스냅샷(Snapshot) 요금의 일반적인 과금 방식은?",opts:["저장된 스냅샷 용량(GB)에 비례", "스냅샷 생성 횟수", "CPU 사용률에 비례", "인스턴스 타입에 따라 정액"],ans:0,exp:"스냅샷은 저장된 데이터 용량(GB)에 비례해 과금된다."},
+{area:"비용·요금",pt:2,topic:"비용 최적화 전략",q:"데이터 분석 팀이 주말에만 대용량 쿼리를 실행한다. 비용 절감 방법은?",opts:["주중에도 클러스터를 상시 대기", "예약 인스턴스로 연간 약정", "더 큰 클러스터로 교체해 처리 시간 단축", "주말 분석은 서버리스 Data Query로 처리해 클러스터 상시 비용 제거"],ans:3,exp:"주말에만 사용하는 분석 작업은 서버리스 Data Query로 처리하면 상시 클러스터 비용 없이 쿼리당 비용만 발생한다."},
+{area:"비용·요금",pt:2,topic:"비용 최적화 전략",q:"프로덕션 워크로드가 안정적이고 1년 이상 운영될 예정이다. 온디맨드 대비 비용을 줄이는 방법은?",opts:["매달 인스턴스 타입을 변경", "서버리스로 전환", "인스턴스를 주기적으로 중지·재시작", "예약 인스턴스(Reserved)로 약정해 할인 적용"],ans:3,exp:"안정적인 장기 워크로드는 예약 인스턴스 약정으로 온디맨드 대비 비용을 절감할 수 있다."},
+{area:"비용·요금",pt:2,topic:"비용 분석",q:"특정 서비스의 일별 비용 추이를 분석하는 가장 적합한 방법은?",opts:["Cloud Trail 이벤트 검색", "Monitoring 지표 차트", "Billing의 비용 분석·대시보드에서 기간·서비스별 필터 적용", "보안 그룹 로그"],ans:2,exp:"Billing의 비용 분석 기능으로 기간·서비스·리소스별 비용 추이를 시각화해 분석할 수 있다."},
+{area:"비용·요금",pt:2,topic:"스토리지 비용",q:"File Storage와 Object Storage 중 일반적으로 GB당 비용이 낮은 것은?",opts:["File Storage가 항상 저렴하다", "동일하다", "Object Storage가 일반적으로 낮다", "Block Storage가 가장 낮다"],ans:2,exp:"Object Storage는 대규모 비정형 데이터 저장에 최적화되어 있어 일반적으로 GB당 비용이 낮다."},
+{area:"비용·요금",pt:3,topic:"비용 설계 시나리오",q:"스타트업이 초기에는 트래픽이 거의 없고 6개월 뒤부터 급성장이 예상된다. 비용 전략으로 가장 적합한 것은?",opts:["초기에는 온디맨드+오토스케일링으로 시작, 트래픽 패턴이 안정되면 일부 예약으로 전환", "처음부터 최대 규모 예약 인스턴스 약정", "항상 최소 사양 온디맨드만 사용", "서버리스만 사용"],ans:0,exp:"초기 불확실성이 높을 때는 온디맨드로 유연하게 운영하다가 패턴이 안정되면 예약으로 최적화하는 것이 합리적이다."},
+{area:"비용·요금",pt:3,topic:"멀티 서비스 비용",q:"동일한 기능을 구현할 때 Hadoop Eco 상시 클러스터 vs 서버리스 Data Query의 비용 비교 기준은?",opts:["항상 Hadoop Eco가 저렴하다", "쿼리 빈도·데이터 크기에 따라 다르며, 비정기 소규모는 Data Query, 상시 대규모는 Hadoop Eco가 유리할 수 있다", "Data Query는 무료다", "둘의 비용은 항상 동일하다"],ans:1,exp:"Data Query는 쿼리당 과금이라 비정기 분석에 유리하고, Hadoop Eco는 상시 대규모 처리 시 오히려 단가가 낮아질 수 있다."},
+{area:"보안·권한",pt:1,topic:"네트워크 보안",q:"보안 그룹에서 인바운드 규칙을 추가할 때 '소스'에 0.0.0.0/0을 지정하면?",opts:["특정 IP만 허용", "내부 네트워크만 허용", "IPv6만 허용", "모든 IPv4 주소에서의 접근을 허용"],ans:3,exp:"0.0.0.0/0은 모든 IPv4 주소를 의미하며, 인터넷 전체에서 해당 포트로 접근이 허용된다."},
+{area:"보안·권한",pt:1,topic:"IAM",q:"IAM에서 정책(Policy)이란?",opts:["네트워크 방화벽 규칙", "암호화 키 목록", "사용자 비밀번호 규칙", "허용 또는 거부 권한의 명세서"],ans:3,exp:"IAM 정책은 특정 리소스에 대한 허용·거부 권한을 정의한 명세서로 역할에 연결된다."},
+{area:"보안·권한",pt:1,topic:"암호화",q:"대칭 암호화와 비대칭 암호화의 차이는?",opts:["대칭이 항상 더 안전하다", "비대칭은 속도가 더 빠르다", "둘 다 동일한 알고리즘을 사용한다", "대칭은 암복호화에 같은 키 사용, 비대칭은 공개키-개인키 쌍 사용"],ans:3,exp:"대칭 암호화는 같은 키로 암복호화(빠름), 비대칭은 공개키로 암호화·개인키로 복호화(느리지만 키 배포 용이)."},
+{area:"보안·권한",pt:1,topic:"접근 제어",q:"RBAC(Role-Based Access Control)의 특징은?",opts:["각 사용자에게 개별 권한을 직접 부여", "IP 기반으로 접근을 제어", "시간대별 접근을 제어", "역할(Role)에 권한을 정의하고 사용자에게 역할을 부여"],ans:3,exp:"RBAC는 역할에 권한을 묶고 사용자에게 역할을 부여해 권한 관리를 단순화한다."},
+{area:"보안·권한",pt:1,topic:"보안 원칙",q:"'심층 방어(Defense in Depth)' 원칙이란?",opts:["단일 강력한 방어선에 집중", "외부 접근을 모두 차단", "네트워크·OS·앱·데이터 등 여러 계층에 중첩된 보안을 적용", "암호화만으로 충분하다"],ans:2,exp:"심층 방어는 단일 방어선 실패 시에도 다음 계층이 보호하도록 여러 계층에 보안을 중첩 적용하는 원칙이다."},
+{area:"보안·권한",pt:2,topic:"보안 그룹 심화",q:"보안 그룹은 Stateful, 네트워크 ACL은 Stateless. 이것이 실무에서 의미하는 것은?",opts:["보안 그룹은 응답이 자동 허용되나, ACL은 인바운드·아웃바운드 규칙을 각각 설정해야 한다", "동일하게 설정해도 된다", "ACL이 더 편리하다", "보안 그룹은 서브넷에 적용된다"],ans:0,exp:"Stateful 보안 그룹은 응답 자동 허용이라 관리가 편하다. Stateless ACL은 양방향 규칙을 각각 설정해야 하지만 더 세밀한 제어가 가능하다."},
+{area:"보안·권한",pt:2,topic:"IAM 심화",q:"서비스 계정에 최소 권한을 부여할 때 가장 먼저 해야 할 것은?",opts:["해당 서비스 계정이 실제로 필요한 작업을 먼저 파악하고 그것만 허용", "모든 권한을 부여한 뒤 사용하지 않는 것을 제거", "관리자 권한으로 시작", "권한 없이 실행해 오류 메시지로 필요 권한을 파악"],ans:0,exp:"최소 권한 원칙: 필요한 작업을 먼저 파악하고 그것만 허용하는 것이 가장 안전하다."},
+{area:"보안·권한",pt:2,topic:"암호화 설계",q:"KMS에서 키 교체(Key Rotation)를 주기적으로 하는 이유는?",opts:["키 노출 시 영향 범위를 최소화하고 보안을 강화하기 위해", "성능을 향상시키기 위해", "비용을 줄이기 위해", "DNS TTL처럼 캐시를 갱신하기 위해"],ans:0,exp:"키 교체는 하나의 키가 사용되는 기간을 줄여 키가 노출되더라도 영향받는 데이터를 최소화한다."},
+{area:"보안·권한",pt:2,topic:"제로 트러스트",q:"제로 트러스트(Zero Trust) 보안 모델의 핵심 원칙은?",opts:["내부 네트워크는 무조건 신뢰", "VPN이면 모두 허용", "네트워크 위치에 관계없이 모든 요청을 검증", "방화벽만으로 충분하다"],ans:2,exp:"제로 트러스트는 '내부=신뢰'를 폐기하고, 위치·네트워크에 관계없이 모든 요청을 인증·인가하는 모델이다."},
+{area:"보안·권한",pt:3,topic:"컴플라이언스",q:"금융 규제상 특정 데이터는 암호화가 의무이고 키 관리 이력을 감사해야 한다. 필요한 서비스 조합은?",opts:["KMS(키 관리·교체 이력) + Cloud Trail(키 사용 감사)", "Certificate Manager + Billing", "보안 그룹 + DNS", "IAM + Alert Center"],ans:0,exp:"KMS로 암호화 키를 관리하고, Cloud Trail로 키 사용·변경 이력을 감사하면 컴플라이언스 요구를 충족할 수 있다."},
+{area:"보안·권한",pt:3,topic:"침투 시나리오",q:"공격자가 탈취한 자격 증명으로 리소스를 생성했다. 탐지·대응 순서로 적절한 것은?",opts:["Billing에서 비용 확인 후 대기", "보안 그룹만 초기화", "Cloud Trail로 의심 API 호출 탐지 → 해당 계정 권한 즉시 회수 → Secrets Manager에서 자격 증명 교체", "인스턴스 전체 재시작"],ans:2,exp:"Cloud Trail로 의심 활동을 탐지하고 권한을 즉시 회수한 뒤 자격 증명을 교체하는 것이 표준 대응 절차다."},
+{area:"운영·모니터링",pt:1,topic:"로그 vs 지표",q:"애플리케이션 에러 메시지를 텍스트로 수집하는 것은?",opts:["지표(Metric)", "로그(Log)", "트레이스(Trace)", "이벤트(Event)"],ans:1,exp:"텍스트 기반 에러 메시지는 로그(Log)로 수집한다."},
+{area:"운영·모니터링",pt:1,topic:"알림 설계",q:"Alert Center에서 알림 조건(정책)을 만들 때 필수 구성 요소가 아닌 것은?",opts:["임계치(Threshold)", "알림 채널", "SSL 인증서", "모니터링할 지표"],ans:2,exp:"알림 정책에는 지표·임계치·알림 채널이 필요하다. SSL 인증서는 관련 없다."},
+{area:"운영·모니터링",pt:1,topic:"Cloud Trail 활용",q:"Cloud Trail 이벤트 로그에서 확인할 수 없는 것은?",opts:["API 호출자의 IP", "CPU 사용률 추이", "리소스 변경 시각", "리소스 생성·삭제 이력"],ans:1,exp:"Cloud Trail은 API 호출 이력을 기록한다. CPU 사용률은 Monitoring에서 확인한다."},
+{area:"운영·모니터링",pt:1,topic:"Resource Explorer",q:"Resource Explorer에서 리소스를 그룹화·분류하는 주요 방법은?",opts:["IP 대역 기준", "태그(Tag) 기준", "가용 영역 이름 알파벳 순", "인스턴스 생성 시간 순"],ans:1,exp:"Resource Explorer는 태그를 기준으로 리소스를 그룹화·분류하고 검색한다."},
+{area:"운영·모니터링",pt:2,topic:"모니터링 설계",q:"마이크로서비스 10개가 서로 호출한다. 특정 API 응답이 느려진 원인 서비스를 찾으려면?",opts:["각 서비스 로그만 순서대로 확인", "보안 그룹 규칙 검토", "DNS TTL 조정", "분산 추적(Distributed Tracing)으로 요청 흐름을 시각화"],ans:3,exp:"분산 추적은 마이크로서비스 간 요청 흐름을 시각화해 병목 서비스를 빠르게 찾는다."},
+{area:"운영·모니터링",pt:2,topic:"Monitoring 활용",q:"Monitoring에서 커스텀 대시보드를 만드는 이점은?",opts:["비용이 절감된다", "팀에 필요한 핵심 지표만 모아 빠르게 서비스 상태를 파악할 수 있다", "DNS 설정이 자동화된다", "보안 그룹이 자동 생성된다"],ans:1,exp:"커스텀 대시보드로 팀에 필요한 핵심 지표를 한 화면에 모아 빠른 상황 파악이 가능하다."},
+{area:"운영·모니터링",pt:2,topic:"AMP 활용",q:"Grafana를 Advanced Managed Prometheus와 연동하는 이유는?",opts:["Prometheus가 시각화 기능을 제공하지 않기 때문", "인증서를 자동 갱신하기 위해", "DNS 레코드를 관리하기 위해", "Grafana의 풍부한 시각화·대시보드로 Prometheus 지표를 더 잘 표현하기 위해"],ans:3,exp:"Prometheus는 지표 수집·저장에 강하지만 시각화는 Grafana와 연동해 더 풍부하게 표현할 수 있다."},
+{area:"운영·모니터링",pt:2,topic:"장애 대응 절차",q:"장애 발생 후 작성하는 포스트모템(Postmortem)의 목적은?",opts:["장애 원인·타임라인·재발 방지 대책을 문서화해 같은 장애를 반복하지 않기 위해", "책임자를 처벌", "비용 청구 근거 마련", "보안 감사 제출용"],ans:0,exp:"포스트모템은 책임 추궁이 아니라 원인 분석과 재발 방지를 위한 학습 문서다."},
+{area:"운영·모니터링",pt:3,topic:"옵저버빌리티",q:"옵저버빌리티(Observability)를 구성하는 세 가지 핵심 요소는?",opts:["CPU·메모리·네트워크", "IaaS·PaaS·SaaS", "로그·지표·트레이스", "보안·비용·성능"],ans:2,exp:"옵저버빌리티의 세 기둥은 로그(Log)·지표(Metric)·트레이스(Trace)다."},
+{area:"계정 관리",pt:1,topic:"IAM 구조",q:"카카오클라우드에서 '조직'과 '프로젝트'의 관계는?",opts:["프로젝트가 조직을 포함한다", "조직이 여러 프로젝트를 포함한다", "둘은 동일한 개념이다", "조직은 과금 단위, 프로젝트는 보안 단위다"],ans:1,exp:"조직은 여러 프로젝트를 포함하는 최상위 관리 단위다."},
+{area:"계정 관리",pt:1,topic:"역할 관리",q:"Project Reader 역할의 특징은?",opts:["리소스를 생성·수정·삭제할 수 있다", "청구서를 관리할 수 있다", "리소스를 조회(읽기)만 할 수 있다", "사용자를 초대할 수 있다"],ans:2,exp:"Project Reader는 리소스를 조회(읽기)만 할 수 있으며 생성·수정·삭제 권한은 없다."},
+{area:"계정 관리",pt:2,topic:"계정 보안 강화",q:"다단계 인증(MFA)을 도입하는 이유는?",opts:["비밀번호 없이 로그인하기 위해", "로그인 속도를 높이기 위해", "비밀번호가 탈취되어도 추가 인증 단계로 계정을 보호하기 위해", "비용을 절감하기 위해"],ans:2,exp:"MFA는 비밀번호 외 추가 인증(OTP 등)으로 자격 증명 탈취 시에도 계정을 보호한다."},
+{area:"계정 관리",pt:2,topic:"조직 관리",q:"여러 부서가 같은 클라우드 환경을 사용할 때 부서 간 리소스 격리 방법으로 가장 적합한 것은?",opts:["모든 부서가 동일 프로젝트 사용", "비밀번호로 파일을 잠금", "DNS로 부서를 구분", "부서별 프로젝트 분리, RBAC으로 접근 통제"],ans:3,exp:"부서별 프로젝트를 분리하고 RBAC으로 접근을 통제하면 리소스·비용·권한을 독립적으로 관리할 수 있다."},
+{area:"계정 관리",pt:3,topic:"보안 정책 설계",q:"외부 개발사가 3개월간 특정 K8s 클러스터에만 접근해야 한다. 계정 관리 전략은?",opts:["해당 클러스터에만 접근 가능한 최소 권한 역할을 가진 계정을 생성, 계약 종료 후 비활성화", "루트 계정을 공유", "전체 Admin 권한 역할을 부여하고 3개월 후 회수", "개인 이메일로 접근 허용"],ans:0,exp:"외부 파트너에게는 필요한 리소스에만 접근 가능한 최소 권한 계정을 기간 한정 제공하고 종료 후 즉시 비활성화하는 것이 안전하다."},
+{area:"기타·복합",pt:1,topic:"DevOps",q:"CI/CD 파이프라인에서 CI(Continuous Integration)의 의미는?",opts:["코드 변경 시 자동으로 빌드·테스트를 실행", "수동으로 코드를 프로덕션에 배포", "서버를 지속적으로 모니터링", "데이터베이스를 자동 백업"],ans:0,exp:"CI는 코드 변경 시 자동으로 빌드·테스트를 실행해 통합 오류를 조기에 발견하는 실천이다."},
+{area:"기타·복합",pt:1,topic:"IaC",q:"Infrastructure as Code(IaC)의 이점은?",opts:["인프라를 코드로 정의해 버전 관리·자동화·재현성을 확보", "인프라를 수동으로 콘솔에서 클릭해 생성", "더 많은 인력이 필요하다", "비용이 항상 증가한다"],ans:0,exp:"IaC는 인프라를 코드로 관리해 버전 관리·자동화·일관성·재현성을 제공한다."},
+{area:"기타·복합",pt:2,topic:"보안+운영",q:"컨테이너 이미지의 보안을 강화하기 위한 모범 사례는?",opts:["CR에서 이미지 취약점 스캔을 CI/CD 파이프라인에 통합해 배포 전 검증", "이미지를 퍼블릭으로 공개", "이미지 크기를 최대화", "태그를 사용하지 않음"],ans:0,exp:"CI/CD 파이프라인에 이미지 스캔을 통합하면 취약한 이미지가 프로덕션에 배포되기 전에 차단할 수 있다."},
+{area:"기타·복합",pt:2,topic:"네트워크+보안",q:"내부 서비스 간 통신에 mTLS(상호 TLS)를 사용하는 이유는?",opts:["속도를 높이기 위해", "양방향 인증으로 신뢰할 수 없는 서비스와의 통신을 차단하기 위해", "비용 절감", "DNS 질의 횟수 감소"],ans:1,exp:"mTLS는 서버-클라이언트 양방향 인증으로 제로 트러스트 내부 통신 보안을 강화한다."},
+{area:"기타·복합",pt:2,topic:"데이터+보안",q:"개인정보를 처리하는 앱에서 DB에 저장 전 민감 필드를 마스킹하는 이유는?",opts:["쿼리 속도 향상", "스토리지 절약", "데이터 유출 시 실제 개인정보 노출을 최소화", "인덱싱 최적화"],ans:2,exp:"저장 전 마스킹은 DB가 탈취되어도 실제 개인정보 노출 피해를 최소화한다."},
+{area:"기타·복합",pt:3,topic:"멀티 서비스 통합",q:"실시간 주문 처리 시스템: 주문 이벤트를 수신 → 재고 확인(DB) → 결과를 검색 가능하게 저장 → 메타데이터 관리. 적절한 서비스 조합은?",opts:["DNS → Block Storage → MemStore → IAM", "Container Registry → KMS → Billing → Alert Center", "Pub/Sub(이벤트 수신) → MySQL(재고 조회) → Advanced Managed Search(결과 색인) → Data Catalog(메타데이터)", "Kubeflow → Object Storage → VPC → Cloud Trail"],ans:2,exp:"이벤트 수신은 Pub/Sub, 재고 DB는 MySQL, 검색 색인은 AMS, 메타데이터는 Data Catalog로 각 역할이 명확히 분리된다."},
+{area:"기타·복합",pt:3,topic:"DR 설계",q:"RPO=1시간, RTO=30분을 요구하는 서비스의 DR 전략으로 적합한 것은?",opts:["월 1회 수동 백업만 유지", "백업 없이 로컬 디스크만 사용", "연간 1회 전체 복구 테스트", "1시간 간격 자동 백업 + 파일럿 라이트(Pilot Light) DR 구성으로 30분 내 복구 가능하게 준비"],ans:3,exp:"RPO 1시간은 1시간 간격 백업, RTO 30분은 최소 인프라만 상시 운영하고 장애 시 빠르게 확장하는 파일럿 라이트로 충족 가능하다."},
+{area:"기타·복합",pt:3,topic:"비용+성능 균형",q:"초당 10만 건의 API 요청을 처리해야 하고 비용도 최적화해야 한다. 가장 적합한 아키텍처는?",opts:["K8sE + HPA + NLB로 수평 자동 확장 + 오토스케일링으로 수요에 맞게 조절", "단일 고사양 VM으로 수직 확장", "예약 인스턴스 최대 사양 고정", "서버리스 함수 단독"],ans:0,exp:"K8sE의 HPA로 파드를 자동 확장하고 NLB로 분산, 오토스케일링으로 노드를 탄력적으로 운영하면 성능과 비용을 모두 최적화할 수 있다."},
+{area:"클라우드 개요",pt:1,topic:"클라우드 개념",q:"'멀티 클라우드'란?",opts:["동일 CSP의 여러 리전 사용", "온프레미스와 클라우드 혼합", "두 개 이상의 다른 CSP를 함께 사용", "클라우드 없이 서버 운영"],ans:2,exp:"멀티 클라우드는 AWS, 카카오클라우드 등 서로 다른 CSP를 동시에 활용하는 전략이다."},
+{area:"클라우드 개요",pt:1,topic:"가용성",q:"99.9% 가용성(SLA)을 연간으로 환산하면 허용 다운타임은 약 얼마인가?",opts:["약 5분", "약 8.7시간", "약 3.6일", "약 36시간"],ans:1,exp:"99.9% = 연간 0.1% 다운타임. 365일×24h×0.001 ≈ 8.76시간이다."},
+{area:"클라우드 개요",pt:2,topic:"네트워크 기초",q:"Private IP와 Public IP의 차이는?",opts:["Public IP는 인터넷에서 라우팅 가능, Private IP는 내부 네트워크 전용", "Private IP는 인터넷에서 직접 라우팅 가능, Public IP는 내부망 전용", "둘 다 동일하다", "Private IP가 항상 더 빠르다"],ans:0,exp:"Public IP는 인터넷에서 직접 접근 가능, Private IP는 내부 네트워크(VPC 등)에서만 사용한다."},
+{area:"클라우드 개요",pt:2,topic:"클라우드 전환",q:"리프트 앤 시프트(Lift and Shift) 전략이란?",opts:["앱을 완전히 클라우드 네이티브로 재설계", "새 앱을 처음부터 클라우드로 개발", "앱을 SaaS로 전환", "기존 온프레미스 앱을 최소한의 변경으로 클라우드로 이전"],ans:3,exp:"리프트 앤 시프트는 기존 앱 구조를 거의 그대로 유지하면서 클라우드 인프라로 이전하는 방식이다."},
+{area:"클라우드 개요",pt:3,topic:"클라우드 네이티브",q:"클라우드 네이티브(Cloud Native) 앱의 특징이 아닌 것은?",opts:["컨테이너 기반으로 패키징", "마이크로서비스 아키텍처", "단일 모놀리식 서버에 의존", "CI/CD 파이프라인으로 자동 배포"],ans:2,exp:"클라우드 네이티브는 컨테이너·마이크로서비스·오토스케일링·CI/CD를 활용한다. 단일 모놀리식 서버 의존은 클라우드 네이티브의 특징이 아니다."},
+{area:"서비스 이해",pt:1,topic:"VPC 라우팅",q:"라우트 테이블(Route Table)의 역할은?",opts:["인스턴스 방화벽 규칙 정의", "DNS 레코드 저장", "SSL 인증서 관리", "서브넷에서 나가는 트래픽의 경로를 결정"],ans:3,exp:"라우트 테이블은 서브넷에서 나가는 패킷의 목적지별 경로를 정의한다."},
+{area:"서비스 이해",pt:1,topic:"컨테이너 기초",q:"컨테이너(Container)와 가상 머신(VM)의 차이는?",opts:["컨테이너가 항상 더 안전하다", "VM이 더 빠르다", "둘 다 동일한 방식으로 격리된다", "컨테이너는 OS 커널을 공유해 VM보다 가볍고 시작이 빠르다"],ans:3,exp:"컨테이너는 호스트 OS 커널을 공유해 VM보다 가볍고 시작이 빠르지만 커널 수준 격리는 VM보다 약하다."},
+{area:"서비스 이해",pt:1,topic:"Analytics 기초",q:"Hive의 주된 역할은?",opts:["실시간 스트리밍 처리", "HDFS 위에서 SQL과 유사한 인터페이스(HiveQL)로 대규모 데이터 쿼리", "인메모리 캐시", "컨테이너 오케스트레이션"],ans:1,exp:"Hive는 HDFS에 저장된 데이터를 SQL과 유사한 HiveQL로 쿼리하는 데이터 웨어하우스 도구다."},
+{area:"서비스 이해",pt:1,topic:"Analytics 기초",q:"HBase의 특징은?",opts:["관계형 트랜잭션 전용", "인메모리 캐시 전용", "SQL만 지원", "HDFS 위에서 동작하는 분산 NoSQL 컬럼 패밀리 스토어"],ans:3,exp:"HBase는 HDFS 위에서 동작하는 분산 NoSQL 컬럼 패밀리 스토어로 대용량 비정형 데이터에 적합하다."},
+{area:"서비스 이해",pt:1,topic:"보안 서비스",q:"Secrets Manager에 저장된 자격 증명을 앱이 런타임에 가져오는 이점은?",opts:["코드에 직접 넣는 것보다 느리다", "비용이 더 높다", "자격 증명을 코드·환경변수에서 분리해 노출 위험을 줄인다", "자동으로 자격 증명을 생성한다"],ans:2,exp:"Secrets Manager를 사용하면 자격 증명을 코드·환경변수·설정 파일에서 분리해 노출 위험을 줄인다."},
+{area:"서비스 이해",pt:2,topic:"네트워크 심화",q:"VPC Peering과 Transit Gateway의 차이는?",opts:["동일하다", "VPC Peering은 1:1 연결, Transit Gateway는 N:N 허브 방식으로 많은 VPC를 효율적으로 연결", "Transit Gateway가 항상 더 저렴하다", "VPC Peering만 온프레미스 연결 지원"],ans:1,exp:"VPC Peering은 두 VPC 간 1:1 연결이고, Transit Gateway는 허브 역할로 다수 VPC를 중앙에서 효율적으로 연결한다."},
+{area:"서비스 이해",pt:2,topic:"스토리지 심화",q:"Object Storage의 버저닝(Versioning) 기능의 이점은?",opts:["동일 키 객체의 이전 버전을 보관해 실수로 삭제·덮어쓴 경우 복원 가능", "스토리지 용량을 절감한다", "자동으로 암호화한다", "CDN과 자동 연동된다"],ans:0,exp:"버저닝을 활성화하면 같은 키의 모든 버전을 보관해 실수로 삭제하거나 덮어써도 이전 버전으로 복원할 수 있다."},
+{area:"서비스 이해",pt:2,topic:"DB 심화",q:"MySQL에서 Read Replica(읽기 복제본)를 사용하는 이유는?",opts:["쓰기 성능을 향상시킨다", "읽기 트래픽을 복제본으로 분산해 마스터 DB 부하를 줄인다", "자동으로 스케일 업을 수행한다", "데이터를 암호화한다"],ans:1,exp:"Read Replica는 읽기 전용 복제본으로 읽기 트래픽을 분산시켜 마스터 DB의 읽기 부하를 줄인다."},
+{area:"서비스 이해",pt:2,topic:"Analytics 심화",q:"Advanced Managed Search에서 벡터 검색을 활용하는 대표 사례는?",opts:["SQL 집계 쿼리", "블록 스토리지 마운트", "RAG(Retrieval-Augmented Generation)에서 임베딩 유사도 검색", "컨테이너 이미지 스캔"],ans:2,exp:"벡터 검색은 텍스트·이미지 임베딩의 유사도 검색에 사용되며 LLM의 RAG 패턴에서 핵심 역할을 한다."},
+{area:"서비스 이해",pt:2,topic:"Monitoring Flow",q:"Monitoring Flow에서 '합성 모니터링(Synthetic Monitoring)'이란?",opts:["실제 사용자 트래픽을 분석", "가상의 요청을 주기적으로 발생시켜 서비스 가용성·응답 시간을 점검", "로그를 자동 분석", "DB 쿼리 성능을 최적화"],ans:1,exp:"합성 모니터링은 실제 사용자 없이 가상 요청으로 서비스 가용성·응답 시간을 사전에 점검한다."},
+{area:"서비스 이해",pt:3,topic:"데이터 레이크 설계",q:"PB급 원시 데이터를 저렴하게 저장하고, 필요 시 Spark로 처리하며, 메타데이터는 검색 가능해야 한다. 가장 적합한 조합은?",opts:["MemStore 단독", "MySQL에 모든 데이터 저장", "Block Storage + DNS", "Object Storage(원시 저장) + Hadoop Eco/Spark(처리) + Data Catalog(메타데이터)"],ans:3,exp:"데이터 레이크는 Object Storage에 저렴하게 저장하고 Spark로 처리하며 Data Catalog로 메타데이터를 관리하는 패턴이 표준이다."},
+{area:"비용·요금",pt:2,topic:"비용 태그 전략",q:"여러 환경(dev/staging/prod)의 비용을 분리 추적하려면?",opts:["별도 조직을 생성", "IP 대역으로 구분", "보안 그룹 이름으로 구분", "모든 리소스에 환경 태그(예: env=prod)를 부여하고 Billing에서 태그별 집계"],ans:3,exp:"환경별 태그를 부여하면 Billing에서 dev·staging·prod 각각의 비용을 분리해 추적할 수 있다."},
+{area:"비용·요금",pt:2,topic:"무료 vs 유료",q:"일반적으로 클라우드에서 무료인 트래픽은?",opts:["아웃바운드(인터넷으로 나가는) 트래픽", "인바운드(인터넷에서 들어오는) 트래픽", "리전 간 전송 트래픽", "AZ 간 트래픽"],ans:1,exp:"대부분의 클라우드에서 인터넷→클라우드 인바운드 트래픽은 무료이고, 클라우드→인터넷 아웃바운드에 요금이 발생한다."},
+{area:"비용·요금",pt:3,topic:"TCO 분석",q:"온프레미스 vs 클라우드 TCO(총 소유 비용) 비교 시 클라우드에서 절감되는 항목은?",opts:["클라우드가 모든 면에서 항상 저렴하다", "서버 구매·데이터센터 임대·냉각·전력·인력 등 인프라 운영 고정비", "소프트웨어 라이선스 비용", "네트워크 하드웨어"],ans:1,exp:"클라우드는 서버 구매·데이터센터·전력·냉각·하드웨어 유지보수 등 고정 인프라 비용을 절감한다."},
+{area:"비용·요금",pt:3,topic:"비용 거버넌스",q:"클라우드 비용이 계속 증가하는 조직에서 거버넌스를 강화하는 방법은?",opts:["모든 클라우드 사용 중단", "팀별 예산 설정 + 태그 기반 비용 추적 + 정기 비용 리뷰 + 최소 권한으로 고비용 리소스 생성 제한", "인스턴스를 전부 예약으로 전환", "보안 그룹 규칙을 최소화"],ans:1,exp:"예산 설정·태그 추적·정기 리뷰·생성 권한 제한을 조합한 비용 거버넌스가 지속적 비용 관리에 효과적이다."},
+{area:"보안·권한",pt:1,topic:"보안 모범 사례",q:"루트(Root) 계정 사용을 최소화해야 하는 이유는?",opts:["루트 계정은 MFA를 사용할 수 없기 때문", "루트 계정은 모든 권한을 가져 탈취 시 피해가 최대이기 때문", "루트 계정은 비용이 더 발생하기 때문", "루트 계정은 API 호출이 불가하기 때문"],ans:1,exp:"루트 계정은 모든 권한을 가지므로 탈취 시 피해가 치명적이다. 일상 작업은 최소 권한의 IAM 계정을 사용해야 한다."},
+{area:"보안·권한",pt:1,topic:"네트워크 보안",q:"VPC 내 서브넷 레벨에서 적용하는 방화벽은?",opts:["보안 그룹(Stateful)", "인터넷 게이트웨이", "DNS Resolver", "네트워크 ACL(Stateless)"],ans:3,exp:"네트워크 ACL(NACL)은 서브넷 레벨에서 적용하는 Stateless 방화벽이다. 보안 그룹은 인스턴스 레벨이다."},
+{area:"보안·권한",pt:2,topic:"보안 감사",q:"정기 보안 감사에서 확인해야 할 사항이 아닌 것은?",opts:["인스턴스 색상 테마 변경", "불필요한 계정·권한 정리", "미사용 보안 그룹 규칙 제거", "키 교체 이력 확인"],ans:0,exp:"보안 감사는 계정·권한·규칙·키 이력 등을 검토한다. UI 색상 테마는 무관하다."},
+{area:"보안·권한",pt:2,topic:"데이터 보호",q:"고객 신용카드 정보를 저장할 때 PCI-DSS 요구 사항으로 중요한 것은?",opts:["강력한 암호화, 접근 제어, 감사 로그를 적용", "일반 텍스트로 저장해 검색을 용이하게", "퍼블릭 버킷에 저장", "비밀번호 없이 접근 허용"],ans:0,exp:"PCI-DSS는 카드 데이터 암호화, 최소 권한 접근 제어, 감사 로그 유지를 요구한다."},
+{area:"보안·권한",pt:3,topic:"종합 보안 설계",q:"외부 API를 통해 사용자 데이터를 처리하는 앱의 보안 체계로 가장 완전한 것은?",opts:["HTTP로만 통신, 모든 IP 허용, 비밀번호 하드코딩", "HTTPS(인증서), 최소 권한 IAM, DB 암호화(KMS), 자격 증명 Secrets Manager, 활동 감사 Cloud Trail", "보안 그룹만 설정", "인증서만 적용"],ans:1,exp:"완전한 보안: 전송암호화(HTTPS) + 접근제어(IAM) + 저장암호화(KMS) + 자격증명관리(Secrets Manager) + 감사(Cloud Trail)의 조합이다."},
+{area:"운영·모니터링",pt:1,topic:"로깅 전략",q:"중앙화된 로그 수집의 이점은?",opts:["각 서버에서 개별 확인하는 것이 더 빠르다", "비용이 더 증가한다", "보안이 약화된다", "여러 서비스의 로그를 한 곳에서 검색·분석·상관관계 파악 가능"],ans:3,exp:"중앙 로그는 여러 서비스 로그를 통합해 검색, 장애 시 원인 파악과 서비스 간 상관관계 분석이 쉽다."},
+{area:"운영·모니터링",pt:2,topic:"SLI/SLO/SLA",q:"SLI(Service Level Indicator)란?",opts:["가용성·지연·에러율 등 서비스 품질을 측정하는 지표", "서비스 계약서", "장애 발생 시 배상 규정", "사용자 만족도 설문"],ans:0,exp:"SLI는 가용성·응답 지연·에러율처럼 서비스 품질을 수치로 측정하는 지표다."},
+{area:"운영·모니터링",pt:2,topic:"온콜 운영",q:"온콜(On-call) 운영 체계에서 Alert Center의 역할은?",opts:["장애를 자동으로 수정한다", "정의된 임계치 초과 시 담당자에게 알림을 발송해 빠른 대응을 가능하게 한다", "비용을 자동 최적화한다", "코드를 자동 배포한다"],ans:1,exp:"Alert Center는 장애·임계치 초과 시 온콜 담당자에게 알림을 보내 빠른 대응을 지원한다."},
+{area:"운영·모니터링",pt:3,topic:"SRE 관점",q:"SRE(Site Reliability Engineering)에서 에러 버짓(Error Budget)이란?",opts:["허용된 에러 코드 수", "SLO를 초과하지 않는 범위에서 허용된 다운타임·에러율의 여유분", "장애 발생 시 복구 예산", "테스트 케이스 수"],ans:1,exp:"에러 버짓은 SLO로 정의된 가용성·에러율 목표에서 허용되는 장애 여유분이다. 소진 시 기능 개발보다 안정성에 집중한다."},
+{area:"계정 관리",pt:2,topic:"액세스 키 관리",q:"서비스 계정의 액세스 키를 주기적으로 교체하는 이유는?",opts:["성능을 향상시키기 위해", "비용을 절감하기 위해", "DNS TTL처럼 캐시를 갱신하기 위해", "장기간 사용된 키의 노출 위험을 줄이기 위해"],ans:3,exp:"액세스 키를 주기적으로 교체하면 오래된 키가 노출되어도 사용 기간을 제한해 피해를 줄인다."},
+{area:"계정 관리",pt:2,topic:"최소 권한 관리",q:"개발자에게 프로덕션 환경 읽기 권한만 부여해야 한다. 가장 적절한 방법은?",opts:["프로덕션 프로젝트에 Project Reader 역할만 부여", "프로덕션 Admin 권한 부여", "모든 환경 Admin 부여", "권한 없이 방치"],ans:0,exp:"Project Reader는 읽기 전용 권한으로, 개발자가 프로덕션 환경을 실수로 변경하는 것을 방지한다."},
+{area:"기타·복합",pt:2,topic:"비용+보안",q:"오래된 스냅샷과 미사용 인스턴스를 정기적으로 정리해야 하는 이유 두 가지는?",opts:["비용 절감(불필요 스토리지 요금 제거)과 공격 표면 감소(미사용 리소스에 취약점 잔존 위험)", "성능 향상과 DNS 속도 개선", "색상 테마 최적화와 버그 수정", "DNS TTL 조정과 인증서 갱신"],ans:0,exp:"미사용 리소스는 불필요한 비용을 발생시키고, 패치되지 않은 취약점이 남아 보안 위험이 된다."},
+{area:"기타·복합",pt:2,topic:"컨테이너+보안",q:"Kubernetes에서 민감 정보를 안전하게 파드에 주입하는 방법은?",opts:["ConfigMap에 평문 저장", "환경변수에 하드코딩", "코드에 직접 삽입", "Kubernetes Secret + Secrets Manager를 연동해 KMS 암호화된 값을 주입"],ans:3,exp:"민감 정보는 Kubernetes Secret을 쓰되, Secrets Manager와 KMS를 연동해 암호화된 값을 안전하게 주입하는 것이 모범 사례다."},
+{area:"기타·복합",pt:3,topic:"종합 설계 1",q:"B2C 서비스: 정적 웹 프런트엔드, 인증 API, 상품 검색, 주문 DB, 주문 이벤트 스트리밍, 운영 감사가 필요하다. 서비스 매핑으로 옳은 것은?",opts:["정적=MemStore, 인증=DNS, 검색=Billing, DB=KMS, 이벤트=IAM, 감사=File Storage", "정적=Object Storage, 인증API=K8sE, 상품검색=AMS, 주문DB=MySQL, 이벤트=Pub/Sub, 감사=Cloud Trail", "정적=Block Storage, API=Kubeflow, 검색=Hadoop Eco, DB=Object Storage, 이벤트=Certificate Manager, 감사=AMP", "정적=VPC, API=Alert Center, 검색=Resource Explorer, DB=DNS, 이벤트=KMS, 감사=Pub/Sub"],ans:1,exp:"정적=Object Storage, API=K8sE, 검색=AMS, 주문DB=MySQL, 이벤트=Pub/Sub, 감사=Cloud Trail이 각 역할에 최적이다."},
+{area:"기타·복합",pt:3,topic:"종합 설계 2",q:"ML 플랫폼: 학습 데이터 저장, 실험 노트북, 파이프라인 실행, 모델 서빙, 모델 메타데이터 관리가 필요하다. 가장 적합한 조합은?",opts:["MySQL 단독", "Block Storage + DNS + Alert Center + Billing", "Object Storage(데이터) + Kubeflow(노트북·파이프라인·서빙) + Data Catalog(메타데이터)", "MemStore + Pub/Sub + KMS + IAM"],ans:2,exp:"ML 플랫폼: 학습 데이터는 Object Storage, 노트북·파이프라인·서빙은 Kubeflow, 메타데이터는 Data Catalog가 각각 최적이다."},
+{area:"클라우드 개요",pt:1,topic:"클라우드 보안",q:"클라우드 공동 책임 모델에서 '제공자 책임'에 해당하는 것은?",opts:["물리 데이터센터 보안", "앱 코드 보안", "사용자 데이터 암호화", "IAM 계정 관리"],ans:0,exp:"물리 데이터센터 보안(시설·하드웨어)은 클라우드 제공자 책임이다."},
+{area:"클라우드 개요",pt:2,topic:"클라우드 마이그레이션",q:"클라우드 마이그레이션 6R 전략 중 '리팩토링(Re-architect)'이란?",opts:["앱을 그대로 이전", "앱을 폐기", "SaaS로 전환", "클라우드 네이티브 아키텍처로 앱을 재설계"],ans:3,exp:"리팩토링(Re-architect)은 클라우드 이점을 최대로 활용하기 위해 앱 아키텍처를 근본적으로 재설계하는 것이다."},
+{area:"클라우드 개요",pt:2,topic:"클라우드 설계 원칙",q:"Well-Architected 프레임워크에서 '운영 우수성(Operational Excellence)'이 의미하는 것은?",opts:["비용만 최적화", "보안만 강화", "운영 프로세스의 지속적 개선과 자동화", "성능만 최적화"],ans:2,exp:"운영 우수성은 운영 프로세스의 지속 개선, 자동화, 변경 관리를 통해 비즈니스 가치를 극대화하는 원칙이다."},
+{area:"클라우드 개요",pt:3,topic:"전략적 선택",q:"규제 산업(의료·금융)에서 퍼블릭 클라우드 도입 시 가장 중요하게 고려할 것은?",opts:["데이터 레지던시·컴플라이언스 요건 충족 및 보안 인증 확인", "가장 저렴한 CSP 선택", "UI가 가장 예쁜 콘솔", "처리 속도만 고려"],ans:0,exp:"규제 산업은 데이터 저장 위치 규정, 컴플라이언스(HIPAA·PCI-DSS 등), 보안 인증이 핵심 도입 기준이다."},
+{area:"서비스 이해",pt:1,topic:"BCS 기초",q:"BCS에서 인스턴스를 '중지(Stop)'하면 어떻게 되는가?",opts:["데이터가 모두 삭제된다", "인스턴스가 완전히 삭제된다", "컴퓨팅 요금은 중단되지만 스토리지는 유지된다", "IP가 변경된다"],ans:2,exp:"중지(Stop)하면 컴퓨팅 과금은 멈추지만 연결된 Block Storage 등 데이터와 설정은 유지된다."},
+{area:"서비스 이해",pt:1,topic:"BCS 기초",q:"BCS에서 인스턴스를 '종료(Terminate)'하면?",opts:["중지 상태로 전환", "컴퓨팅 요금만 중단", "스냅샷이 자동 생성된다", "인스턴스와 임시 스토리지가 영구 삭제된다"],ans:3,exp:"종료(Terminate)는 인스턴스를 영구 삭제한다. 연결된 Block Storage의 삭제 여부는 설정에 따라 다르다."},
+{area:"서비스 이해",pt:1,topic:"스냅샷",q:"스냅샷(Snapshot)이란?",opts:["실시간 백업 스트리밍", "자동 스케일링 정책", "로드 밸런서 규칙", "특정 시점의 볼륨 상태를 캡처한 백업 이미지"],ans:3,exp:"스냅샷은 특정 시점의 볼륨(Block Storage) 상태를 캡처해 백업·복원·AMI 생성에 활용하는 기능이다."},
+{area:"서비스 이해",pt:1,topic:"K8s 기초",q:"Kubernetes Namespace의 역할은?",opts:["네트워크 대역폭 제한", "클러스터 내 리소스를 논리적으로 분리하는 가상 구획", "DNS 레코드 저장", "SSL 인증서 관리"],ans:1,exp:"Namespace는 클러스터 내 팀·환경·앱을 논리적으로 분리하는 가상 구획이다."},
+{area:"서비스 이해",pt:1,topic:"K8s 기초",q:"Kubernetes에서 파드가 비정상 종료될 때 자동으로 재시작하는 컨트롤러는?",opts:["Deployment/ReplicaSet", "ConfigMap", "Namespace", "Secret"],ans:0,exp:"Deployment/ReplicaSet은 파드의 지정된 복제본 수를 항상 유지하며 비정상 종료 시 자동 재시작한다."},
+{area:"서비스 이해",pt:1,topic:"로드 밸런싱 기초",q:"라운드 로빈(Round Robin) 분산 알고리즘이란?",opts:["부하가 가장 적은 서버에 전달", "각 서버에 순서대로 균등하게 요청을 분배", "요청자 IP를 해시해 항상 같은 서버로 전달", "응답이 가장 빠른 서버에 전달"],ans:1,exp:"라운드 로빈은 서버 목록을 순서대로 돌아가며 각각에 요청을 균등 분배하는 방식이다."},
+{area:"서비스 이해",pt:1,topic:"로드 밸런싱 기초",q:"최소 연결(Least Connection) 알고리즘이란?",opts:["현재 활성 연결 수가 가장 적은 서버에 전달", "가장 최근에 추가된 서버에 전달", "IP 해시 기반 전달", "무작위 전달"],ans:0,exp:"최소 연결은 현재 가장 적은 연결을 처리 중인 서버에 새 요청을 전달해 부하를 균등하게 분산한다."},
+{area:"서비스 이해",pt:2,topic:"K8s 심화",q:"Kubernetes Ingress의 역할은?",opts:["파드 내 스토리지 마운트", "클러스터 외부 HTTP/HTTPS 트래픽을 내부 서비스로 라우팅하는 L7 규칙", "클러스터 내 DNS 관리", "컨테이너 이미지 캐싱"],ans:1,exp:"Ingress는 HTTP/HTTPS 레이어에서 도메인·경로 기반으로 외부 트래픽을 내부 서비스로 라우팅하는 규칙이다."},
+{area:"서비스 이해",pt:2,topic:"K8s 심화",q:"Kubernetes의 PersistentVolume(PV)과 PersistentVolumeClaim(PVC)의 관계는?",opts:["동일한 오브젝트다", "PVC가 PV보다 상위 개념이다", "PV는 네트워크 정책을 정의한다", "PV는 관리자가 프로비저닝한 스토리지, PVC는 파드가 스토리지를 요청하는 선언"],ans:3,exp:"PV는 실제 스토리지 자원, PVC는 파드가 스토리지를 사용하겠다고 선언하는 요청이다. PVC와 PV가 바인딩되면 파드가 스토리지를 사용한다."},
+{area:"서비스 이해",pt:2,topic:"Pub/Sub 심화",q:"Pub/Sub에서 메시지를 여러 구독자가 독립적으로 소비할 수 있는 이유는?",opts:["메시지를 하나씩 순서대로 전달", "메시지가 자동으로 복제된다", "각 구독(Subscription)이 독립적으로 메시지를 소비하며 하나의 토픽에 여러 구독을 만들 수 있다", "구독자가 많을수록 속도가 빨라진다"],ans:2,exp:"하나의 토픽에 여러 구독(Subscription)을 만들면 각 구독이 독립적으로 모든 메시지를 소비할 수 있다."},
+{area:"서비스 이해",pt:2,topic:"스토리지 고급",q:"Object Storage의 라이프사이클 정책(Lifecycle Policy)의 목적은?",opts:["이미지 자동 스캔", "DNS TTL 자동 조정", "인스턴스 자동 재시작", "일정 기간 후 객체를 자동으로 삭제하거나 스토리지 클래스를 변경해 비용을 최적화"],ans:3,exp:"라이프사이클 정책으로 오래된 객체를 자동 삭제하거나 저렴한 스토리지 클래스로 전환해 비용을 최적화한다."},
+{area:"서비스 이해",pt:2,topic:"MySQL 고급",q:"MySQL에서 자동 장애 조치(Auto Failover)가 작동하는 조건은?",opts:["수동으로 관리자가 전환 명령 입력", "프라이머리 노드 장애 감지 시 자동으로 스탠바이로 전환", "사용자 요청 수가 임계치 초과 시", "스냅샷 백업 완료 시"],ans:1,exp:"완전관리형 MySQL은 프라이머리 장애를 자동 감지하고 스탠바이 노드로 자동 전환해 다운타임을 최소화한다."},
+{area:"서비스 이해",pt:3,topic:"복합 스토리지",q:"대규모 파일 공유(NFS), 빠른 DB 캐시, 대용량 로그 보관이 동시에 필요하다. 각각에 적합한 서비스 조합은?",opts:["Block Storage + DNS + Pub/Sub", "File Storage + MemStore + Object Storage", "MySQL + KMS + IAM", "Container Registry + Kubeflow + Data Catalog"],ans:1,exp:"NFS 공유=File Storage, 빠른 캐시=MemStore, 대용량 로그=Object Storage가 각각 최적이다."},
+{area:"서비스 이해",pt:3,topic:"K8s 아키텍처",q:"K8sE 클러스터에서 마이크로서비스 10개를 운영한다. 서비스 간 통신 보안을 강화하고 트래픽을 제어하려면?",opts:["모든 서비스에 Public IP 부여", "서비스 메시(Service Mesh)로 mTLS·트래픽 정책 적용, 불필요한 외부 노출 차단", "단일 보안 그룹으로 전체 허용", "DNS로만 라우팅"],ans:1,exp:"서비스 메시는 사이드카 프록시로 서비스 간 mTLS·트래픽 정책·관찰성을 제공해 마이크로서비스 통신 보안을 강화한다."},
+{area:"비용·요금",pt:1,topic:"과금 구조",q:"로드 밸런서 요금의 일반적인 과금 방식은?",opts:["요청 건수만", "인스턴스 수", "처리한 트래픽 양 + 운영 시간", "저장 용량"],ans:2,exp:"로드 밸런서는 일반적으로 운영 시간과 처리 트래픽 양을 기준으로 과금된다."},
+{area:"비용·요금",pt:1,topic:"과금 구조",q:"DNS 서비스 요금의 일반적인 과금 기준은?",opts:["저장 용량", "인스턴스 수", "DNS 존 수·쿼리 수", "CPU 사용률"],ans:2,exp:"DNS는 관리하는 존 수와 발생한 쿼리 수를 기준으로 과금된다."},
+{area:"비용·요금",pt:2,topic:"비용 최적화 K8s",q:"K8sE 클러스터 비용을 최적화하는 방법은?",opts:["HPA로 파드를 자동 조절하고 노드 오토스케일러로 미사용 노드를 자동 제거", "워커 노드를 항상 최대 수로 유지", "노드를 수동으로 추가", "예약 노드 없이 온디맨드만 사용"],ans:0,exp:"HPA로 파드를 수요에 맞게 조절하고 노드 오토스케일러로 빈 노드를 자동 제거하면 K8s 비용을 크게 줄일 수 있다."},
+{area:"비용·요금",pt:2,topic:"DB 비용",q:"MySQL 비용을 줄이기 위한 방법이 아닌 것은?",opts:["사용량에 맞는 인스턴스 타입 선택", "Read Replica를 통한 읽기 분산으로 마스터 사양 절감", "오래된 데이터를 Object Storage로 아카이빙", "스냅샷 보존 기간을 필요 이상으로 길게 유지"],ans:3,exp:"스냅샷 보존 기간을 필요 이상 길게 유지하면 스토리지 비용이 증가한다. 나머지는 비용 절감 방법이다."},
+{area:"보안·권한",pt:2,topic:"컨테이너 보안",q:"Container Registry에 push된 이미지를 자동으로 스캔하도록 설정하는 이유는?",opts:["이미지 크기를 줄이기 위해", "배포 전에 알려진 CVE 취약점을 자동 탐지하기 위해", "이미지를 자동 압축하기 위해", "태그를 자동 생성하기 위해"],ans:1,exp:"자동 스캔은 이미지가 push되는 즉시 CVE 데이터베이스와 비교해 취약점을 탐지하고 보안 리스크를 조기에 파악한다."},
+{area:"보안·권한",pt:2,topic:"암호화 심화",q:"봉투 암호화(Envelope Encryption)란?",opts:["편지를 암호화하는 방법", "DEK(Data Encryption Key)로 데이터를 암호화하고, DEK 자체는 KMS의 CMK로 암호화해 보호", "데이터를 두 번 암호화", "공개키만 사용"],ans:1,exp:"봉투 암호화는 데이터를 DEK로 암호화하고, DEK를 KMS의 마스터 키(CMK)로 암호화해 저장하는 이중 보호 방식이다."},
+{area:"보안·권한",pt:3,topic:"보안 아키텍처",q:"멀티 티어 앱에서 각 계층의 보안 설계로 가장 완전한 것은?",opts:["모든 계층에 0.0.0.0/0 허용", "인터넷 레이어: ALB+인증서, 앱 레이어: SG로 ALB만 허용, DB 레이어: SG로 앱 서버만 허용+KMS 암호화+Secrets Manager", "단일 보안 그룹 공유", "인증서만 적용"],ans:1,exp:"계층별 최소 허용 보안 그룹, 전송 암호화(인증서), DB 암호화(KMS), 자격 증명 관리(Secrets Manager)를 조합하는 것이 완전한 멀티 티어 보안이다."},
+{area:"운영·모니터링",pt:1,topic:"지표 유형",q:"P99 응답 지연(Latency)이 의미하는 것은?",opts:["평균 응답 시간", "최대 응답 시간", "하위 99%의 요청이 이 시간 이내에 완료됨(상위 1% 이상치 제외)", "최소 응답 시간"],ans:2,exp:"P99는 99번째 백분위수로, 전체 요청의 99%가 이 시간 이내에 응답됨을 의미한다. 이상치가 있어도 대부분 사용자 경험을 나타낸다."},
+{area:"운영·모니터링",pt:2,topic:"알림 최적화",q:"알림이 너무 많이 발생해 팀이 피로(Alert Fatigue)를 느낀다. 개선 방법은?",opts:["모든 알림을 비활성화", "임계치를 조정하고 중요도별 알림 채널을 분리해 실제 조치가 필요한 알림만 남긴다", "더 많은 알림을 추가", "알림을 이메일 대신 SMS로만 전송"],ans:1,exp:"임계치 조정, 알림 중복 제거, 중요도별 채널 분리로 의미 있는 알림만 유지하면 피로를 줄이고 빠른 대응이 가능하다."},
+{area:"운영·모니터링",pt:3,topic:"종합 모니터링",q:"글로벌 사용자를 위한 서비스의 옵저버빌리티 체계로 가장 완전한 것은?",opts:["Cloud Trail 단독", "Monitoring(지표) + Cloud Trail(감사) + Alert Center(알림) + AMP(Prometheus 지표) + 분산 트레이싱 연동", "Billing만 모니터링", "보안 그룹 로그만"],ans:1,exp:"완전한 옵저버빌리티는 지표(Monitoring/AMP)·로그(Cloud Trail)·알림(Alert Center)·트레이싱을 통합해 서비스 전 계층을 관찰한다."},
+{area:"계정 관리",pt:1,topic:"감사 로그",q:"조직 관리자가 수행한 프로젝트 생성·삭제 이력을 확인하는 서비스는?",opts:["Billing", "Monitoring", "Cloud Trail", "Resource Explorer"],ans:2,exp:"Cloud Trail은 조직 관리자의 프로젝트 생성·삭제 등 관리 행위를 포함한 모든 활동 이력을 기록한다."},
+{area:"계정 관리",pt:2,topic:"비용 배분",q:"여러 팀이 같은 프로젝트를 사용할 때 팀별 비용을 분리하는 가장 효과적인 방법은?",opts:["모든 리소스에 team 태그를 부여하고 Billing에서 태그별 집계", "팀별로 별도 프로젝트 생성", "보안 그룹으로 팀 구분", "서브넷별 비용 추적"],ans:1,exp:"팀별 프로젝트 분리가 리소스·비용·권한을 가장 명확하게 독립 관리하는 방법이다."},
+{area:"계정 관리",pt:3,topic:"거버넌스 설계",q:"글로벌 기업의 클라우드 거버넌스 체계로 가장 적합한 구성은?",opts:["모든 직원에게 Admin 권한 부여", "단일 프로젝트에 모두 통합", "비밀번호만으로 접근 제어", "조직 레벨 정책으로 전사 보안 기준 설정 + 사업부별 프로젝트 분리 + RBAC으로 역할 정의 + Cloud Trail 전사 감사"],ans:3,exp:"전사 정책(조직 레벨)+사업부 격리(프로젝트)+최소 권한(RBAC)+감사(Cloud Trail) 조합이 클라우드 거버넌스의 표준이다."},
+{area:"기타·복합",pt:1,topic:"네트워크 기초",q:"DNS 레코드의 MX 타입은 무엇에 사용되는가?",opts:["IP 주소 매핑", "IPv6 주소 매핑", "도메인 별칭", "이메일 서버 지정"],ans:3,exp:"MX(Mail Exchange) 레코드는 해당 도메인의 이메일을 처리하는 메일 서버를 지정한다."},
+{area:"기타·복합",pt:1,topic:"보안 기초",q:"XSS(Cross-Site Scripting) 공격이란?",opts:["데이터베이스 쿼리 조작", "서버 메모리 초과", "암호화 키 탈취", "악성 스크립트를 웹 페이지에 삽입해 다른 사용자 브라우저에서 실행시키는 공격"],ans:3,exp:"XSS는 악성 스크립트를 웹 페이지에 삽입해 사용자 브라우저에서 실행시켜 쿠키·세션을 탈취하는 공격이다."},
+{area:"기타·복합",pt:2,topic:"CI/CD+보안",q:"DevSecOps에서 보안을 CI/CD 파이프라인에 통합하는 이유는?",opts:["배포 속도를 줄이기 위해", "테스트 없이 빠르게 배포", "보안 취약점을 배포 초기 단계에서 발견해 수정 비용을 줄이기 위해", "비용을 증가시키기 위해"],ans:2,exp:"DevSecOps는 보안을 개발 초기 단계부터 통합(Shift Left)해 취약점을 조기 발견하고 수정 비용을 줄인다."},
+{area:"기타·복합",pt:2,topic:"모니터링+비용",q:"클라우드 사용량이 갑자기 폭증했고 원인을 모른다. 가장 먼저 확인할 것은?",opts:["DNS 레코드 변경 이력", "Certificate Manager 인증서 목록", "Cloud Trail에서 최근 리소스 생성·변경 이벤트와 Billing에서 비용 급증 항목 동시 확인", "보안 그룹 규칙"],ans:2,exp:"사용량 폭증 원인 파악은 Cloud Trail(누가 무엇을 만들었나)과 Billing(어느 서비스 비용이 증가했나)을 함께 확인하는 것이 가장 빠르다."},
+{area:"기타·복합",pt:3,topic:"종합 설계 3",q:"SaaS 멀티 테넌트 서비스: 테넌트별 데이터 격리, 검색, 이벤트 처리, 비용 추적, 감사가 필요하다. 적합한 서비스 조합은?",opts:["단일 MySQL + DNS + IAM + Certificate Manager", "테넌트별 MySQL DB + AMS(검색) + Pub/Sub(이벤트) + Billing 태그(비용) + Cloud Trail(감사)", "Object Storage만 + Kubeflow", "MemStore 단독 + Alert Center"],ans:1,exp:"테넌트별 격리=MySQL, 검색=AMS, 이벤트=Pub/Sub, 비용추적=Billing 태그, 감사=Cloud Trail로 각 요구사항을 충족한다."},
+{area:"기타·복합",pt:3,topic:"보안+운영 통합",q:"프로덕션 장애 대응 시 '누가(IAM), 무엇을(Cloud Trail), 언제(Cloud Trail), 어떻게 영향받았나(Monitoring)'를 빠르게 파악하는 체계를 구성할 때 핵심 서비스 조합은?",opts:["IAM + Cloud Trail + Monitoring", "Billing + DNS + Certificate Manager", "KMS + Secrets Manager + Pub/Sub", "Object Storage + File Storage + Block Storage"],ans:0,exp:"IAM으로 행위자 식별, Cloud Trail로 행위 이력, Monitoring으로 영향 지표를 조합하면 장애 원인을 빠르게 삼각측량할 수 있다."},
+{area:"클라우드 개요",pt:1,topic:"클라우드 개념",q:"'인프라 자동화(Infrastructure Automation)'의 이점은?",opts:["수동 작업이 증가한다", "비용이 항상 증가한다", "보안이 약해진다", "반복 작업을 자동화해 인적 오류를 줄이고 일관성을 확보한다"],ans:3,exp:"자동화는 반복 작업을 코드로 처리해 인적 오류를 줄이고 환경 일관성을 확보한다."},
+{area:"클라우드 개요",pt:2,topic:"클라우드 전략",q:"클라우드 전환 시 '빅뱅(Big Bang)' 방식과 '단계적 전환'의 차이는?",opts:["동일하다", "빅뱅이 항상 더 안전하다", "빅뱅은 일시에 전체 전환으로 위험도 높음, 단계적은 순서대로 전환해 리스크를 분산", "단계적 전환이 항상 더 빠르다"],ans:2,exp:"빅뱅 방식은 빠르지만 실패 시 전체가 영향받는다. 단계적 전환은 느리지만 단계마다 검증하며 리스크를 분산한다."},
+{area:"클라우드 개요",pt:3,topic:"혁신 전략",q:"스타트업이 글로벌 시장 진출을 위해 클라우드를 선택하는 핵심 이유는?",opts:["초기 투자 없이 즉시 글로벌 인프라를 활용할 수 있어 빠른 시장 진입이 가능하다", "온프레미스보다 항상 저렴하다", "보안이 더 강하다", "고객 데이터를 제공자가 관리해 책임이 없다"],ans:0,exp:"클라우드는 초기 데이터센터 투자 없이 즉시 글로벌 인프라를 이용해 빠른 시장 진입과 실험이 가능하다."},
+{area:"서비스 이해",pt:1,topic:"VPC 심화",q:"VPC의 기본 DNS Resolver 기능이란?",opts:["VPC 내 인스턴스가 도메인 이름을 IP로 해석할 수 있도록 제공하는 내장 DNS 서비스", "외부 DNS 서버에 모든 쿼리를 전달", "SSL 인증서를 발급", "라우트 테이블을 자동 생성"],ans:0,exp:"VPC의 내장 DNS Resolver는 인스턴스가 도메인 이름을 IP로 해석하는 기본 DNS 기능을 제공한다."},
+{area:"서비스 이해",pt:1,topic:"스토리지 기초",q:"Block Storage를 인스턴스에 연결하기 위한 단계는?",opts:["DNS 레코드 생성", "볼륨을 생성하고 인스턴스에 연결(Attach)한 뒤 파일 시스템을 포맷·마운트", "보안 그룹 규칙 추가", "IAM 역할 부여"],ans:1,exp:"Block Storage는 볼륨 생성 → 인스턴스에 Attach → OS에서 파일 시스템 포맷 → 마운트 순서로 사용한다."},
+{area:"서비스 이해",pt:1,topic:"스토리지 기초",q:"Object Storage에서 버킷(Bucket)의 역할은?",opts:["인스턴스를 묶는 그룹", "보안 그룹 규칙 세트", "객체를 담는 최상위 컨테이너(네임스페이스)", "DNS 존"],ans:2,exp:"버킷은 Object Storage에서 객체를 담는 최상위 컨테이너로, 네임스페이스와 접근 정책을 정의한다."},
+{area:"서비스 이해",pt:1,topic:"Analytics 기초",q:"Apache Kafka에서 '파티션(Partition)'이란?",opts:["토픽을 병렬 처리를 위해 나눈 단위로, 파티션 수로 처리량을 조절한다", "클러스터 노드 단위", "메시지 필터 규칙", "스냅샷 백업 단위"],ans:0,exp:"파티션은 토픽을 병렬 처리하는 단위다. 파티션 수를 늘리면 컨슈머를 병렬화해 처리량을 높일 수 있다."},
+{area:"서비스 이해",pt:1,topic:"Analytics 기초",q:"Apache Kafka에서 '컨슈머 그룹(Consumer Group)'이란?",opts:["메시지를 발행하는 프로듀서 집합", "동일 토픽을 분산해서 소비하는 컨슈머들의 그룹, 파티션을 나눠 병렬 처리한다", "브로커 클러스터", "토픽의 파티션 수"],ans:1,exp:"컨슈머 그룹은 여러 컨슈머가 토픽의 파티션을 나눠 병렬 소비하는 그룹으로, 수평 확장에 핵심이다."},
+{area:"서비스 이해",pt:2,topic:"BCS 심화",q:"인스턴스 메타데이터(Instance Metadata)란?",opts:["과금 요금표", "스냅샷 목록", "인스턴스 자체에서 접근 가능한 인스턴스 ID·IP·역할 등 런타임 정보", "DNS 레코드"],ans:2,exp:"인스턴스 메타데이터는 인스턴스 내부에서 조회 가능한 ID·IP·태그·역할 등 런타임 정보다."},
+{area:"서비스 이해",pt:2,topic:"네트워크 고급",q:"IP 플로팅(Floating IP)이란?",opts:["자동 변경되는 동적 IP", "계정에 귀속된 공인 IP로, 인스턴스 간 자유롭게 재할당 가능한 탄력적 IP", "프라이빗 IP의 일종", "DNS A 레코드"],ans:1,exp:"플로팅 IP는 특정 인스턴스에 묶이지 않고 계정에 귀속되어 인스턴스 간 재할당해 고가용성을 구현하는 데 사용한다."},
+{area:"서비스 이해",pt:2,topic:"K8s 운영",q:"K8sE에서 롤링 업데이트(Rolling Update)의 이점은?",opts:["모든 파드를 동시에 교체해 빠른 배포", "기존 파드를 점진적으로 교체해 무중단 배포가 가능하다", "수동으로 파드를 재시작", "이전 버전으로 롤백이 불가능하다"],ans:1,exp:"롤링 업데이트는 파드를 조금씩 교체해 서비스 중단 없이 배포하며, 문제 시 이전 버전으로 롤백할 수 있다."},
+{area:"서비스 이해",pt:2,topic:"Analytics 심화",q:"Data Query에서 쿼리 비용을 줄이는 방법은?",opts:["모든 컬럼을 SELECT *로 조회", "자주 쿼리한다", "파티셔닝된 데이터에서 필요한 컬럼만 SELECT해 스캔 데이터 크기를 줄인다", "인스턴스를 추가한다"],ans:2,exp:"Data Query는 스캔 데이터 크기로 과금되므로, 파티션 필터와 컬럼 선택으로 스캔량을 줄이면 비용도 줄어든다."},
+{area:"서비스 이해",pt:3,topic:"이벤트 드리븐 아키텍처",q:"이벤트 드리븐 아키텍처에서 서비스 간 직접 호출 대신 이벤트 버스를 사용하는 이유는?",opts:["속도가 항상 빠르다", "구현이 더 단순하다", "비용이 항상 저렴하다", "서비스 간 결합도를 낮추고(느슨한 결합) 확장성·장애 격리를 향상시킨다"],ans:3,exp:"이벤트 버스를 통한 비동기 통신은 서비스 간 직접 의존성을 제거해 독립 배포·확장·장애 격리가 가능하다."},
+{area:"서비스 이해",pt:3,topic:"서비스 선택 심화",q:"검색 기능이 있는 전자상거래 플랫폼: 상품 정보는 수정이 잦고, 검색은 ms 단위로 빨라야 하며, 주문은 트랜잭션이 필요하다. 서비스 조합은?",opts:["Object Storage 단독", "DNS + IAM + Billing", "MySQL(상품·주문 DB) + MemStore(검색 캐시) + AMS(풀텍스트·벡터 검색)", "Kubeflow + Pub/Sub + KMS"],ans:2,exp:"MySQL로 상품·주문 트랜잭션 관리, MemStore로 반복 조회 캐싱, AMS로 고성능 검색을 제공하는 조합이 최적이다."},
+{area:"비용·요금",pt:1,topic:"과금 기초",q:"카카오클라우드에서 크레딧이 소진된 후의 과금 방식은?",opts:["서비스가 자동 중지된다", "등록된 결제 수단에서 사용량만큼 청구된다", "무료로 계속 사용된다", "서비스 속도가 제한된다"],ans:1,exp:"크레딧 소진 후에는 등록된 결제 수단으로 사용량 기반 청구가 이루어진다."},
+{area:"비용·요금",pt:2,topic:"예산 관리",q:"클라우드 예산(Budget)을 설정하는 이점은?",opts:["예상 초과 전에 알림을 받아 미리 대응할 수 있다", "자동으로 비용을 절감한다", "서비스가 자동 종료된다", "리소스가 자동 삭제된다"],ans:0,exp:"예산 알림은 실제 비용이 임계치에 도달하기 전에 알려줘 초과 지출을 사전에 방지하는 데 도움이 된다."},
+{area:"비용·요금",pt:2,topic:"RI vs On-demand",q:"온디맨드 인스턴스와 예약 인스턴스 중 단기 프로젝트(1~2개월)에 더 적합한 것은?",opts:["예약 인스턴스(1년 약정)", "서버리스만 사용", "둘 다 동일", "온디맨드 인스턴스(약정 없이 사용 후 종료)"],ans:3,exp:"1~2개월 단기 프로젝트에는 약정 없이 사용하고 종료할 수 있는 온디맨드가 적합하다."},
+{area:"보안·권한",pt:1,topic:"보안 기초",q:"SQL Injection 공격이란?",opts:["악의적인 SQL 쿼리를 입력값에 삽입해 DB를 조작하는 공격", "네트워크 트래픽을 가로채는 공격", "서버 메모리를 초과시키는 공격", "파일 시스템을 암호화하는 공격"],ans:0,exp:"SQL Injection은 사용자 입력값에 SQL 쿼리를 삽입해 DB를 무단 조회·수정하는 공격이다."},
+{area:"보안·권한",pt:1,topic:"보안 기초",q:"DDoS 공격이란?",opts:["수많은 좀비 PC로 서버에 대량 요청을 보내 서비스를 마비시키는 공격", "단일 공격자가 서버에 로그인 시도", "데이터베이스 데이터를 삭제", "코드에 백도어를 심는 공격"],ans:0,exp:"DDoS(Distributed Denial of Service)는 분산된 다수의 공격자로 대량 트래픽을 발생시켜 서비스를 마비시키는 공격이다."},
+{area:"보안·권한",pt:2,topic:"네트워크 보안",q:"웹 방화벽(WAF)의 역할은?",opts:["물리적 침입 방지", "HTTP/HTTPS 레이어에서 SQL Injection·XSS 등 웹 공격 패턴을 탐지·차단한다", "DNS 질의를 필터링", "이메일 스팸을 차단"],ans:1,exp:"WAF는 HTTP/HTTPS 트래픽을 검사해 SQL Injection·XSS 등 웹 공격 패턴을 탐지하고 차단한다."},
+{area:"보안·권한",pt:2,topic:"보안 모범 사례",q:"보안 그룹에서 아웃바운드를 제한해야 하는 이유는?",opts:["아웃바운드 제한은 의미가 없다", "속도가 빨라진다", "악성 코드가 외부 서버로 데이터를 전송하는 것을 차단(Exfiltration 방지)할 수 있다", "비용이 절감된다"],ans:2,exp:"아웃바운드 제한은 악성 코드가 민감 데이터를 외부로 유출하는 것을 차단하는 데이터 유출 방지 역할을 한다."},
+{area:"운영·모니터링",pt:1,topic:"운영 기초",q:"블루-그린(Blue-Green) 배포의 특징은?",opts:["동일한 환경을 두 개(블루=현재, 그린=새 버전) 운영하다가 트래픽을 한 번에 전환", "파드를 하나씩 교체", "자동으로 이전 버전 삭제", "무조건 다운타임이 발생"],ans:0,exp:"블루-그린은 두 환경을 동시에 운영하다가 트래픽을 한 번에 전환해 무중단 배포와 빠른 롤백이 가능하다."},
+{area:"운영·모니터링",pt:1,topic:"운영 기초",q:"카나리 배포(Canary Deployment)란?",opts:["소수 사용자에게만 새 버전을 먼저 배포해 안정성을 검증 후 점진적으로 확대", "전체 트래픽을 새 버전으로 즉시 전환", "동시에 두 버전을 50:50으로 운영", "이전 버전만 유지"],ans:0,exp:"카나리 배포는 소수 트래픽에만 새 버전을 먼저 배포해 문제를 조기 감지하고 점진적으로 확대하는 전략이다."},
+{area:"운영·모니터링",pt:2,topic:"장애 복구",q:"MTTR(Mean Time To Recovery)를 줄이기 위한 방법은?",opts:["장애를 무시", "항상 재부팅", "인스턴스 수를 줄임", "자동 복구 스크립트, 런북(Runbook) 자동화, 빠른 알림 체계 구축으로 복구 시간 단축"],ans:3,exp:"자동화된 복구 스크립트, 런북(Runbook), 빠른 알림 체계는 장애 발생 후 복구 시간(MTTR)을 줄이는 핵심이다."},
+{area:"운영·모니터링",pt:2,topic:"장애 복구",q:"MTTF(Mean Time To Failure)를 높이는 방법은?",opts:["장애를 자주 발생시켜 훈련", "코드 품질 향상, 충분한 테스트, 자동화된 배포로 오류 빈도를 줄여 장애 발생 간격을 늘린다", "인스턴스를 자주 재시작", "보안 그룹을 자주 변경"],ans:1,exp:"코드 품질·테스트·자동 배포는 버그와 오류를 줄여 장애 발생 빈도를 낮추고 MTTF를 높인다."},
+{area:"계정 관리",pt:1,topic:"계정 기초",q:"'루트 계정'과 'IAM 계정'의 차이는?",opts:["루트는 모든 권한을 가진 최초 계정, IAM은 역할로 제한된 권한을 가진 계정이다", "동일하다", "IAM이 더 많은 권한을 가진다", "루트는 API를 사용할 수 없다"],ans:0,exp:"루트 계정은 무제한 전체 권한, IAM 계정은 역할에 따라 제한된 권한을 가진다. 일상 운영은 IAM 계정을 사용해야 한다."},
+{area:"계정 관리",pt:2,topic:"SSO 연동",q:"단일 로그인(SSO)을 조직 계정과 연동하는 이점은?",opts:["별도 계정을 생성해야 한다", "비밀번호를 두 배로 늘린다", "조직의 기존 ID(예: 사내 이메일)로 클라우드에 로그인해 계정 관리를 단순화하고 보안을 강화한다", "속도가 느려진다"],ans:2,exp:"SSO 연동으로 기존 사내 계정으로 클라우드에 접근하면 별도 계정 관리가 불필요하고 퇴사자 접근 차단도 간편해진다."},
+{area:"기타·복합",pt:1,topic:"API 기초",q:"REST API에서 HTTP PUT 메서드의 의미는?",opts:["리소스를 조회", "리소스를 생성 또는 전체 업데이트", "리소스를 삭제", "리소스의 일부를 수정"],ans:1,exp:"PUT은 지정된 URI에 리소스를 생성하거나 전체 내용을 교체한다."},
+{area:"기타·복합",pt:1,topic:"API 기초",q:"REST API에서 HTTP DELETE 메서드의 의미는?",opts:["리소스 생성", "리소스 조회", "리소스 삭제", "리소스 수정"],ans:2,exp:"DELETE는 지정된 URI의 리소스를 삭제한다."},
+{area:"기타·복합",pt:2,topic:"GitOps",q:"GitOps 방식으로 K8s 배포를 관리하는 이점은?",opts:["Git 저장소가 인프라 상태의 단일 진실(Single Source of Truth)이 되어 변경 이력 추적·롤백·자동 배포가 용이하다", "수동 kubectl 명령으로만 배포", "배포 속도가 느려진다", "보안이 약화된다"],ans:0,exp:"GitOps는 Git을 인프라 상태 저장소로 사용해 변경 이력 추적, 코드 리뷰 기반 배포, 자동 동기화가 가능하다."},
+{area:"기타·복합",pt:2,topic:"서비스 메시",q:"Istio 같은 서비스 메시가 제공하는 기능이 아닌 것은?",opts:["관계형 DB 트랜잭션 관리", "서비스 간 mTLS 자동 적용", "트래픽 제어(가중치 라우팅, 서킷 브레이커)", "분산 트레이싱"],ans:0,exp:"서비스 메시는 mTLS, 트래픽 제어, 관찰성을 제공한다. 관계형 DB 트랜잭션 관리는 서비스 메시의 역할이 아니다."},
+{area:"기타·복합",pt:3,topic:"종합 아키텍처",q:"대규모 데이터 플랫폼: 실시간 수집→스트림 처리→배치 분석→검색→ML 학습. 서비스 조합은?",opts:["Pub/Sub(수집) → AMK(스트림) → Hadoop Eco(배치) → AMS(검색) → Kubeflow(ML)", "DNS→Block Storage→MySQL→Certificate Manager→IAM", "Object Storage 단독", "Billing→Alert Center→KMS→IAM→Monitoring"],ans:0,exp:"Pub/Sub 수집→AMK 스트림 처리→Hadoop Eco 배치 분석→AMS 검색→Kubeflow ML 학습이 각 단계 최적 서비스다."},
+{area:"기타·복합",pt:3,topic:"비용+성능+보안",q:"핀테크 서비스의 아키텍처 요구사항: 99.99% 가용성, PCI-DSS 암호화, 비용 최적화, 실시간 이상 탐지. 핵심 설계 요소는?",opts:["단일 AZ + 평문 저장 + 온디맨드 고정 + 알림 없음", "Object Storage 단독 + IAM만", "멀티 AZ 배포 + KMS 암호화 + Secrets Manager + 비용 태그 + Monitoring·Alert Center 이상 탐지", "DNS + Certificate Manager + Billing만"],ans:2,exp:"99.99% = 멀티 AZ, PCI-DSS = KMS+Secrets Manager, 비용 = 태그+Billing, 이상 탐지 = Monitoring+Alert Center 조합이 필요하다."},
+{area:"클라우드 개요",pt:1,topic:"클라우드 기초",q:"'프로비저닝(Provisioning)'이란?",opts:["필요한 IT 자원(서버·네트워크 등)을 준비·설정해 사용 가능하게 만드는 과정", "서버를 물리적으로 설치", "소프트웨어를 개발", "데이터를 백업"],ans:0,exp:"프로비저닝은 서버, 스토리지, 네트워크 등 IT 자원을 요구에 맞게 준비·설정해 사용 가능한 상태로 만드는 과정이다."},
+{area:"클라우드 개요",pt:1,topic:"클라우드 기초",q:"'가상화(Virtualization)'가 클라우드의 기반이 되는 이유는?",opts:["물리 서버를 더 빠르게 만들기 위해", "네트워크 속도를 향상시키기 위해", "보안을 강화하기 위해", "하나의 물리 서버에서 여러 독립적인 가상 서버를 실행해 자원 효율을 높이기 위해"],ans:3,exp:"가상화는 물리 하드웨어를 논리적으로 분할해 여러 VM을 실행함으로써 자원 활용도와 유연성을 높인다."},
+{area:"클라우드 개요",pt:2,topic:"클라우드 기초",q:"오케스트레이션(Orchestration)이란?",opts:["단일 서비스를 수동으로 설정", "DNS를 설정하는 과정", "여러 자동화된 작업과 서비스를 조율해 복잡한 워크플로우를 실행하는 것", "비용을 계산하는 방법"],ans:2,exp:"오케스트레이션은 여러 자동화 작업(인프라 프로비저닝, 배포 등)을 조율해 복잡한 워크플로우를 자동 실행하는 것이다."},
+{area:"클라우드 개요",pt:2,topic:"클라우드 설계",q:"'단일 장애점(Single Point of Failure, SPOF)'을 제거하는 이유는?",opts:["비용을 높이기 위해", "하나의 컴포넌트 장애가 전체 서비스 중단을 유발하지 않도록 하기 위해", "성능을 저하시키기 위해", "보안을 약화시키기 위해"],ans:1,exp:"SPOF를 제거하면 특정 컴포넌트 장애가 전체 서비스에 영향을 주지 않아 고가용성을 확보할 수 있다."},
+{area:"클라우드 개요",pt:3,topic:"아키텍처 심화",q:"'카오스 엔지니어링(Chaos Engineering)'이란?",opts:["시스템을 무작위로 파괴하는 것", "테스트를 생략하는 전략", "프로덕션 환경에서 의도적으로 장애를 주입해 시스템 복원력을 검증하는 실천", "비용을 낭비하는 행위"],ans:2,exp:"카오스 엔지니어링은 통제된 조건에서 장애를 주입해 실제 장애 발생 전에 취약점을 발견하고 복원력을 개선한다."},
+{area:"서비스 이해",pt:1,topic:"BCS 기초",q:"인스턴스 유형 선택 시 '컴퓨팅 집약형'이 적합한 워크로드는?",opts:["대용량 데이터를 RAM에 올려 처리", "정적 파일 호스팅", "CPU 집중적 작업(동영상 인코딩, 과학 계산, ML 추론)", "이메일 전송"],ans:2,exp:"컴퓨팅 집약형은 높은 CPU 성능이 필요한 인코딩, 과학 계산, ML 추론 등에 최적화되어 있다."},
+{area:"서비스 이해",pt:1,topic:"네트워크 기초",q:"CIDR 표기 '10.0.0.0/24'에서 '/24'의 의미는?",opts:["서브넷 마스크 길이로, 256개의 IP를 가진 서브넷", "VLAN ID", "포트 번호", "프로토콜 버전"],ans:0,exp:"/24는 서브넷 마스크 24비트를 의미하며, 2^8=256개 주소(실사용 254개)의 서브넷을 정의한다."},
+{area:"서비스 이해",pt:1,topic:"네트워크 기초",q:"TCP/IP에서 포트(Port)의 역할은?",opts:["IP 주소의 일부", "물리 케이블 연결부", "DNS 레코드 타입", "특정 프로세스/서비스를 식별하는 논리 번호(예: HTTP=80, HTTPS=443)"],ans:3,exp:"포트는 IP 주소와 함께 특정 프로세스나 서비스를 식별하는 논리적 번호다."},
+{area:"서비스 이해",pt:1,topic:"스토리지 기초",q:"NFS(Network File System) 프로토콜의 특징은?",opts:["블록 단위로 데이터를 전송", "네트워크를 통해 원격 파일 시스템을 마운트해 로컬처럼 사용", "객체 키-값으로 저장", "인메모리 처리 전용"],ans:1,exp:"NFS는 네트워크를 통해 원격 파일 시스템을 마운트해 여러 클라이언트가 공유 파일에 로컬처럼 접근한다."},
+{area:"서비스 이해",pt:1,topic:"Analytics 기초",q:"HDFS(Hadoop Distributed File System)란?",opts:["인메모리 캐시 시스템", "대용량 파일을 여러 노드에 분산 저장하는 Hadoop의 분산 파일 시스템", "관계형 데이터베이스", "컨테이너 이미지 저장소"],ans:1,exp:"HDFS는 대용량 파일을 블록으로 나눠 여러 노드에 분산 저장하고 복제해 내구성을 확보하는 분산 파일 시스템이다."},
+{area:"서비스 이해",pt:1,topic:"보안 서비스",q:"디지털 서명(Digital Signature)의 역할은?",opts:["데이터를 암호화해 기밀성 보호", "비밀번호를 해싱", "데이터의 무결성과 발신자 인증을 동시에 검증", "인증서를 발급"],ans:2,exp:"디지털 서명은 개인키로 서명해 데이터 위변조 여부(무결성)와 발신자 신원(인증)을 동시에 검증한다."},
+{area:"서비스 이해",pt:2,topic:"서비스 이해 복합",q:"세션 기반 인증 vs 토큰 기반(JWT) 인증의 차이는?",opts:["동일하다", "세션은 서버에 상태 저장, JWT는 클라이언트 토큰으로 서버가 상태 비저장(Stateless)", "JWT가 항상 더 안전하다", "세션이 항상 더 빠르다"],ans:1,exp:"세션은 서버가 상태를 저장해 확장이 어렵고, JWT는 토큰을 클라이언트가 보유해 서버가 Stateless로 수평 확장이 쉽다."},
+{area:"서비스 이해",pt:2,topic:"서비스 이해 복합",q:"마이크로서비스에서 API Gateway의 역할은?",opts:["데이터베이스 쿼리 최적화", "클라이언트의 모든 요청을 받아 해당 마이크로서비스로 라우팅, 인증·로깅·레이트 리밋 처리", "컨테이너 이미지 빌드", "스토리지 관리"],ans:1,exp:"API Gateway는 마이크로서비스의 단일 진입점으로 라우팅·인증·로깅·레이트 리밋을 중앙에서 처리한다."},
+{area:"서비스 이해",pt:2,topic:"서비스 이해 복합",q:"서킷 브레이커(Circuit Breaker) 패턴이란?",opts:["네트워크 물리 차단기", "자동 스케일링 정책", "의존 서비스 장애 시 연쇄 장애를 방지하기 위해 일정 오류 임계치 초과 시 호출을 차단하고 빠르게 실패 반환", "로드 밸런서 알고리즘"],ans:2,exp:"서킷 브레이커는 의존 서비스 장애 시 임계치 초과 오류를 감지하고 호출을 차단해 연쇄 장애(Cascading Failure)를 방지한다."},
+{area:"서비스 이해",pt:3,topic:"서비스 이해 심화",q:"글로벌 이커머스 앱에서 재고 서비스가 느려지면 주문 서비스 전체가 멈추는 문제가 있다. 해결 방법은?",opts:["주문·재고 서비스 사이에 서킷 브레이커를 적용하고, 재고 조회는 MemStore 캐시를 활용해 의존성을 줄인다", "재고 서비스를 수직 확장", "둘을 하나의 서비스로 합친다", "재고 서비스를 삭제"],ans:0,exp:"서킷 브레이커로 연쇄 장애를 차단하고, MemStore 캐시로 재고 서비스 직접 의존성을 줄여 주문 서비스 안정성을 높인다."},
+{area:"비용·요금",pt:1,topic:"과금 구조",q:"MemStore(Redis) 과금의 기본 단위는?",opts:["쿼리 건수", "저장 객체 수", "노드 타입과 운영 시간", "요청 병렬도"],ans:2,exp:"MemStore는 선택한 노드 타입(메모리 크기 등)과 운영 시간을 기준으로 과금된다."},
+{area:"비용·요금",pt:2,topic:"비용 최적화",q:"Multi-AZ 구성이 단일 AZ 대비 비용이 높아지는 이유는?",opts:["네트워크 속도가 빠르기 때문", "더 많은 관리자가 필요하기 때문", "DNS 쿼리가 증가하기 때문", "여러 AZ에 리소스가 복제되어 인스턴스·스토리지·트래픽 비용이 증가하기 때문"],ans:3,exp:"Multi-AZ는 각 AZ에 인스턴스와 스토리지를 복제해 가용성을 높이지만, 복제된 만큼 비용이 증가한다."},
+{area:"비용·요금",pt:3,topic:"비용 아키텍처",q:"비용을 최소화하면서도 99.9% 가용성이 필요하다. 가장 균형 잡힌 아키텍처는?",opts:["멀티 리전 액티브-액티브 풀 사이즈 운영", "단일 AZ 고사양 예약 단독", "동일 리전 Multi-AZ + 오토스케일링 + 서버리스 분석(Data Query) + 스냅샷 백업", "모든 서비스를 예약 인스턴스 최대 사양으로 고정"],ans:2,exp:"동일 리전 Multi-AZ로 99.9% 가용성을 확보하고, 오토스케일링으로 낭비를 줄이며, 서버리스 분석으로 상시 클러스터 비용을 제거하는 것이 균형 잡힌 구성이다."},
+{area:"보안·권한",pt:1,topic:"보안 기초",q:"해시(Hash) 함수의 특성은?",opts:["원본 데이터를 복원할 수 있다", "같은 출력이 여러 입력에서 나올 수 없다", "단방향 함수로 동일 입력은 항상 동일 출력, 원본 복원 불가", "속도가 매우 느리다"],ans:2,exp:"해시는 단방향 함수로, 동일 입력은 항상 동일한 다이제스트를 출력하지만 역방향 복원이 불가하다. 비밀번호 저장에 사용된다."},
+{area:"보안·권한",pt:1,topic:"보안 기초",q:"HTTPS가 HTTP보다 안전한 이유는?",opts:["더 빠른 프로토콜이기 때문", "서버 CPU를 더 많이 사용하기 때문", "TLS 암호화로 전송 중 데이터 도청·변조를 방지하기 때문", "이미지 크기를 줄이기 때문"],ans:2,exp:"HTTPS는 TLS로 통신을 암호화해 중간에서 데이터를 도청하거나 변조하는 것을 방지한다."},
+{area:"보안·권한",pt:2,topic:"보안 설계",q:"퍼블릭 API를 통한 무차별 대입 공격(Brute Force)을 방지하는 방법은?",opts:["모든 IP 허용", "비밀번호 길이를 줄임", "레이트 리밋(Rate Limit)과 IP 차단 정책 적용", "인증서를 삭제"],ans:2,exp:"레이트 리밋으로 단위 시간당 요청 수를 제한하고, 임계치 초과 IP를 차단하면 무차별 대입 공격을 효과적으로 방어한다."},
+{area:"보안·권한",pt:3,topic:"보안 거버넌스",q:"보안 정책을 조직 전체에 일관되게 적용하기 위한 접근은?",opts:["각 팀이 독립적으로 보안 정책을 설계", "보안은 단일 팀이 수동으로 관리", "모든 권한을 Admin으로 통일", "조직 레벨 보안 정책 정의 + 프로젝트별 RBAC 표준화 + 정기 감사(Cloud Trail) + 자동화된 컴플라이언스 점검"],ans:3,exp:"조직 정책 표준화, RBAC 일관성, 정기 감사, 자동 컴플라이언스 점검을 조합해야 전사적 보안 거버넌스가 실현된다."},
+{area:"운영·모니터링",pt:1,topic:"운영 기초",q:"'런북(Runbook)'이란?",opts:["소스 코드 저장소", "특정 운영 작업이나 장애 대응 절차를 단계별로 문서화한 지침서", "비용 청구서", "배포 스크립트"],ans:1,exp:"런북은 반복 운영 작업이나 장애 대응 절차를 표준화한 단계별 지침서로, 일관되고 빠른 대응을 가능하게 한다."},
+{area:"운영·모니터링",pt:1,topic:"운영 기초",q:"'변경 관리(Change Management)'의 목적은?",opts:["변경을 완전히 금지", "더 많은 변경을 장려", "코드를 자동 삭제", "변경 사항을 계획·검토·승인·기록해 장애 위험을 줄이고 추적성을 확보한다"],ans:3,exp:"변경 관리는 변경 전 영향 분석, 승인, 배포 후 모니터링을 통해 장애 위험을 줄이고 변경 이력을 추적한다."},
+{area:"운영·모니터링",pt:2,topic:"SLO 관리",q:"SLO(Service Level Objective)를 초과 달성하면 어떤 문제가 생길 수 있는가?",opts:["항상 좋다", "에러 버짓을 빠르게 소진하지 않았으므로 새 기능 배포 여유가 생긴다", "SLO는 초과 달성이 불가능하다", "SLO를 목표 이상 달성하면 지나친 리소스 투자가 발생할 수 있고, 기능 개발 속도가 낮아진다"],ans:3,exp:"SLO 이상 달성은 불필요한 투자를 의미할 수 있다. SRE는 에러 버짓을 적절히 소비하며 안정성과 기능 개발의 균형을 맞춘다."},
+{area:"운영·모니터링",pt:3,topic:"대규모 운영",q:"서비스 인스턴스가 수백 대로 확장됐다. 각 인스턴스의 설정 변경을 어떻게 효율적으로 관리하는가?",opts:["각 인스턴스에 수동으로 SSH 접속", "운영자가 인스턴스마다 직접 설정", "구성 관리 도구(Ansible 등) + IaC로 코드로 설정 표준화·자동 배포", "인스턴스를 삭제하고 재생성"],ans:2,exp:"수백 대 인스턴스는 구성 관리 도구와 IaC로 설정을 코드로 관리해 자동 배포하는 것이 유일하게 현실적인 방법이다."},
+{area:"계정 관리",pt:1,topic:"역할 관리",q:"Project Member와 Project Administrator의 차이는?",opts:["동일하다", "Member가 더 많은 권한을 가진다", "Admin은 리소스를 조회만 할 수 있다", "Project Administrator는 사용자 초대·권한 관리·프로젝트 설정 변경이 가능하지만 Member는 제한된 운영 권한만 가진다"],ans:3,exp:"Project Administrator는 사용자 초대, 권한 관리, 프로젝트 설정을 담당하고 Member는 서비스 운영 수준의 권한만 가진다."},
+{area:"계정 관리",pt:2,topic:"계정 감사",q:"계정에 로그인한 IP와 시간을 추적하는 이유는?",opts:["비용을 절감하기 위해", "비정상적인 로그인(해외 IP, 이상 시간대)을 탐지해 계정 탈취를 조기 발견하기 위해", "DNS 성능을 향상시키기 위해", "스토리지를 절약하기 위해"],ans:1,exp:"로그인 IP·시간 추적은 비정상 패턴을 탐지해 자격 증명 탈취나 내부자 위협을 조기에 발견하는 데 중요하다."},
+{area:"계정 관리",pt:3,topic:"대규모 계정 관리",q:"수천 명의 개발자가 있는 기업에서 클라우드 접근 권한을 효율적으로 관리하는 방법은?",opts:["각 개발자에게 개별적으로 권한을 수동 부여", "모두 Admin 권한 부여", "비밀번호만으로 관리", "역할 기반(RBAC) + 그룹 관리 + SSO 연동으로 그룹별 역할을 자동 부여하고 인사 시스템과 연계"],ans:3,exp:"RBAC+그룹 관리+SSO로 입사·퇴사·이동 시 권한이 자동 부여·회수되어 수천 명 규모도 일관되게 관리할 수 있다."},
+{area:"기타·복합",pt:1,topic:"클라우드 패턴",q:"'멱등성(Idempotency)'이 API 설계에서 중요한 이유는?",opts:["속도를 높이기 위해", "같은 요청을 여러 번 실행해도 결과가 동일해 재시도 시 부작용이 없다", "암호화를 강화하기 위해", "비용을 절감하기 위해"],ans:1,exp:"멱등성은 네트워크 오류로 요청을 재시도할 때 중복 처리(중복 결제 등)를 방지하는 중요한 API 설계 원칙이다."},
+{area:"기타·복합",pt:1,topic:"클라우드 패턴",q:"'사이드카(Sidecar) 패턴'이란?",opts:["메인 컨테이너를 대체하는 보조 컨테이너", "로드 밸런서의 일종", "메인 애플리케이션 컨테이너와 함께 파드에서 실행되어 로깅·모니터링·보안 등 부가 기능을 담당하는 컨테이너", "스토리지 마운트 방식"],ans:2,exp:"사이드카는 메인 앱과 같은 파드에서 실행되어 로깅·프록시·트레이싱 등 인프라 관심사를 분리해 처리하는 컨테이너다."},
+{area:"기타·복합",pt:2,topic:"복합 운영",q:"여러 리전에 배포된 서비스에서 사용자를 가장 가까운 리전으로 라우팅하려면?",opts:["지리 기반 DNS 라우팅(Geolocation Routing)으로 사용자 위치에 따라 가장 가까운 엔드포인트로 자동 연결", "사용자가 직접 리전을 선택", "모든 트래픽을 단일 리전에 집중", "VPC Peering만 사용"],ans:0,exp:"지리 기반 DNS 라우팅은 사용자의 지리적 위치에 따라 가장 가까운 리전의 엔드포인트로 자동 연결해 지연을 최소화한다."},
+{area:"기타·복합",pt:2,topic:"데이터 아키텍처",q:"CQRS(Command Query Responsibility Segregation) 패턴이란?",opts:["명령(쓰기)과 조회(읽기)를 동일한 모델로 처리", "관계형 DB만 사용", "NoSQL만 사용", "명령(쓰기)과 조회(읽기) 모델을 분리해 각각 최적화하는 패턴"],ans:3,exp:"CQRS는 쓰기(Command)와 읽기(Query)를 분리해 각각 최적화한다. 읽기는 캐시나 검색 인덱스로, 쓰기는 트랜잭션 DB로 처리할 수 있다."},
+{area:"기타·복합",pt:3,topic:"대규모 종합 설계",q:"글로벌 B2B SaaS의 아키텍처: 멀티 테넌트, 고가용성(99.99%), 데이터 거버넌스, 비용 최적화, 보안 컴플라이언스. 핵심 설계 결정은?",opts:["테넌트별 프로젝트 분리(격리) + Multi-AZ 배포 + Data Catalog(거버넌스) + 오토스케일링(비용) + KMS+Cloud Trail(컴플라이언스)", "단일 프로젝트 + 단일 AZ + Object Storage 단독", "Billing만 + DNS + IAM", "Alert Center 단독 + MemStore"],ans:0,exp:"멀티 테넌트 격리=프로젝트 분리, 99.99%=Multi-AZ, 거버넌스=Data Catalog, 비용=오토스케일링, 컴플라이언스=KMS+Cloud Trail이 각 요구사항의 핵심이다."},
+{area:"클라우드 개요",pt:1,q:"'엣지 컴퓨팅(Edge Computing)'이란?",opts:["모든 처리를 중앙 서버에 집중", "사용자 가까운 곳에서 데이터를 처리해 지연을 줄이는 방식", "클라우드 없이 서버 운영", "단일 리전 집중"],ans:1,exp:"엣지 컴퓨팅은 사용자나 데이터 소스 근처에서 처리를 수행해 지연과 대역폭 사용을 줄인다."},
+{area:"클라우드 개요",pt:1,q:"'함수형 서비스(FaaS)'의 특징은?",opts:["항상 서버가 실행됨", "요청이 올 때만 함수가 실행되고 비용도 실행 시간만큼만 발생", "서버를 직접 관리", "고정 요금제"],ans:1,exp:"FaaS는 이벤트 발생 시에만 함수를 실행하는 서버리스 모델로 유휴 시간에 비용이 발생하지 않는다."},
+{area:"클라우드 개요",pt:2,q:"'핀옵스(FinOps)'란?",opts:["금융 서비스 전용 클라우드", "클라우드 보안 프레임워크", "컨테이너 관리 방법", "클라우드 비용을 비즈니스 가치와 연계해 최적화하는 문화·관행·도구 체계"],ans:3,exp:"FinOps는 엔지니어링·재무·비즈니스 팀이 협력해 클라우드 비용을 비즈니스 가치와 연계하여 최적화하는 문화다."},
+{area:"클라우드 개요",pt:2,q:"'그린 클라우드(Green Cloud)'가 의미하는 것은?",opts:["초록색 UI를 사용하는 클라우드", "에너지 효율적인 운영으로 탄소 발자국을 줄이는 클라우드", "저비용 클라우드", "개발자 전용 클라우드"],ans:1,exp:"그린 클라우드는 재생에너지 사용, 에너지 효율 향상, 탄소 배출 감소를 통해 환경 영향을 최소화하는 것이다."},
+{area:"클라우드 개요",pt:3,q:"'기술 부채(Technical Debt)'와 클라우드의 관계는?",opts:["단기 편의를 위한 아키텍처 결정(예: 리프트앤시프트)이 장기 기술 부채가 될 수 있어 지속적 리팩토링이 필요하다", "클라우드는 기술 부채와 무관하다", "클라우드가 기술 부채를 자동으로 해결한다", "기술 부채는 항상 긍정적이다"],ans:0,exp:"빠른 마이그레이션을 위한 리프트앤시프트 등은 단기 부채로, 장기적으로 클라우드 네이티브 리팩토링이 필요하다."},
+{area:"서비스 이해",pt:1,q:"VPC에서 '기본 VPC(Default VPC)'란?",opts:["사용자가 만드는 첫 번째 VPC", "계정 생성 시 각 리전에 자동으로 생성되는 VPC", "보안이 가장 강한 VPC", "가장 비싼 VPC 타입"],ans:1,exp:"기본 VPC는 계정 생성 시 자동으로 제공되는 VPC로 즉시 인스턴스를 배포할 수 있다."},
+{area:"서비스 이해",pt:1,q:"MySQL에서 '인덱스(Index)'의 역할은?",opts:["데이터를 암호화", "데이터를 복제", "특정 컬럼 검색 속도를 높이기 위한 자료구조", "트랜잭션을 관리"],ans:2,exp:"인덱스는 특정 컬럼에 대한 검색을 빠르게 하는 자료구조다. 단 쓰기 성능에는 영향을 줄 수 있다."},
+{area:"서비스 이해",pt:1,q:"Kubernetes에서 'Liveness Probe'란?",opts:["파드가 새 트래픽을 받을 준비가 됐는지 확인", "스토리지 용량 확인", "파드가 살아 있는지 주기적으로 확인하고 실패 시 재시작하는 헬스 체크", "네트워크 연결 확인"],ans:2,exp:"Liveness Probe는 파드의 애플리케이션이 정상 동작하는지 확인하고, 실패하면 파드를 재시작한다."},
+{area:"서비스 이해",pt:1,q:"Kubernetes에서 'Readiness Probe'란?",opts:["파드가 살아 있는지 확인", "디스크 용량 확인", "파드가 트래픽을 받을 준비가 됐는지 확인하고 미준비 시 서비스에서 제외", "이미지 업데이트 확인"],ans:2,exp:"Readiness Probe는 파드가 요청을 처리할 준비가 됐는지 확인하고, 실패 시 서비스의 엔드포인트에서 제외한다."},
+{area:"서비스 이해",pt:1,q:"Pub/Sub에서 '메시지 보존 기간(Retention Period)'의 역할은?",opts:["메시지를 영구 보존", "메시지를 즉시 삭제", "메시지를 암호화", "소비되지 않은 메시지를 일정 기간 보관해 구독자가 나중에 소비할 수 있게 한다"],ans:3,exp:"보존 기간 동안 소비되지 않은 메시지를 유지해 구독자가 재처리하거나 지연 없이 소비할 수 있다."},
+{area:"서비스 이해",pt:2,q:"Advanced Managed Search에서 '인덱스(Index)'란?",opts:["데이터베이스 테이블", "검색 가능한 도큐먼트들의 논리적 컬렉션으로 검색·집계의 단위", "네트워크 라우팅 규칙", "암호화 키 저장소"],ans:1,exp:"AMS에서 인덱스는 관련 도큐먼트들의 논리적 그룹으로, 검색·집계·필터링의 기본 단위다."},
+{area:"서비스 이해",pt:2,q:"Kubernetes에서 StatefulSet과 Deployment의 차이는?",opts:["StatefulSet은 파드에 고유한 ID와 안정적 스토리지를 부여해 DB처럼 상태가 중요한 앱에 사용, Deployment는 상태 없는 앱에 사용", "완전히 동일하다", "Deployment가 더 복잡하다", "StatefulSet은 스케일 불가"],ans:0,exp:"StatefulSet은 파드마다 고유 ID와 퍼시스턴트 스토리지를 유지해 DB·Kafka 같은 Stateful 앱에 사용하고, Deployment는 Stateless 앱에 적합하다."},
+{area:"서비스 이해",pt:2,q:"Data Query에서 '파티셔닝'을 사용하는 이유는?",opts:["데이터를 삭제하기 위해", "데이터를 암호화", "백업을 자동화", "쿼리 시 특정 파티션만 스캔해 읽는 데이터를 줄여 속도와 비용을 최적화"],ans:3,exp:"파티셔닝은 날짜·지역 등으로 데이터를 분할해 쿼리 시 필요한 파티션만 스캔하여 비용과 속도를 개선한다."},
+{area:"서비스 이해",pt:3,q:"API 기반 SaaS 플랫폼에서 고객별 사용량을 추적하고 API Rate Limiting을 적용하며 인증을 중앙화하려 한다. 핵심 컴포넌트는?",opts:["DNS 단독", "API Gateway(인증·레이트리밋) + K8sE(앱) + Monitoring(사용량 추적)", "Block Storage만 사용", "IAM + Billing만"],ans:1,exp:"API Gateway로 인증·레이트리밋을 중앙화하고, K8sE로 앱을 운영하며, Monitoring으로 사용량을 추적하는 것이 API SaaS의 표준 아키텍처다."},
+{area:"비용·요금",pt:1,q:"쿠버네티스 워커 노드 비용을 줄이는 '스팟 인스턴스(Spot/Preemptible)'의 특징은?",opts:["항상 가용 보장", "예약보다 비싸다", "영구 운영 보장", "클라우드 유휴 용량을 저렴하게 제공하지만 언제든 회수될 수 있다"],ans:3,exp:"스팟 인스턴스는 저렴하지만 클라우드 용량이 필요할 때 종료될 수 있어 내결함성 있는 배치 작업에 적합하다."},
+{area:"비용·요금",pt:2,q:"오브젝트 스토리지에서 자주 접근하지 않는 데이터를 저렴하게 보관하는 방법은?",opts:["즉시 삭제", "더 비싼 클래스로 업그레이드", "암호화", "저비용 아카이브 스토리지 클래스로 이동하는 라이프사이클 정책 적용"],ans:3,exp:"라이프사이클 정책으로 오래된 객체를 저비용 아카이브 클래스로 자동 전환하면 장기 보관 비용을 크게 줄일 수 있다."},
+{area:"비용·요금",pt:3,q:"글로벌 CDN+클라우드 조합의 비용 최적화 이점은?",opts:["비용이 두 배로 증가한다", "CDN은 항상 무료다", "Object Storage 비용이 증가한다", "엣지에서 정적 콘텐츠를 캐싱해 원본 서버 요청과 아웃바운드 트래픽을 줄여 전체 비용을 절감한다"],ans:3,exp:"CDN 캐싱은 원본(Object Storage/서버)으로의 요청 수를 줄이고, 가까운 엣지에서 응답해 아웃바운드 원거리 트래픽 비용을 절감한다."},
+{area:"보안·권한",pt:1,q:"'최소 노출 원칙(Principle of Least Exposure)'이란?",opts:["최대한 많은 포트를 개방", "모든 트래픽을 허용", "필요한 포트·프로토콜만 열고 나머지는 모두 차단해 공격 표면을 최소화", "인증을 생략"],ans:2,exp:"최소 노출 원칙은 서비스에 필요한 포트·프로토콜만 개방하고 나머지를 차단해 공격 가능한 표면적을 줄이는 원칙이다."},
+{area:"보안·권한",pt:2,q:"클라우드에서 '공급망 공격(Supply Chain Attack)'이란?",opts:["직접 서버를 공격", "신뢰할 수 있는 소프트웨어·라이브러리에 악성 코드를 삽입해 이를 사용하는 시스템을 감염시키는 공격", "DDoS 공격", "비밀번호 무차별 대입"],ans:1,exp:"공급망 공격은 오픈소스 라이브러리나 빌드 파이프라인을 통해 악성 코드를 배포하는 간접 공격 방식이다. 이미지 스캔이 중요하다."},
+{area:"보안·권한",pt:3,q:"'제로 스탠딩 프리빌리지(Zero Standing Privilege)'란?",opts:["항상 Admin 권한 유지", "모든 권한을 제거", "상시 권한 없이 필요할 때만 임시로 권한을 부여받고 작업 완료 후 즉시 회수하는 최소 권한 극단적 적용", "비밀번호 없이 접근"],ans:2,exp:"Zero Standing Privilege는 상시 권한을 없애고 승인된 작업 시에만 임시 권한을 JIT(Just-In-Time)로 부여해 내부자 위협을 최소화한다."},
+{area:"운영·모니터링",pt:1,q:"'핫픽스(Hotfix)'란?",opts:["정기 업데이트", "코드 리팩토링", "성능 최적화 작업", "프로덕션의 긴급한 버그·보안 취약점을 즉시 수정하는 패치"],ans:3,exp:"핫픽스는 프로덕션 환경의 치명적 버그나 보안 취약점을 일반 릴리즈 사이클을 우회해 긴급 수정하는 패치다."},
+{area:"운영·모니터링",pt:2,q:"'관찰 가능성(Observability)'이 기존 모니터링과 다른 점은?",opts:["동일하다", "옵저버빌리티가 더 비싸다", "모니터링이 더 넓은 개념이다", "기존 모니터링은 미리 정의된 지표만 수집, 옵저버빌리티는 알지 못하는 문제도 로그·지표·트레이스로 탐색 가능하다"],ans:3,exp:"모니터링이 '미리 안다'를 전제로 하는 반면 옵저버빌리티는 임의의 내부 상태를 외부 출력으로 추론할 수 있는 시스템 속성이다."},
+{area:"운영·모니터링",pt:3,q:"500개 마이크로서비스 환경에서 특정 요청이 어느 서비스에서 느려지는지 빠르게 찾는 방법은?",opts:["분산 트레이싱으로 요청 ID를 기준으로 전체 호출 체인을 시각화해 병목 서비스와 레이턴시를 즉시 파악", "모든 서비스 로그를 수동 검색", "모든 서비스를 재시작", "Alert Center에서 CPU 알림만 확인"],ans:0,exp:"분산 트레이싱은 요청이 여러 서비스를 거치는 전체 경로를 시각화해 500개 서비스 환경에서도 병목을 즉시 특정할 수 있다."},
+{area:"계정 관리",pt:1,q:"'감사 추적(Audit Trail)'이 필요한 이유는?",opts:["성능 향상", "비용 절감", "누가 언제 무엇을 했는지 기록해 보안 사고 조사와 컴플라이언스 증명에 활용하기 위해", "DNS 설정"],ans:2,exp:"감사 추적은 보안 사고 조사, 내부자 위협 탐지, 규제 컴플라이언스 증명에 필수적인 활동 기록이다."},
+{area:"계정 관리",pt:2,q:"'계정 격리(Account Isolation)'를 하는 이유는?",opts:["비용 절감", "프로젝트·팀·환경 간 리소스·비용·권한·네트워크를 완전히 분리해 폭발 반경(Blast Radius)을 제한하기 위해", "DNS 속도 향상", "스토리지 공유"],ans:1,exp:"계정 격리는 한 환경의 보안 사고나 비용 폭증이 다른 환경에 영향을 주지 않도록 폭발 반경을 제한한다."},
+{area:"계정 관리",pt:3,q:"금융 기업의 클라우드 계정 관리 요구사항: 결제팀은 Billing만, 개발팀은 개발 프로젝트만, 보안팀은 전사 Cloud Trail만 접근. 구현 방법은?",opts:["모두 Admin 권한 부여", "역할 기반(RBAC)으로 팀별 최소 권한 역할 생성: 결제팀=Billing 읽기, 개발팀=개발프로젝트 Member, 보안팀=Cloud Trail 읽기", "공용 계정 공유", "비밀번호로만 통제"],ans:1,exp:"팀별 업무에 필요한 최소 권한만 부여하는 RBAC을 적용하면 각 팀이 필요한 리소스에만 접근 가능하고 의도치 않은 접근을 차단한다."},
+{area:"기타·복합",pt:1,q:"'의존성 주입(Dependency Injection)'이 테스트와 클라우드 개발에서 중요한 이유는?",opts:["코드를 더 복잡하게 만들기 위해", "성능을 저하시킨다", "보안을 약화시킨다", "컴포넌트를 교체 가능하게 해 단위 테스트와 로컬/클라우드 환경 전환을 쉽게 한다"],ans:3,exp:"의존성 주입은 컴포넌트 간 결합도를 낮춰 단위 테스트 시 Mock 주입, 환경별 구현체 교체가 쉬워진다."},
+{area:"기타·복합",pt:2,q:"'백프레셔(Backpressure)' 처리가 필요한 이유는?",opts:["CPU를 최대로 활용하기 위해", "비용을 증가시키기 위해", "암호화를 강화하기 위해", "소비자가 처리할 수 있는 속도보다 빠른 데이터가 들어올 때 시스템 붕괴를 방지하기 위해"],ans:3,exp:"백프레셔는 처리 용량을 초과하는 데이터 유입 시 속도를 조절하거나 버퍼링해 시스템이 과부하로 붕괴되는 것을 방지한다."},
+{area:"기타·복합",pt:3,q:"'데이터 메시(Data Mesh)' 아키텍처에서 각 도메인 팀이 데이터를 소유·제공하는 패턴에서 카카오클라우드 서비스 활용은?",opts:["단일 MySQL 공유", "DNS 단독", "도메인별 Data Catalog(메타데이터) + Object Storage(원시 데이터) + Data Query(접근) + IAM(도메인별 접근 제어)", "Block Storage 단독"],ans:2,exp:"데이터 메시에서 각 도메인은 Data Catalog로 메타데이터를 등록, Object Storage에 데이터 저장, Data Query로 접근 제공, IAM으로 도메인별 접근 제어를 구현한다."},
+{area:"서비스 이해",pt:1,q:"'서비스 계정 키(Service Account Key)'를 안전하게 관리하는 방법은?",opts:["소스 코드에 커밋", "Secrets Manager에 저장하고 런타임에 동적으로 주입, 주기적 교체", "공개 저장소에 업로드", "환경변수 파일에 평문 저장 후 공유"],ans:1,exp:"서비스 계정 키는 Secrets Manager로 관리하고 런타임에 주입하며 주기적으로 교체해야 노출 위험을 최소화한다."},
+{area:"서비스 이해",pt:2,q:"Kubernetes에서 'DaemonSet'이 사용되는 시나리오는?",opts:["웹 앱 배포", "데이터베이스 클러스터", "배치 잡 처리", "모든 노드에 정확히 하나씩 파드를 실행해야 하는 경우(로그 수집 에이전트, 모니터링 에이전트)"],ans:3,exp:"DaemonSet은 모든 노드에 하나씩 파드를 배포할 때 사용한다. 로그 수집기, 모니터링 에이전트, 네트워크 플러그인에 활용된다."},
+{area:"서비스 이해",pt:2,q:"'서비스 디스커버리(Service Discovery)'가 마이크로서비스에서 필요한 이유는?",opts:["IP가 고정적이므로 불필요", "동적으로 생성·삭제되는 컨테이너의 IP를 자동으로 추적해 서비스 간 통신을 가능하게 한다", "DNS만으로 충분하다", "보안 그룹이 대신한다"],ans:1,exp:"컨테이너는 재시작마다 IP가 바뀔 수 있어, 서비스 디스커버리로 현재 IP를 동적으로 추적해야 서비스 간 안정적 통신이 가능하다."},
+{area:"서비스 이해",pt:3,q:"실시간 채팅 서비스: 초당 수십만 메시지 송수신, 사용자별 세션 관리, 대화 이력 검색. 적합한 조합은?",opts:["Object Storage 단독", "MySQL 단독", "Advanced Managed Kafka(메시지) + MemStore(세션) + Advanced Managed Search(검색)", "DNS + IAM + Billing"],ans:2,exp:"고처리량 메시지=AMK, 세션 상태=MemStore, 대화 이력 검색=AMS 조합이 채팅 서비스의 각 요구사항을 최적으로 충족한다."},
+{area:"비용·요금",pt:1,q:"'쇼백(Showback)'이란?",opts:["청구서를 숨기는 것", "예산 초과 시 서비스 종료", "모든 비용을 균등 배분", "팀별 클라우드 사용 비용을 보여주되 실제 청구는 하지 않는 방식"],ans:3,exp:"쇼백은 팀별 비용을 가시화해 비용 의식을 높이지만 실제 청구는 중앙에서 하는 방식이다. 차지백(Chargeback)은 실제 청구다."},
+{area:"비용·요금",pt:2,q:"'클라우드 크리핑(Cloud Creep)'이란?",opts:["조직 모르게 팀별로 클라우드 리소스가 분산·증가해 비용과 관리 복잡성이 늘어나는 현상", "클라우드 속도 저하", "보안 위협", "DNS 오류"],ans:0,exp:"클라우드 크리핑은 통제 없이 팀별 리소스가 무분별하게 증가하는 현상으로, 거버넌스와 비용 태그로 방지한다."},
+{area:"보안·권한",pt:1,q:"'암호화 해독 불가(Cryptographic Non-Repudiation)'란?",opts:["암호화를 해제하는 것", "비밀번호를 초기화", "서명된 메시지의 발신자가 나중에 송신 사실을 부인할 수 없게 하는 것", "인증서를 취소"],ans:2,exp:"Non-Repudiation(부인 방지)은 디지털 서명으로 발신자가 메시지 송신 사실을 나중에 부인할 수 없게 한다."},
+{area:"보안·권한",pt:2,q:"'컨테이너 런타임 보안'에서 중요한 것은?",opts:["이미지 크기 최소화", "CPU 최대 사용", "로그를 저장하지 않음", "최소 권한으로 컨테이너 실행, 루트 권한 금지, 읽기 전용 파일 시스템, 이미지 서명 검증"],ans:3,exp:"컨테이너 런타임 보안의 핵심: 루트 실행 금지, 읽기 전용 파일 시스템, 최소 권한, 서명된 이미지만 실행이다."},
+{area:"운영·모니터링",pt:1,q:"'서비스 수준 지표(SLI)'로 적합하지 않은 것은?",opts:["요청 성공률", "개발자 수", "P99 응답 지연", "에러율"],ans:1,exp:"SLI는 서비스 품질을 측정하는 기술 지표다. 개발자 수는 서비스 품질 지표가 아니다."},
+{area:"운영·모니터링",pt:2,q:"'에러 버짓 정책(Error Budget Policy)'이란?",opts:["에러를 허용하지 않는 정책", "에러 버짓 소진 속도에 따라 기능 개발 속도를 조절하는 규칙(소진 빠르면 안정성 집중)", "비용 예산 관리", "비밀번호 정책"],ans:1,exp:"에러 버짓 정책은 버짓 소진이 임계치를 넘으면 기능 릴리즈를 중단하고 안정성 개선에 집중하는 SRE 운영 규칙이다."},
+{area:"계정 관리",pt:1,q:"'비상 계정(Break Glass Account)'이란?",opts:["일반 업무용 계정", "비밀번호를 잊은 경우 사용", "개발자 전용 계정", "극도의 긴급 상황에서만 사용하는 높은 권한의 임시 계정으로, 사용 시 즉시 알림과 감사가 발생한다"],ans:3,exp:"Break Glass Account는 일반 접근 방법이 실패한 긴급 상황용 계정으로, 사용 시 즉시 알림·감사가 발생해 악용을 방지한다."},
+{area:"계정 관리",pt:2,q:"'직무 분리(Separation of Duties)'란?",opts:["팀을 물리적으로 분리", "모든 권한을 한 사람에게", "비밀번호 공유", "하나의 중요한 작업을 여러 사람이 나눠 처리하게 해 단일 인물의 악용이나 실수를 방지하는 원칙"],ans:3,exp:"직무 분리는 중요 작업(배포+승인, 개발+운영 등)을 여러 역할로 분리해 단일 실패점과 내부자 위협을 줄인다."},
+{area:"기타·복합",pt:1,q:"'컨테이너 오케스트레이션'의 핵심 기능이 아닌 것은?",opts:["자동 배포·롤링 업데이트", "자가 치유(Self-healing)", "관계형 DB 트랜잭션 관리", "오토스케일링"],ans:2,exp:"컨테이너 오케스트레이션(K8s)은 배포·자가 치유·오토스케일링을 제공한다. DB 트랜잭션 관리는 오케스트레이션이 아닌 DB의 역할이다."},
+{area:"기타·복합",pt:2,q:"'멱등성(Idempotency)'을 구현하기 위한 일반적인 방법은?",opts:["클라이언트가 고유 요청 ID(Idempotency Key)를 헤더에 포함하고 서버가 중복 요청을 감지·무시한다", "요청마다 새로운 ID 생성", "모든 요청을 무시", "타임아웃을 없앰"],ans:0,exp:"Idempotency Key 패턴은 클라이언트가 고유 키를 보내고 서버가 이미 처리한 키의 요청을 중복 처리 없이 이전 응답을 반환한다."},
+{area:"기타·복합",pt:3,q:"'Site Reliability Engineering(SRE)'에서 'Toil'이란?",opts:["창의적 엔지니어링 작업", "반복적이고 수동적이며 자동화 가능한 운영 작업으로, SRE는 toil을 50% 미만으로 유지하려 한다", "보안 설정 작업", "비용 분석"],ans:1,exp:"Toil은 서비스 성장에 비례하고 반복적이며 자동화로 제거 가능한 수동 작업이다. SRE는 엔지니어 시간의 50% 이상이 toil이 되지 않도록 자동화를 추구한다."},
+{area:"클라우드 개요",pt:1,q:"'서비스 카탈로그(Service Catalog)'란?",opts:["물리 서버 목록", "DNS 레코드 목록", "조직에서 승인된 클라우드 서비스와 설정을 표준화해 셀프서비스로 제공하는 체계", "보안 정책 문서"],ans:2,exp:"서비스 카탈로그는 IT 팀이 승인·표준화한 서비스를 사용자가 셀프서비스로 빠르게 프로비저닝할 수 있게 한다."},
+{area:"클라우드 개요",pt:2,q:"'컴플라이언스 애즈 코드(Compliance as Code)'란?",opts:["보안·규정 준수 정책을 코드로 자동화해 지속적으로 검증하는 방식", "법률을 프로그래밍 언어로 작성", "DB 스키마 관리", "네트워크 설정 자동화"],ans:0,exp:"Compliance as Code는 규정 준수 규칙을 코드로 정의하고 자동화된 점검으로 지속적으로 검증해 인적 오류를 줄인다."},
+{area:"클라우드 개요",pt:2,q:"'클라우드 버스팅(Cloud Bursting)'이란?",opts:["클라우드 비용이 폭발적으로 증가", "클라우드를 폐기", "서버를 물리 증설", "온프레미스 용량이 부족할 때 클라우드로 자동 확장하는 하이브리드 패턴"],ans:3,exp:"클라우드 버스팅은 온프레미스 피크 초과 시 퍼블릭 클라우드로 워크로드를 확장하는 하이브리드 패턴이다."},
+{area:"클라우드 개요",pt:3,q:"'플랫폼 엔지니어링(Platform Engineering)'이 클라우드 환경에서 의미하는 것은?",opts:["개발자가 복잡한 인프라 없이 앱 개발에 집중할 수 있도록 내부 플랫폼(IDP)을 구축·운영하는 것", "개발자가 직접 인프라를 모두 관리", "서버 하드웨어 관리", "비용만 최적화"],ans:0,exp:"플랫폼 엔지니어링은 인프라 복잡성을 추상화한 내부 개발자 플랫폼(IDP)으로 개발자 생산성을 높이는 실천이다."},
+{area:"서비스 이해",pt:1,q:"Kubernetes에서 'Job'과 'CronJob'의 차이는?",opts:["Job은 일회성 배치 작업, CronJob은 정해진 스케줄로 반복 실행하는 배치 작업", "동일하다", "CronJob이 더 빠르다", "Job은 네트워크를 사용 불가"],ans:0,exp:"Job은 완료가 목표인 일회성 작업, CronJob은 Unix cron처럼 정해진 주기로 Job을 자동 실행한다."},
+{area:"서비스 이해",pt:1,q:"Object Storage의 '다중 파트 업로드(Multipart Upload)'가 유용한 상황은?",opts:["작은 파일 업로드", "이미지 암호화", "대용량 파일을 여러 조각으로 나눠 병렬 업로드해 속도 향상과 실패 시 부분 재시도", "DNS 레코드 생성"],ans:2,exp:"다중 파트 업로드는 대용량 파일을 분할해 병렬 전송하므로 속도가 빠르고 실패 시 해당 파트만 재시도한다."},
+{area:"서비스 이해",pt:1,q:"'CDN 오리진(Origin)'이란?",opts:["CDN이 콘텐츠를 가져오는 원본 서버(Object Storage 또는 웹 서버)", "CDN 엣지 서버", "DNS 서버", "인증서 서버"],ans:0,exp:"CDN 오리진은 엣지에 캐시된 콘텐츠가 없을 때 CDN이 콘텐츠를 가져오는 원본 서버다."},
+{area:"서비스 이해",pt:1,q:"MySQL에서 '트랜잭션(Transaction)'의 ACID 특성 중 '원자성(Atomicity)'이란?",opts:["트랜잭션의 모든 작업이 모두 성공하거나 모두 실패한다(부분 적용 없음)", "여러 트랜잭션이 동시 실행 가능", "데이터가 영구 저장된다", "다른 트랜잭션이 간섭 불가"],ans:0,exp:"원자성은 트랜잭션 내 모든 연산이 완전히 실행되거나 하나라도 실패하면 전부 롤백되는 성질이다."},
+{area:"서비스 이해",pt:2,q:"'서비스 메시'에서 '트래픽 미러링(Traffic Mirroring)'의 활용은?",opts:["프로덕션 트래픽을 새 버전에 복사해 실제 부하로 테스트하되 사용자에게 영향을 주지 않는다", "트래픽을 삭제", "트래픽을 암호화", "DNS를 수정"],ans:0,exp:"트래픽 미러링은 프로덕션 트래픽을 실시간 복사해 새 버전을 테스트함으로써 사용자 영향 없이 실제 조건에서 검증한다."},
+{area:"서비스 이해",pt:2,q:"Kubernetes에서 'Resource Quota'란?",opts:["네임스페이스 내 CPU·메모리·파드 수 등 리소스 사용 한도를 정의해 팀 간 자원 배분을 관리", "파드의 CPU 요청 설정", "스토리지 용량 설정", "네트워크 대역폭 제한"],ans:0,exp:"Resource Quota는 네임스페이스 레벨에서 리소스 사용 한도를 설정해 특정 팀이 클러스터 자원을 독점하지 못하게 한다."},
+{area:"서비스 이해",pt:2,q:"Kafka에서 '리텐션 정책(Retention Policy)'이란?",opts:["메시지를 영구 삭제", "컨슈머 그룹 관리", "메시지를 일정 기간 또는 크기 초과 시 삭제하는 정책으로 디스크 사용량을 관리한다", "파티션 수 조정"],ans:2,exp:"Kafka 리텐션 정책은 오래된 메시지를 자동 삭제해 디스크 공간을 관리하며, 기간·크기 기준으로 설정한다."},
+{area:"서비스 이해",pt:3,q:"'글로벌 부하 분산(Global Load Balancing)' 구성 시 고려사항이 아닌 것은?",opts:["인스턴스 색상 테마", "지역별 지연 최소화", "장애 발생 리전 자동 우회", "데이터 주권(Data Residency) 규정 준수"],ans:0,exp:"글로벌 LB는 지연 최소화, 장애 자동 우회, 데이터 주권 준수가 핵심 고려사항이다. 인스턴스 색상은 무관하다."},
+{area:"비용·요금",pt:2,q:"'RI(Reserved Instance) 커버리지'란?",opts:["예약 인스턴스가 커버되는 물리적 면적", "DNS 레코드 수", "전체 인스턴스 중 예약 인스턴스로 커버되는 비율로, 높을수록 비용 절감 효과가 크다", "보안 그룹 수"],ans:2,exp:"RI 커버리지는 온디맨드 중 얼마나 많은 부분을 예약 인스턴스로 대체했는지 나타내며, 높을수록 비용 절감이 크다."},
+{area:"비용·요금",pt:2,q:"'클라우드 비용 이상 탐지'를 설정하는 이유는?",opts:["평소와 다른 비용 패턴(급증 등)을 자동으로 감지해 예산 초과나 보안 사고를 조기 발견하기 위해", "성능 최적화", "DNS 속도 향상", "이미지 크기 감소"],ans:0,exp:"비용 이상 탐지는 리소스 오용, 자격 증명 탈취로 인한 무단 생성, 잘못된 설정으로 인한 비용 폭증을 조기에 발견한다."},
+{area:"비용·요금",pt:3,q:"'쿠버네티스 비용 배분(Kubernetes Cost Attribution)'이 어려운 이유와 해결 방법은?",opts:["비용이 항상 명확하다 → 별도 설정 불필요", "단일 팀만 사용한다 → 배분 불필요", "여러 팀이 클러스터를 공유해 팀별 비용 산정이 어렵다 → 네임스페이스·레이블 기반 비용 배분 도구 활용", "비용이 0원이다"],ans:2,exp:"공유 클러스터는 팀별 비용 경계가 없어 네임스페이스와 레이블을 기준으로 CPU·메모리·스토리지 비용을 팀별로 배분해야 한다."},
+{area:"보안·권한",pt:1,q:"'피싱(Phishing)' 공격으로부터 클라우드 계정을 보호하는 가장 효과적인 방법은?",opts:["비밀번호를 길게 설정", "다단계 인증(MFA) 적용으로 자격 증명 탈취 시에도 추가 인증이 필요하게 한다", "이메일을 사용하지 않음", "계정을 삭제"],ans:1,exp:"피싱으로 비밀번호가 탈취되어도 MFA가 있으면 추가 인증을 통과해야 하므로 계정 탈취를 방어한다."},
+{area:"보안·권한",pt:2,q:"'클라우드 보안 포스처 관리(CSPM)'란?",opts:["물리 보안 관리", "클라우드 환경의 잘못된 설정(Misconfiguration)을 자동으로 탐지·수정하는 도구 및 실천", "네트워크 속도 최적화", "비용 절감 도구"],ans:1,exp:"CSPM은 퍼블릭 버킷 오픈, 과도한 권한 등 클라우드 설정 오류를 지속적으로 스캔해 보안 리스크를 줄인다."},
+{area:"보안·권한",pt:3,q:"'서플라이 체인 보안'을 강화하기 위한 CI/CD 파이프라인 설정은?",opts:["모든 이미지를 검증 없이 배포", "이미지 서명(Signing) + CR 취약점 스캔 + SBOM(소프트웨어 자재 목록) 생성 + 신뢰된 레지스트리만 허용", "소스 코드를 공개", "의존성을 무시"],ans:1,exp:"공급망 공격 방어: 이미지 서명으로 무결성 검증, 취약점 스캔으로 CVE 탐지, SBOM으로 의존성 가시성, 신뢰 레지스트리만 허용하는 조합이 핵심이다."},
+{area:"운영·모니터링",pt:1,q:"'스택 트레이스(Stack Trace)'가 장애 대응에 유용한 이유는?",opts:["성능을 향상시킨다", "비용을 절감한다", "에러 발생 시 코드 실행 경로를 보여줘 원인 코드 위치를 정확히 찾을 수 있다", "DNS를 설정한다"],ans:2,exp:"스택 트레이스는 에러 발생 시점의 함수 호출 스택을 보여줘 어느 코드에서 문제가 발생했는지 빠르게 특정한다."},
+{area:"운영·모니터링",pt:2,q:"'플레이북(Playbook)'과 '런북(Runbook)'의 차이는?",opts:["동일하다", "런북이 더 포괄적이다", "플레이북만 자동화 가능", "플레이북은 전략·의사결정 가이드, 런북은 구체적 단계별 기술 절차서"],ans:3,exp:"런북은 특정 작업의 단계별 기술 절차를 담고, 플레이북은 상황별 대응 전략과 의사결정 흐름을 담는다."},
+{area:"운영·모니터링",pt:3,q:"'프로덕션 레디니스 리뷰(Production Readiness Review)'에서 확인해야 할 항목이 아닌 것은?",opts:["SLO 및 모니터링·알림 설정", "장애 대응 런북 존재", "자동화된 배포 파이프라인", "팀 점심 메뉴"],ans:3,exp:"프로덕션 레디니스 리뷰는 SLO, 모니터링, 런북, 배포 자동화, 보안, 용량 계획 등을 검토한다. 점심 메뉴는 무관하다."},
+{area:"계정 관리",pt:1,q:"'계정 수명 주기(Account Lifecycle) 관리'란?",opts:["입사부터 퇴사까지 계정 생성·권한 변경·비활성화·삭제를 체계적으로 관리하는 프로세스", "계정의 생년월일 관리", "비밀번호 길이 설정", "DNS 레코드 관리"],ans:0,exp:"계정 수명 주기 관리는 입사 시 생성, 이동 시 권한 변경, 퇴사 시 즉시 비활성화·삭제를 체계화해 불필요한 접근을 차단한다."},
+{area:"계정 관리",pt:2,q:"'조직 정책(Organization Policy)'을 사용하는 이유는?",opts:["개별 팀이 자유롭게 설정을 변경하기 위해", "비용 절감", "전사적으로 특정 리전 사용 제한, 공개 버킷 금지 등 보안·컴플라이언스 기준을 강제 적용하기 위해", "DNS 자동화"],ans:2,exp:"조직 정책은 모든 하위 프로젝트에 일관된 보안·컴플라이언스 규칙(허용 리전, 금지 설정 등)을 강제 적용한다."},
+{area:"기타·복합",pt:1,q:"'옵저버 패턴(Observer Pattern)'이 이벤트 드리븐 시스템에서 사용되는 이유는?",opts:["상태 변화를 구독자에게 자동 통보해 느슨한 결합과 확장성을 확보하기 위해", "성능 저하를 위해", "암호화 강화", "비용 절감"],ans:0,exp:"옵저버 패턴은 발행자(Subject)와 구독자(Observer)를 분리해 새 구독자 추가 시 발행자 수정 없이 확장 가능하다."},
+{area:"기타·복합",pt:2,q:"'분산 락(Distributed Lock)'이 필요한 상황은?",opts:["여러 인스턴스가 동시에 같은 자원(DB 레코드, 공유 파일 등)을 수정하는 경합을 방지할 때", "단일 서버에서 실행되는 앱", "읽기 전용 작업", "암호화 처리"],ans:0,exp:"분산 락은 수평 확장된 여러 인스턴스가 같은 자원을 동시 수정할 때 데이터 일관성을 보장하는 동기화 메커니즘이다."},
+{area:"기타·복합",pt:2,q:"'레이트 리밋(Rate Limiting)'을 API에 적용하는 주요 목적은?",opts:["API를 느리게 만들기 위해", "비용을 증가시키기 위해", "인증을 강화", "단위 시간당 요청 수를 제한해 DDoS·남용을 방지하고 서비스 품질을 보호하기 위해"],ans:3,exp:"레이트 리밋은 API 남용(DDoS, 스크래핑)을 방지하고 모든 사용자가 공정하게 서비스를 이용할 수 있게 품질을 보호한다."},
+{area:"기타·복합",pt:3,q:"'플랫폼 팀'이 내부 개발자 플랫폼(IDP)을 구축할 때 카카오클라우드로 제공할 수 있는 기능은?",opts:["셀프서비스 K8sE 네임스페이스 + CI/CD 파이프라인 + Monitoring + CR + Secrets Manager 통합", "단일 VM 제공", "DNS만 제공", "비용 정보만 제공"],ans:0,exp:"IDP는 K8sE 네임스페이스(격리), CR(이미지), CI/CD, Monitoring(관찰성), Secrets Manager(비밀 관리)를 통합해 개발자가 인프라 없이 앱 배포에 집중하게 한다."},
+{area:"서비스 이해",pt:1,q:"'웹훅(Webhook)'이란?",opts:["웹 서버의 일종", "DNS 레코드 타입", "스토리지 마운트 방식", "특정 이벤트 발생 시 지정된 URL로 HTTP 요청을 자동 전송하는 이벤트 알림 메커니즘"],ans:3,exp:"웹훅은 이벤트 기반 HTTP 콜백으로, 이벤트 발생 시 등록된 URL에 데이터를 푸시해 실시간 통합을 가능하게 한다."},
+{area:"서비스 이해",pt:1,q:"'gRPC'의 특징은?",opts:["텍스트 기반 REST API", "DNS 프로토콜", "파일 전송 프로토콜", "Protocol Buffers 기반 이진 직렬화로 REST보다 빠르고 강타입 서비스 계약을 제공하는 RPC 프레임워크"],ans:3,exp:"gRPC는 구글이 만든 고성능 RPC 프레임워크로 Protocol Buffers 이진 포맷과 HTTP/2를 사용해 REST보다 빠르다."},
+{area:"서비스 이해",pt:2,q:"'서비스 이해 - 알림 정책(Alert Policy)' 설정 시 '억제(Suppression)' 기능의 역할은?",opts:["유지보수 시간 또는 알려진 장애 중 불필요한 알림 발송을 억제해 알림 피로를 줄인다", "모든 알림을 삭제", "CPU를 제한", "DNS를 변경"],ans:0,exp:"억제 기능은 계획된 유지보수나 이미 알려진 장애 중 중복 알림을 차단해 팀이 불필요한 알림에 집중 낭비하지 않게 한다."},
+{area:"서비스 이해",pt:3,q:"'이벤트 소싱(Event Sourcing)' 패턴에서 카카오클라우드 서비스 활용은?",opts:["MySQL 단독 사용", "Block Storage만 사용", "모든 상태 변화를 이벤트로 Pub/Sub에 발행, 이벤트 로그는 Object Storage에 영구 보관, 현재 상태는 MemStore에 캐시", "DNS + IAM"],ans:2,exp:"이벤트 소싱: 이벤트 발행=Pub/Sub, 이벤트 로그 영구 보관=Object Storage(불변 저장), 현재 상태 재구성 캐시=MemStore 조합이 적합하다."},
+{area:"비용·요금",pt:1,q:"'단위 경제(Unit Economics)'를 클라우드 비용에 적용한다는 것은?",opts:["서버 1대당 비용", "전체 월 비용만 추적", "사용자 1명, 트랜잭션 1건, 주문 1개 등 비즈니스 단위당 클라우드 비용을 측정해 효율성을 평가", "직원 수당 비용"],ans:2,exp:"단위 경제 적용은 '사용자당 클라우드 비용', '주문당 인프라 비용' 같은 비즈니스 지표와 클라우드 비용을 연계해 ROI를 측정한다."},
+{area:"비용·요금",pt:2,q:"'클라우드 비용 최적화 사이클'의 올바른 순서는?",opts:["측정(현황 파악) → 식별(낭비 요소 발견) → 최적화(조치) → 모니터링(효과 검증) → 반복", "무작위 최적화", "비용 무시", "모든 리소스 삭제"],ans:0,exp:"비용 최적화는 현황 측정 → 낭비 식별 → 조치 → 검증의 지속적 사이클로 진행해야 한다."},
+{area:"보안·권한",pt:2,q:"'버그 바운티(Bug Bounty)' 프로그램이란?",opts:["버그가 없으면 보상", "자동 버그 수정", "외부 보안 연구자가 취약점을 책임감 있게 신고하면 보상하는 프로그램으로 보안 강화에 활용", "버그를 숨기는 방법"],ans:2,exp:"버그 바운티는 외부 해커·연구자에게 취약점 신고를 장려해 내부 팀이 발견하기 어려운 보안 문제를 찾아내는 프로그램이다."},
+{area:"보안·권한",pt:3,q:"'보안 챔피언(Security Champion)' 모델이란?",opts:["각 개발 팀에 보안 지식을 가진 구성원을 배치해 개발 단계부터 보안을 통합(Shift Left)하는 조직 모델", "보안팀만 보안을 담당", "보안 도구만 사용", "코드 리뷰 없이 배포"],ans:0,exp:"보안 챔피언은 개발팀 내 보안 전문가를 두어 설계·코드·배포 단계에서 보안을 내재화하는 조직 문화 모델이다."},
+{area:"운영·모니터링",pt:2,q:"'플레임 그래프(Flame Graph)'란?",opts:["화재 진압 시스템", "CPU 프로파일링 데이터를 시각화해 어느 함수가 CPU를 많이 사용하는지 한눈에 보여주는 차트", "네트워크 토폴로지", "비용 추이 그래프"],ans:1,exp:"플레임 그래프는 CPU 프로파일 데이터를 계층형 막대로 표현해 성능 병목이 되는 함수 호출 스택을 직관적으로 파악한다."},
+{area:"운영·모니터링",pt:3,q:"'혼돈 원숭이(Chaos Monkey)'가 하는 역할은?",opts:["데이터를 삭제하는 공격 도구", "비용 절감 도구", "DNS 자동화", "프로덕션 환경에서 무작위로 인스턴스를 종료해 시스템의 자가 치유 능력과 복원력을 검증하는 카오스 엔지니어링 도구"],ans:3,exp:"Chaos Monkey는 넷플릭스가 만든 카오스 엔지니어링 도구로 무작위 인스턴스 종료로 시스템이 실제 장애에 얼마나 잘 대응하는지 검증한다."},
+{area:"계정 관리",pt:2,q:"'프로비저닝 자동화(Automated Provisioning)'가 계정 관리에서 중요한 이유는?",opts:["수동이 더 정확하다", "비용이 증가한다", "속도가 느려진다", "입사 시 자동 계정·권한 부여, 퇴사 시 자동 회수로 인적 오류·지연을 제거하고 보안을 강화한다"],ans:3,exp:"자동화된 프로비저닝은 권한 부여·회수의 일관성을 보장하고, 퇴사자 계정이 방치되는 보안 위험을 제거한다."},
+{area:"계정 관리",pt:3,q:"'접근 재검토(Access Review/Recertification)'를 정기적으로 해야 하는 이유는?",opts:["부서 이동·역할 변경으로 불필요해진 권한을 식별·제거해 권한 누적(Permission Creep)을 방지하기 위해", "필요 없다", "비용을 높이기 위해", "새 기능을 추가하기 위해"],ans:0,exp:"정기 접근 재검토는 불필요하게 누적된 권한(Permission Creep)을 찾아 제거해 최소 권한 원칙을 지속적으로 유지한다."},
+{area:"기타·복합",pt:1,q:"'서비스 카탈로그'와 'API 마켓플레이스'의 공통점은?",opts:["동일한 제품이다", "보안 정책 문서", "비용 청구 시스템", "표준화된 서비스를 검색하고 셀프서비스로 활용할 수 있게 제공하는 체계"],ans:3,exp:"둘 다 사용 가능한 서비스를 표준화·카탈로그화해 사용자가 셀프서비스로 빠르게 찾고 활용할 수 있게 한다."},
+{area:"기타·복합",pt:2,q:"'프리 티어(Free Tier)'를 실제 프로덕션에 사용하면 안 되는 이유는?",opts:["용량·기능이 제한적이고 SLA 보장이 없어 프로덕션 신뢰성을 확보하기 어렵다", "무료이므로 항상 사용해야 한다", "비용이 더 비싸다", "속도가 더 빠르다"],ans:0,exp:"프리 티어는 학습·테스트용으로 용량 제한과 SLA 부재로 인해 프로덕션 신뢰성 보장이 불가하다."},
+{area:"기타·복합",pt:3,q:"'플랫폼 엔지니어링' 팀이 개발팀에 '황금 경로(Golden Path)'를 제공하는 이유는?",opts:["검증된 인프라·도구·패턴을 표준화해 개발자가 보안·운영 복잡성 없이 빠르게 프로덕션 배포할 수 있게 한다", "개발자의 자유를 제한하기 위해", "비용을 증가시키기 위해", "보안을 약화시키기 위해"],ans:0,exp:"황금 경로는 보안·모니터링·CI/CD가 내장된 검증된 표준 경로를 제공해 개발자 생산성을 높이고 조직 일관성을 확보한다."},
+{area:"클라우드 개요",pt:1,q:"'마이그레이션 웨이브(Migration Wave)'란?",opts:["여러 앱을 우선순위·의존성에 따라 그룹으로 묶어 단계적으로 이전하는 방식", "동시에 모든 앱을 이전", "단일 서버만 이전", "DB만 이전"],ans:0,exp:"웨이브 방식은 앱을 그룹별로 단계 이전해 각 파를 검증하며 다음으로 진행해 위험을 분산한다."},
+{area:"클라우드 개요",pt:2,q:"'탄력적 IP(Elastic IP)'가 고가용성 구성에서 유용한 이유는?",opts:["속도가 빠르기 때문", "인스턴스 장애 시 동일 공인 IP를 다른 인스턴스로 즉시 재할당해 DNS 변경 없이 서비스가 유지된다", "비용이 저렴하기 때문", "DNS가 자동으로 갱신되기 때문"],ans:1,exp:"탄력적 IP를 예비 인스턴스로 재할당하면 클라이언트가 IP 변경을 감지하지 못하고 서비스가 연속된다."},
+{area:"서비스 이해",pt:1,q:"MySQL에서 '복제 지연(Replication Lag)'이란?",opts:["네트워크 지연", "프라이머리와 레플리카 간 데이터 동기화가 늦어지는 현상으로 레플리카에서 오래된 데이터를 읽을 수 있다", "CPU 과부하", "스토리지 부족"],ans:1,exp:"복제 지연은 프라이머리의 변경이 레플리카에 반영되기까지의 시간 차이로, 레플리카에서 읽으면 최신 데이터가 아닐 수 있다."},
+{area:"서비스 이해",pt:1,q:"'오브젝트 스토리지 ACL(Access Control List)'의 역할은?",opts:["버킷·객체별로 공개/비공개, 계정별 접근 권한을 제어하는 설정", "네트워크 방화벽", "DNS 레코드", "암호화 키 관리"],ans:0,exp:"ACL은 버킷과 객체 레벨에서 누가 읽기·쓰기·관리 권한을 갖는지 정의한다."},
+{area:"서비스 이해",pt:2,q:"'서버리스 컨테이너(Serverless Container)'의 특징은?",opts:["서버 프로비저닝 없이 컨테이너를 실행하고 사용한 만큼만 과금하는 방식", "항상 서버가 실행", "고정 요금제", "서버를 직접 관리"],ans:0,exp:"서버리스 컨테이너는 노드 관리 없이 컨테이너만 배포하고 실행 시간만큼만 과금되어 운영 부담을 줄인다."},
+{area:"서비스 이해",pt:2,q:"Kubernetes에서 'Taint와 Toleration'의 역할은?",opts:["네트워크 정책 설정", "스토리지 마운트", "특정 노드에 특정 파드만 실행하도록 제어하는 스케줄링 메커니즘(예: GPU 노드에 ML 파드만)", "인증서 관리"],ans:2,exp:"Taint는 노드에 표시를 달고, Toleration은 파드가 그 표시를 허용할 수 있음을 선언해 GPU 노드처럼 특수 자원을 의도한 파드에만 스케줄링한다."},
+{area:"서비스 이해",pt:3,q:"'멀티 클러스터 K8s' 환경에서 서비스를 여러 클러스터에 배포하는 이유는?",opts:["단순히 클러스터 수를 늘리기 위해", "리전 장애 대비(지리 분산), 팀·환경 격리, 클러스터 크기 제한 분산 등 가용성과 격리를 위해", "비용 증가를 위해", "관리를 복잡하게 하기 위해"],ans:1,exp:"멀티 클러스터는 리전 장애 대비, 팀/환경 격리, 클러스터 규모 한계 분산, 규제 데이터 주권 등을 위해 도입된다."},
+{area:"비용·요금",pt:1,q:"'사용하지 않는 탄력적 IP(Elastic IP)'에도 요금이 발생하는 이유는?",opts:["요금이 발생하지 않는다", "공인 IP는 희소 자원으로 인스턴스에 연결되지 않은 채 예약만 하면 낭비 방지를 위해 요금이 부과된다", "속도 향상 비용", "보안 비용"],ans:1,exp:"공인 IP는 제한된 자원으로, 사용하지 않으면서 예약만 하면 낭비되므로 비연결 상태에서도 요금이 부과된다."},
+{area:"비용·요금",pt:2,q:"'비용 할당 태그(Cost Allocation Tag)' 전략으로 옳지 않은 것은?",opts:["태그 없이 이름만으로 비용 추적", "모든 리소스에 일관된 태그 표준 적용", "신규 리소스 생성 시 태그 필수화 정책", "태그 키·값 규칙을 문서화"],ans:0,exp:"이름(Name 태그)만으로는 자동화된 비용 집계가 어렵다. 팀·환경·프로젝트 등 표준 태그를 의무화해야 한다."},
+{area:"보안·권한",pt:1,q:"'시크릿 스캐닝(Secret Scanning)'이란?",opts:["비밀 파일 찾기", "암호화 키 생성", "소스 코드·커밋 히스토리에서 API 키, 비밀번호 등 민감 정보가 포함된 경우를 자동으로 탐지하는 기능", "인증서 스캔"],ans:2,exp:"시크릿 스캐닝은 개발자가 실수로 소스 코드나 깃에 커밋한 민감 정보를 자동 탐지해 노출 피해를 최소화한다."},
+{area:"보안·권한",pt:2,q:"'클라우드 워크로드 보호(CWPP, Cloud Workload Protection Platform)'의 역할은?",opts:["VM·컨테이너·서버리스 등 클라우드 워크로드의 런타임 보안 위협을 탐지·차단하는 플랫폼", "비용 최적화 도구", "네트워크 속도 향상", "DNS 관리"],ans:0,exp:"CWPP는 VM·컨테이너·서버리스 워크로드에서 런타임 공격, 취약점 악용, 악성 프로세스를 실시간으로 탐지·차단한다."},
+{area:"운영·모니터링",pt:1,q:"'대시보드 노이즈(Dashboard Noise)'를 줄이는 방법은?",opts:["더 많은 지표를 추가", "모든 지표를 삭제", "색상만 변경", "팀에 실제로 필요한 핵심 지표만 선별하고 임계치 알림을 적절히 조정해 의미 있는 신호만 표시"],ans:3,exp:"핵심 지표 선별과 알림 임계치 최적화로 노이즈를 줄이면 실제 문제에 집중할 수 있어 장애 대응 시간이 줄어든다."},
+{area:"운영·모니터링",pt:2,q:"'가용성 테스트(Availability Test)'와 '부하 테스트(Load Test)'의 차이는?",opts:["동일하다", "가용성 테스트는 서비스가 정상 동작하는지 확인, 부하 테스트는 대용량 트래픽 하에서 성능·안정성을 검증", "부하 테스트가 더 쉽다", "가용성 테스트가 더 비싸다"],ans:1,exp:"가용성 테스트는 정상 동작 여부, 부하 테스트는 최대 부하에서의 응답 시간·에러율·자원 사용을 검증한다."},
+{area:"계정 관리",pt:1,q:"'크리덴셜 로테이션(Credential Rotation)'이 자동화되어야 하는 이유는?",opts:["수동이 더 안전하다", "자동화는 비용이 크다", "교체가 필요 없다", "수동 교체는 누락·지연 위험이 있어 자동화해야 일관되고 주기적인 교체가 보장된다"],ans:3,exp:"자격 증명 교체 자동화는 인적 오류와 지연을 없애 항상 최신 자격 증명만 사용되도록 보장한다."},
+{area:"기타·복합",pt:1,q:"'API 버전 관리(API Versioning)'가 중요한 이유는?",opts:["API를 자주 삭제하기 위해", "성능 향상", "하위 호환성을 유지하면서 API를 발전시켜 기존 클라이언트가 업데이트 없이 계속 동작하게 한다", "보안 강화"],ans:2,exp:"API 버전 관리는 v1, v2처럼 버전을 분리해 기존 클라이언트의 호환성을 유지하면서 새 기능을 추가할 수 있게 한다."},
+{area:"기타·복합",pt:2,q:"'프리플라이트 요청(CORS Preflight Request)'이 발생하는 이유는?",opts:["브라우저가 다른 오리진에 복잡한 HTTP 요청을 보내기 전 서버의 CORS 정책을 확인하는 OPTIONS 요청", "서버 오류", "DNS 질의", "인증서 검증"],ans:0,exp:"브라우저는 보안상 다른 도메인(오리진)으로의 복잡한 요청 전에 OPTIONS 요청으로 서버가 해당 오리진을 허용하는지 확인한다."},
+{area:"기타·복합",pt:3,q:"'제로 다운타임 마이그레이션(Zero-Downtime Migration)' 전략으로 옳은 것은?",opts:["서비스 중단 후 이전", "전체 데이터를 한 번에 복사", "블루-그린 배포 + 데이터 이중 쓰기(Dual Write) + 점진적 트래픽 전환 + 롤백 계획 유지", "이전 시 모든 요청 거부"],ans:2,exp:"제로 다운타임 마이그레이션은 블루-그린으로 환경을 병렬 운영하고, 이중 쓰기로 데이터 일관성을 유지하며, 트래픽을 점진적으로 전환하고 언제든 롤백할 수 있게 한다."}
+];
+/* ====================== 상태 ====================== */
+let cfg = { mode:"exam", areas:new Set(), pt:"all", count:"all", shuffle:true };
+let quiz=[], userAns=[], cur=0, graded=false, reviewFilter="wrong", startedAt=0;
+
+const KEY=["①","②","③","④","⑤"];
+const $=s=>document.querySelector(s);
+const app=()=>document.getElementById("app");
+function shuffleArr(a){a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
+function bankBy(area,pt){return BANK.filter(q=>q.area===area&&q.pt===pt);}
+function poolPractice(){return BANK.filter(q=>(cfg.areas.size?cfg.areas.has(q.area):true)&&(cfg.pt==="all"?true:q.pt===Number(cfg.pt)));}
+function buildQ(src){const order=cfg.shuffle?shuffleArr(src.opts.map((_,i)=>i)):src.opts.map((_,i)=>i);
+  return {area:src.area,pt:src.pt,topic:src.topic,q:src.q,exp:src.exp,opts:order.map(i=>src.opts[i]),ans:order.indexOf(src.ans)};}
+function ptOf(q){return q.pt;}
+function earned(){return quiz.reduce((s,q,i)=>s+(userAns[i]===q.ans?q.pt:0),0);}
+function totalPts(){return quiz.reduce((s,q)=>s+q.pt,0);}
+
+/* ====================== 시작 화면 ====================== */
+function renderStart(){
+  graded=false;
+  const totalQ=BANK.length;
+  // 실전 청사진 표
+  const rows=AREAS.map(a=>{const [b1,b2,b3]=BLUEPRINT[a];const n=b1+b2+b3;const p=b1+b2*2+b3*3;
+    return `<tr class="${a==='서비스 이해'?'hi':''}"><td>${a}</td><td>${n}</td><td>${p}</td><td>${b1}·${b2}·${b3}</td></tr>`;}).join("");
+  const practiceCounts={}; AREAS.forEach(a=>practiceCounts[a]=BANK.filter(q=>q.area===a).length);
+
+  app().innerHTML=`
+  <div class="card hero">
+    <div class="mh-eyebrow" style="margin-bottom:10px">Practitioner · Level Essentials</div>
+    <h1>합격선 <span class="hl">70점</span>, 한 번에 점검하는<br>카카오클라우드 기초 실력</h1>
+    <p class="lead">실제 시험 구조(60문항·100점, 1점·2점·3점 배점)와 Exam Blueprint의 영역별 추천 학습 주제를 반영했습니다. 실전 모드는 영역·배점 비율을 청사진대로 구성하고, 채점 후 오답만 모아 학습 주제와 함께 복습할 수 있습니다.</p>
+
+    <div class="tabs" id="modeTabs">
+      <button data-m="exam" aria-pressed="${cfg.mode==='exam'}">실전 모의고사 · 60문항</button>
+      <button data-m="practice" aria-pressed="${cfg.mode==='practice'}">영역별 연습</button>
+    </div>
+
+    <div id="modeBody"></div>
+
+    <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-top:6px">
+      <button class="btn-primary" id="startBtn"></button>
+      <button class="btn-ghost" id="copyLinkBtn">공유 링크 복사</button>
+    </div>
+    <div class="share-note">이 페이지 주소를 그대로 보내면 누구나 같은 시험을 풀 수 있어요.</div>
+  </div>`;
+
+  function renderModeBody(){
+    const body=$("#modeBody");
+    if(cfg.mode==="exam"){
+      body.innerHTML=`
+        <table class="blueprint">
+          <thead><tr><th>평가 영역</th><th>문항</th><th>배점</th><th>1·2·3점</th></tr></thead>
+          <tbody>${rows}</tbody>
+          <tfoot><tr><td>합계</td><td>60</td><td>100</td><td>28·24·8</td></tr></tfoot>
+        </table>
+        <div class="field">
+          <button class="toggle" id="shuffleTog" aria-pressed="${cfg.shuffle}"><span class="switch"></span> 문항·보기 순서 섞기</button>
+        </div>`;
+      $("#startBtn").textContent="실전 시험 시작 · 60문항 / 100점";
+    } else {
+      body.innerHTML=`
+        <div class="field">
+          <label class="lab">출제 영역 <span class="hint">— 선택하지 않으면 전체</span></label>
+          <div class="chips" id="areaChips">
+            ${AREAS.map(a=>`<button class="chip" data-a="${a}" aria-pressed="${cfg.areas.has(a)}">${a}<span class="n">${practiceCounts[a]}</span></button>`).join("")}
+          </div>
+        </div>
+        <div class="field">
+          <label class="lab">배점(난이도)</label>
+          <div class="seg" id="ptSeg">
+            <button data-p="all" aria-pressed="${cfg.pt==='all'}">전체</button>
+            <button data-p="1" aria-pressed="${cfg.pt==='1'}">1점 · 개념</button>
+            <button data-p="2" aria-pressed="${cfg.pt==='2'}">2점 · 활용</button>
+            <button data-p="3" aria-pressed="${cfg.pt==='3'}">3점 · 시나리오</button>
+          </div>
+        </div>
+        <div class="field">
+          <label class="lab">문항 수</label>
+          <div class="seg" id="countSeg">
+            <button data-c="10" aria-pressed="${cfg.count==='10'}">10문항</button>
+            <button data-c="20" aria-pressed="${cfg.count==='20'}">20문항</button>
+            <button data-c="all" aria-pressed="${cfg.count==='all'}">전체</button>
+          </div>
+        </div>
+        <div class="field">
+          <button class="toggle" id="shuffleTog" aria-pressed="${cfg.shuffle}"><span class="switch"></span> 문항·보기 순서 섞기</button>
+        </div>`;
+      const refresh=()=>{const pool=poolPractice().length;const n=cfg.count==="all"?pool:Math.min(Number(cfg.count),pool);$("#startBtn").textContent=`연습 시작 · ${n}문항`;};
+      body.querySelectorAll("#areaChips .chip").forEach(b=>b.onclick=()=>{const a=b.dataset.a,on=b.getAttribute("aria-pressed")==="true";b.setAttribute("aria-pressed",String(!on));on?cfg.areas.delete(a):cfg.areas.add(a);refresh();});
+      body.querySelectorAll("#ptSeg button").forEach(b=>b.onclick=()=>{body.querySelectorAll("#ptSeg button").forEach(x=>x.setAttribute("aria-pressed","false"));b.setAttribute("aria-pressed","true");cfg.pt=b.dataset.p;refresh();});
+      body.querySelectorAll("#countSeg button").forEach(b=>b.onclick=()=>{body.querySelectorAll("#countSeg button").forEach(x=>x.setAttribute("aria-pressed","false"));b.setAttribute("aria-pressed","true");cfg.count=b.dataset.c;refresh();});
+      refresh();
+    }
+    $("#shuffleTog").onclick=function(){cfg.shuffle=!cfg.shuffle;this.setAttribute("aria-pressed",String(cfg.shuffle));};
+  }
+  renderModeBody();
+
+  $("#modeTabs").querySelectorAll("button").forEach(b=>b.onclick=()=>{
+    cfg.mode=b.dataset.m;$("#modeTabs").querySelectorAll("button").forEach(x=>x.setAttribute("aria-pressed",String(x.dataset.m===cfg.mode)));renderModeBody();});
+  $("#startBtn").onclick=startQuiz;
+  $("#copyLinkBtn").onclick=copyLink;
+}
+
+/* ====================== 시험 구성 ====================== */
+function startQuiz(){
+  let chosen=[];
+  if(cfg.mode==="exam"){
+    AREAS.forEach(a=>{const [b1,b2,b3]=BLUEPRINT[a];
+      [[1,b1],[2,b2],[3,b3]].forEach(([pt,need])=>{
+        let pool=bankBy(a,pt); pool=shuffleArr(pool); chosen=chosen.concat(pool.slice(0,need));
+      });
+    });
+    chosen=shuffleArr(chosen); // 출제 순서 섞기(실전은 항상 셔플)
+  } else {
+    let pool=poolPractice(); pool=cfg.shuffle?shuffleArr(pool):pool;
+    const n=cfg.count==="all"?pool.length:Math.min(Number(cfg.count),pool.length);
+    chosen=pool.slice(0,n);
+  }
+  quiz=chosen.map(buildQ);
+  userAns=quiz.map(()=>-1); cur=0; graded=false; startedAt=Date.now();
+  window.scrollTo(0,0); renderExam();
+}
+
+/* ====================== 시험 화면 ====================== */
+function renderExam(){
+  const q=quiz[cur];
+  const answered=userAns.filter(a=>a>=0).length;
+  app().innerHTML=`
+  <div class="topbar">
+    <div class="progress-meta">문항 <b>${cur+1}</b> / ${quiz.length}${cfg.mode==='exam'?' · 실전':''}</div>
+    <div class="pbar"><i style="width:${((cur+1)/quiz.length)*100}%"></i></div>
+    <button class="btn-ghost" id="quitBtn" style="padding:8px 14px;font-size:13px">시작 화면</button>
+  </div>
+  <div class="exam">
+    <div class="card qcard">
+      <div class="eyebrow">
+        <span class="qnum">Q${String(cur+1).padStart(2,"0")}</span>
+        <span class="cat">${q.area}</span>
+        <span class="pt pt${q.pt}">${q.pt}점</span>
+      </div>
+      <p class="qtext">${q.q}</p>
+      <ul class="opts" id="opts">
+        ${q.opts.map((o,i)=>`<li><button class="opt" data-i="${i}" aria-pressed="${userAns[cur]===i}"><span class="key">${KEY[i]}</span><span class="body">${o}</span></button></li>`).join("")}
+      </ul>
+      <div class="navbtns">
+        <button class="btn-ghost" id="prevBtn" ${cur===0?"disabled style=opacity:.4;cursor:not-allowed":""}>← 이전</button>
+        ${cur===quiz.length-1?`<button class="btn-primary" id="submitBtn">채점하기</button>`:`<button class="btn-ghost" id="nextBtn">다음 →</button>`}
+      </div>
+    </div>
+    <aside class="card side">
+      <h3>답안지</h3>
+      <p class="sub">번호를 눌러 이동할 수 있어요</p>
+      <div class="omr" id="omr">
+        ${quiz.map((_,i)=>`<button class="cell ${userAns[i]>=0?"answered":""} ${i===cur?"current":""}" data-i="${i}">${i+1}</button>`).join("")}
+      </div>
+      <div class="legend"><span><i class="dot a"></i> 답함</span><span><i class="dot"></i> 미응답</span></div>
+      <button class="btn-primary submit" id="submitBtn2">채점하기</button>
+      <div class="answered-count">응답 완료 <b>${answered}</b> / ${quiz.length}</div>
+    </aside>
+  </div>`;
+
+  $("#opts").querySelectorAll(".opt").forEach(b=>b.onclick=()=>{userAns[cur]=Number(b.dataset.i);renderExam();});
+  $("#omr").querySelectorAll(".cell").forEach(b=>b.onclick=()=>{cur=Number(b.dataset.i);renderExam();});
+  if($("#prevBtn"))$("#prevBtn").onclick=()=>{if(cur>0){cur--;renderExam();}};
+  if($("#nextBtn"))$("#nextBtn").onclick=()=>{if(cur<quiz.length-1){cur++;renderExam();}};
+  const submit=()=>{const un=userAns.filter(a=>a<0).length;
+    if(un>0&&!confirm(`미응답 ${un}문항이 있습니다. 그대로 채점할까요?`))return;
+    graded=true;window.scrollTo(0,0);renderResults();};
+  if($("#submitBtn"))$("#submitBtn").onclick=submit;
+  if($("#submitBtn2"))$("#submitBtn2").onclick=submit;
+  $("#quitBtn").onclick=()=>{if(confirm("시작 화면으로 돌아가면 현재 풀이가 사라집니다. 계속할까요?"))renderStart();};
+}
+
+/* ====================== 결과 ====================== */
+function renderResults(){
+  const e=earned(), t=totalPts(), pct=Math.round(e/t*100);
+  const high=pct>=HIGH, pass=pct>=PASS;
+  const ringC=high?"var(--correct)":(pass?"var(--accent)":"var(--wrong)");
+  const correctN=quiz.reduce((s,q,i)=>s+(userAns[i]===q.ans?1:0),0);
+  const secs=Math.max(1,Math.round((Date.now()-startedAt)/1000));
+  const tstr=`${Math.floor(secs/60)}분 ${secs%60}초`;
+  const isExam=cfg.mode==="exam";
+
+  // 영역별(배점) 정답률
+  const areaAgg={};
+  quiz.forEach((q,i)=>{(areaAgg[q.area]??=(areaAgg[q.area]={got:0,tot:0}));areaAgg[q.area].tot+=q.pt;if(userAns[i]===q.ans)areaAgg[q.area].got+=q.pt;});
+  const areaRows=Object.entries(areaAgg).map(([a,v])=>{const p=Math.round(v.got/v.tot*100);const col=p>=PASS?"var(--correct)":(p>=50?"var(--accent)":"var(--wrong)");
+    return `<div class="br-row"><span class="nm">${a}</span><div class="br-bar"><i style="width:${p}%;background:${col}"></i></div><span class="sc">${v.got}/${v.tot}점</span></div>`;}).join("");
+
+  // 배점별 정답 수
+  const ptAgg={1:{c:0,t:0},2:{c:0,t:0},3:{c:0,t:0}};
+  quiz.forEach((q,i)=>{ptAgg[q.pt].t++;if(userAns[i]===q.ans)ptAgg[q.pt].c++;});
+  const ptRows=[1,2,3].filter(p=>ptAgg[p].t>0).map(p=>{const v=ptAgg[p];const pc=Math.round(v.c/v.t*100);const col=pc>=PASS?"var(--correct)":(pc>=50?"var(--accent)":"var(--wrong)");
+    const lbl={1:"1점 · 개념",2:"2점 · 활용",3:"3점 · 시나리오"}[p];
+    return `<div class="br-row"><span class="nm">${lbl}</span><div class="br-bar"><i style="width:${pc}%;background:${col}"></i></div><span class="sc">${v.c}/${v.t}개</span></div>`;}).join("");
+
+  const verdictMsg = isExam
+    ? (high?"고득점입니다. 핵심 개념이 탄탄해요.":(pass?"합격선을 넘었어요. 오답만 마저 다지면 고득점도 가능합니다.":"합격선(70점)까지 조금 더. 오답 노트를 중심으로 약한 영역을 보강해 보세요."))
+    : (pass?"잘하고 있어요. 오답만 모아 마무리 점검해 보세요.":"오답 노트를 중심으로 해당 영역을 다시 보면 빠르게 끌어올릴 수 있어요.");
+
+  app().innerHTML=`
+  <div class="card">
+    <div class="result-head">
+      <div class="ring" style="--p:${pct};--ring-c:${ringC}"><div><span class="pct">${e}<span style="font-size:16px;color:var(--ink-faint)">/${t}</span></span></div></div>
+      <div class="verdict">
+        <span class="badge-pass ${high?'high':(pass?'pass':'fail')}">${high?'고득점':(pass?'합격':'합격선 미달')}${isExam?` · 합격 ${PASS} / 고득점 ${HIGH}`:` · 기준 ${PASS}%`}</span>
+        <h2>${t}점 만점 중 ${e}점 (환산 ${pct}%)</h2>
+        <p>정답 ${correctN} / ${quiz.length}문항 · 소요 ${tstr}<br>${verdictMsg}</p>
+      </div>
+    </div>
+    <div class="breakdown">
+      <h3>영역별 득점</h3>${areaRows}
+      <h3>배점별 정답</h3>${ptRows}
+    </div>
+    <div class="actions">
+      ${correctN<quiz.length?`<button class="btn-primary" id="retryWrong">오답만 다시 풀기 (${quiz.length-correctN})</button>`:""}
+      <button class="btn-ghost" id="retryAll">전체 다시 풀기</button>
+      <button class="btn-ghost" id="newExam">시작 화면</button>
+      <button class="btn-ghost" id="shareBtn">결과 공유</button>
+    </div>
+  </div>
+
+  <div class="review-head">
+    <h2>오답 노트 &amp; 해설</h2>
+    <div class="filter-seg" id="filterSeg">
+      <button data-f="wrong" aria-pressed="${reviewFilter==='wrong'}">오답만</button>
+      <button data-f="all" aria-pressed="${reviewFilter==='all'}">전체</button>
+    </div>
+  </div>
+  <div id="reviewList"></div>`;
+
+  $("#filterSeg").querySelectorAll("button").forEach(b=>b.onclick=()=>{reviewFilter=b.dataset.f;$("#filterSeg").querySelectorAll("button").forEach(x=>x.setAttribute("aria-pressed",String(x.dataset.f===reviewFilter)));renderReview();});
+  if($("#retryWrong"))$("#retryWrong").onclick=()=>{
+    const wrong=quiz.filter((_,i)=>userAns[i]!==quiz[i].ans);
+    quiz=wrong.map(q=>buildQ({area:q.area,pt:q.pt,topic:q.topic,q:q.q,exp:q.exp,opts:q.opts,ans:q.ans}));
+    userAns=quiz.map(()=>-1);cur=0;graded=false;startedAt=Date.now();window.scrollTo(0,0);renderExam();};
+  $("#retryAll").onclick=()=>{userAns=quiz.map(()=>-1);cur=0;graded=false;startedAt=Date.now();window.scrollTo(0,0);renderExam();};
+  $("#newExam").onclick=renderStart;
+  $("#shareBtn").onclick=()=>shareResult(e,t,pct);
+  renderReview();
+}
+
+function renderReview(){
+  const items=quiz.map((q,i)=>({q,i})).filter(({i})=>reviewFilter==="all"||userAns[i]!==quiz[i].ans);
+  if(items.length===0){$("#reviewList").innerHTML=`<div class="card rev" style="text-align:center;color:var(--ink-soft)">오답이 없습니다. 완벽해요! '전체'로 전환하면 해설을 다시 볼 수 있어요.</div>`;return;}
+  $("#reviewList").innerHTML=items.map(({q,i})=>{
+    const ok=userAns[i]===q.ans, chosen=userAns[i];
+    const opts=q.opts.map((o,oi)=>{const isAns=oi===q.ans,isChosen=oi===chosen;let cls="",mark="";
+      if(isAns){cls="correct";mark="정답";}else if(isChosen){cls="chosen-wrong";mark="내 선택";}
+      return `<div class="ro ${cls}"><span class="k">${KEY[oi]}</span><span>${o}</span>${mark?`<span class="mark">${mark}</span>`:""}</div>`;}).join("");
+    return `<div class="card rev">
+      <div class="rtop">
+        <span class="tag ${ok?'ok':'no'}">${ok?'정답':'오답'}</span>
+        <span class="tag cat">${q.area}</span>
+        <span class="tag cat">${q.pt}점</span>
+        ${q.topic?`<span class="tag cat" style="opacity:.85">📘 ${q.topic}</span>`:""}
+      </div>
+      <p class="rq"><span class="qnum">Q${String(i+1).padStart(2,"0")}</span>${q.q}</p>
+      ${opts}
+      <div class="exp"><b>해설.</b> ${q.exp}</div>
+    </div>`;}).join("");
+}
+
+/* ====================== 공유 ====================== */
+function toast(msg){let t=document.getElementById("toast");if(!t){t=document.createElement("div");t.id="toast";t.className="toast";document.body.appendChild(t);}t.textContent=msg;t.classList.add("show");clearTimeout(t._h);t._h=setTimeout(()=>t.classList.remove("show"),2200);}
+function copyLink(){const url=location.href;if(navigator.clipboard&&location.protocol!=="file:"){navigator.clipboard.writeText(url).then(()=>toast("링크를 복사했어요 — 붙여넣어 공유하세요")).catch(()=>window.prompt("아래 주소를 복사해 공유하세요",url));}else{window.prompt("아래 주소를 복사해 공유하세요",url);}}
+function shareResult(e,t,pct){const text=`카카오클라우드 Certified Essentials 모의고사 — ${t}점 만점 중 ${e}점 (${pct}%)`;const url=location.href;
+  if(navigator.share){navigator.share({title:"카카오클라우드 Essentials 모의고사",text,url}).catch(()=>{});}
+  else if(navigator.clipboard&&location.protocol!=="file:"){navigator.clipboard.writeText(text+"\n"+url).then(()=>toast("결과와 링크를 복사했어요")).catch(()=>window.prompt("복사해 공유하세요",text+"  "+url));}
+  else{window.prompt("복사해 공유하세요",text+"  "+url);}}
+
+renderStart();
+</script>
